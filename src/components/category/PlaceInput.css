@@ -1,0 +1,33 @@
+.placeInputWrapper{
+    margin-left: 20px;
+}
+
+.placeSearchInput{
+    border: 3px solid #0A66C2;
+
+    height: 50px;
+    width: 300px;
+
+    box-sizing: border-box;
+    padding: 10px 15px;
+
+    position: static;
+    border-radius: 20px;
+}
+
+/* .placeSearchInput:checked{
+    border: 3px solid #0A66C2;
+} */
+
+.searchLocationShow{
+
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    min-height: 30px;
+    max-height:300px;
+    padding: 2px 20px
+}
+
+.searchLocationShow p{
+    color: #000;
+    margin: 20px 0px;
+}

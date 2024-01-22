@@ -1,0 +1,44 @@
+
+.universalCourselView{
+    padding: 0px 90px;
+}
+
+.product-carousel {
+    position: relative;
+    overflow: hidden;
+    background-color:transparent;
+
+    max-height: 600px;
+    min-height: 300px;
+    
+}
+
+.product-container {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+    height: fit-content;
+}
+
+
+.controlBtns{
+    /* background-color: aqua; */
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+
+    padding: 0px 10px;
+}
+
+.pre-btn, .next-btn{
+    background-color: transparent;
+
+    border:none;
+
+    cursor: pointer;
+
+    margin-left: 10px;
+
+    font-size: 30px;
+}

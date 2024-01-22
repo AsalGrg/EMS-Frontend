@@ -1,0 +1,88 @@
+.eventSnippets{
+    margin-top: 100px;
+    
+}
+
+
+.gridView{
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+    margin-top: 60px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+
+.gridContent{
+    height: 500px;
+    /* background-color: green; */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gridContent:hover{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+    transition:  0.3s ease-in-out
+}
+
+.event_image{
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+.eventDesc{
+    padding: 10px 20px;
+}
+
+.eventTitle{
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+
+.eventDates{
+    color:#d1410c;
+}
+
+
+.subDesc{
+    /* background-color: green; */
+    margin-top: -18px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.venue,.price{
+    color: #6f7287;
+}
+
+.vendor{
+    color: #39364f;
+}
+
+.eventCat{
+    
+    height: 50px;
+    width: 100%;
+    background-color: #f9f9f9;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.categoryNameInGrid{
+    color: #00192f;
+    font-size: 17px;
+}

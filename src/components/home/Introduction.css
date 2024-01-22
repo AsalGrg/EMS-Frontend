@@ -1,0 +1,50 @@
+.introduction{
+    /* background-image: url(""); */
+    height: 500px;
+    background-size: cover;
+    text-align: center;
+    background-repeat: no-repeat;
+    /* background-color: green; */
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 30px;
+}
+
+.leftIntro{
+    /* background-color: blue; */
+    padding-top: 30px;
+    padding-left: 40px;
+    text-align: left;
+}
+
+.rightIntro{
+    /* background-color: red; */
+}
+
+.rightIntro img{
+    height: 500px;
+}
+
+.title{
+    color: #181f38;;
+    font-size: 3rem;
+    font-weight:600;
+    letter-spacing: 3px;
+}
+
+.checkList{
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+}
+
+.checkIcon img{
+    height: 50px;
+    width: 50px;
+}
+
+.changingTxt h1{
+    font-size: 22px;
+    color: black;
+}

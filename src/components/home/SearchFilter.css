@@ -1,0 +1,28 @@
+.searchDiv{
+    margin-top: 60px;
+    /* background-color: red; */
+    /* height: 100px; */
+
+    display: flex;
+    justify-content: center;
+}
+
+.searchFilter{
+    width: 70%;
+    height: 73px;
+    background-color: white;
+    display: flex;
+    justify-content:space-between;
+    border: 4px solid  #00192F;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.searchFilter select, .searchFilter p{
+    color: grey;
+    border: none;
+}
+
+.searchFilter button{
+    width: 200px;
+}

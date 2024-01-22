@@ -1,0 +1,102 @@
+.l_s_mainContainer{
+
+    min-height: 800px;
+    max-height: 1000px;
+    width: 100%;
+    background-color: green;
+    display: flex;
+
+    background-color: #00192F;
+    background-size: cover;
+
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.signHighlights{
+    color: #FFFF;
+}
+.formContent{
+    height: fit-content;
+    /* background-color: red; */
+}
+
+.formContentInputs{
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 30px;
+    
+}
+
+.options, .checkBoxCon{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.options{
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+.formInput{
+    height: 60px;
+    width: 480px;
+    box-sizing: border-box;
+    border: 2px solid #FFF;
+    border-radius: 4px;
+
+    background: hsla(0,0%,100%,.2);
+    color:#FFF;
+    padding: 5px 20px;
+
+    margin-bottom: 15px;
+}
+
+.formInput::placeholder {
+    /* modern browser */
+    color: #FFF;
+}
+
+
+.loginSignupBtn{
+    background-color: #FFFF;
+    color: #1b89ef;
+    height: 50px;
+    border: none;
+}
+
+.loginSignupBtn:disabled{
+    background-color: rgba(194, 184, 184, 0.916);
+}
+
+.otherSignOptions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 15px;
+    padding-top: 10px;
+
+    border-top: 2px solid #FFF;
+}
+
+.signMethodsOpt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.signMethodsOpt> button{
+    margin-left: 3px;
+}
+
+.otherOptButtons{
+    width: 130px;
+    height: 30px;
+}

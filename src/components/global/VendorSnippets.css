@@ -1,0 +1,40 @@
+
+.vendorSnippets{
+    margin-top: 100px;
+    /* background-color: red; */
+}
+
+.vendorViewEach{
+    max-width: 200px;
+    min-width: 200px;
+    height: fit-content;
+    margin-right: 20px;
+    background-color: goldenrod;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 20px 20px;
+}
+
+.vendorProfilePicSnippet{
+    border-radius: 50%;
+    height: 80px;
+    width: 70px;
+
+    margin-bottom: -15px;
+}
+
+
+.vendorIntro{
+    height: fit-content;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.vendorFollowers{
+    margin-top: 50px;
+}

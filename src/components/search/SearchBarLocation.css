@@ -1,0 +1,7 @@
+.searchBarLocationInput{
+    max-height: 60px;
+    width: 25%;
+
+    border: none;
+    border-bottom: 4px solid grey;
+}
