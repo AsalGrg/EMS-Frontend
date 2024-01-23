@@ -13,6 +13,7 @@ import { store } from "./app/store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/js/bootstrap.js';
+import AboutEvent from "./pages/about_event/AboutEvent";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route exact path="/category" element={<Category />} />
           <Route exact path="/verify-email" element={<EmailVerification />} />
           <Route exact path="/create-event" element={<CreateEvent />} />
+          <Route exact path="/about-event" element={<AboutEvent />} />
         </Routes>
       </Provider>
     </>

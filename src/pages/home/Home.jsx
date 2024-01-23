@@ -13,28 +13,7 @@ const Home = () => {
     const [upcomingEvents, setupcomingEvents] = useState([])
 
     const [eventsPerChoice, seteventsPerChoice] = useState([])
-    // const getTrendingEvents = async () => {
 
-    //     await fetch("http://localhost:3232/allEvents")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         settrendingEvents(data)}
-    // )
-    // .catch((error)=>{
-    //   throw error;
-    // })
-    // }
-
-
-
-
-  // useEffect( ()=> {
-
-  //   getTrendingEvents()
-  
-  // }, [])
-  
   return (
     <>
         <Navbar/>
