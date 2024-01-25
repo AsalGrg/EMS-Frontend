@@ -1,0 +1,33 @@
+.coverImageDisplayDiv{
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.event-star {
+    position: relative;
+    height: 300px;
+    width: 200px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.eachStarringDiv{
+    height: 300px;
+    width: 200px;
+}
+
+.starring-img{
+    height: 200px;
+}
+
+.starring-img>img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.organizerDetailContainer{
+    min-width: 500px;
+}

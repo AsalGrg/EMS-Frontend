@@ -8,6 +8,7 @@ import Location from "../../components/about_event/Location";
 import AboutEventSection from "../../components/about_event/AboutEventSection";
 import StarringSection from "../../components/about_event/starring section/StarringSection";
 import TicketSection from "../../components/about_event/first section/TicketSection";
+import OrganizerDetailsSection from "../../components/about_event/OrganizerDetailsSection";
 
 const AboutEvent = () => {
   return (
@@ -29,12 +30,14 @@ const AboutEvent = () => {
           </div>
 
           <div className="col-4">
-              <TicketSection/>
+            <TicketSection />
           </div>
         </div>
-
-        <StarringSection />
       </div>
+
+      <StarringSection />
+
+      <OrganizerDetailsSection/>
     </>
   );
 };
