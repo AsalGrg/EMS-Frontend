@@ -1,7 +1,9 @@
 import { Avatar, Button } from "@mantine/core";
-import React from "react";
+import { IconUserCheck } from "@tabler/icons-react";
+import React, { useState } from "react";
 
 const OrganizerSnippet = () => {
+  const [isFollowing, setisFollowing] = useState(false);
   return (
     <section
       className="rounded d-flex justify-content-between align-items-center p-3 flex-md-row flex-column text-center"
@@ -18,7 +20,23 @@ const OrganizerSnippet = () => {
           By <span className="fw-bold">Asal Gurung</span>
         </p>
       </div>
-      <Button variant="filled">Follow</Button>
+      {!isFollowing ? (
+        <Button
+          variant="filled"
+          onClick={() => setisFollowing((prev) => !prev)}
+        >
+          Follow
+        </Button>
+      ) : (
+        <Button
+          onClick={() => setisFollowing((prev) => !prev)}
+          variant="light"
+          color="gray"
+          leftSection={<IconUserCheck size={20} className="fw-bold" />}
+        >
+          Following
+        </Button>
+      )}
     </section>
   );
 };

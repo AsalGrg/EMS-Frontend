@@ -11,8 +11,6 @@ const Category = () => {
 
   return (
     <div>
-
-    <Navbar theme='white'/>
     <CategoryIntroduction/>
 
     <DatePlaceSelector />

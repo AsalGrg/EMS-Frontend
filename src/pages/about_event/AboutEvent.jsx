@@ -13,9 +13,8 @@ import OrganizerDetailsSection from "../../components/about_event/OrganizerDetai
 const AboutEvent = () => {
   return (
     <>
-      <Navbar />
       {/* main section starts here */}
-      <div className="container px-5">
+      <main className="container px-5">
         <EventCoverImage />
 
         <div className="row justify-content-between mt-5">
@@ -33,7 +32,7 @@ const AboutEvent = () => {
             <TicketSection />
           </div>
         </div>
-      </div>
+      </main>
 
       <StarringSection />
 

@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <>
-        <Navbar/>
         <Introduction/>
         <SearchFilter/>
 
