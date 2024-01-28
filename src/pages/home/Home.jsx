@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Introduction from '../../components/home/Introduction'
 import SearchFilter from '../../components/home/SearchFilter'
-import Categories from '../../components/home/Categories'
 import EventSnippets from '../../components/global/EventSnippets'
 import VendorSnippets from '../../components/global/VendorSnippets'
-import Navbar from '../../components/navbar/Navbar'
+import Categories from '../../components/home/category/Categories'
 
 const Home = () => {
 
@@ -15,7 +14,7 @@ const Home = () => {
     const [eventsPerChoice, seteventsPerChoice] = useState([])
 
   return (
-    <>
+    <div className='container px-3'>
         <Introduction/>
         <SearchFilter/>
 
@@ -30,7 +29,7 @@ const Home = () => {
         <VendorSnippets/>
 
         <EventSnippets events={eventsPerChoice} title="Based on your choice"/>
-    </>
+    </div>
   )
 }
 
