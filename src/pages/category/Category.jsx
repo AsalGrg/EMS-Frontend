@@ -14,7 +14,6 @@ const Category = () => {
   return (
 
     <main>
-      <p>{id}</p>
     <CategoryIntroduction/>
 
     <DatePlaceSelector />
