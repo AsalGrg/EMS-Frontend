@@ -20,7 +20,7 @@ const Navbar = ({theme= "dark"}) => {
 
 
   return (
-    <nav className="navbar"
+    <nav className="w-100 navbar"
     style={{
       backgroundColor: navImplStyle[0].backgroundColor
     }}

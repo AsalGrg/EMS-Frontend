@@ -4,16 +4,7 @@
 
 
 .categoryEventEach{
-    /* background-color: red; */
-    max-width: 350px;
-    min-width: 312px;
-    max-height: 700px;
-    min-height: 200px;
-
-    margin: 10px 5px 30px 5px;
-
     border-radius: 20px;
-
 }
 
 
@@ -27,7 +18,7 @@
 
 .catEventImageDiv{
     /* background-color: grey; */
-    height: 60%;
+    height: 50%;
 }
 
 .catEventImageDiv img{

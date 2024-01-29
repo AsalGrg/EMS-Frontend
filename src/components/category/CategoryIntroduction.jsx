@@ -13,13 +13,13 @@ const CategoryIntroduction = () => {
   console.log(introStyle);
   return (
     <section
-      className="px-5 row justify-content-between align-items-center flex-row-reverse"
+      className="d-flex justify-content-md-between flex-md-row-reverse align-items-center flex-column ps-5"
       style={{
         backgroundColor: introStyle.backgroundColor,
-        maxHeight: "fit-content",
+        maxHeight: "fit-content"
       }}
     >
-      <div className="col-md-4 col-12">
+      <div className="w-50 d-flex justify-content-center">
         <img
           src={introStyle.coverImage}
           alt=""
@@ -27,7 +27,7 @@ const CategoryIntroduction = () => {
         />
       </div>
 
-      <div className="col-md-5 col-12 px-5 mt-2">
+      <div className="text-center text-md-start px-5">
         <h1 className="display-4 fw-bold" style={{
             color: introStyle.textColor
         }}>{catName[0].toUpperCase()+catName.slice(1)}</h1>

@@ -6,12 +6,9 @@ const DatePlaceSelector = () => {
   console.log(isLocationBtnClicked);
 
   return (
-    <div className='mainDateSelectorWrapper'>
+    <div className=''>
 
       {isLocationBtnClicked &&
-
-     
-    
     <PlaceInput/>}
     <button className='dateLocationButton'
       onClick={()=> setisLocationBtnClicked((prev)=> !prev)}

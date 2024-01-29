@@ -1,130 +1,155 @@
-import React from 'react'
-import MyCoursel from '../utilities/MyCoursel'
+import React from "react";
 
-import './EventSnippetsCategory.css'
+import "./EventSnippetsCategory.css";
+import { Carousel } from "@mantine/carousel";
+import { Card,Image, Text } from "@mantine/core";
+import { IconUser } from "@tabler/icons-react";
 
 const EventSnippetsCategory = () => {
-
-
   return (
-    <div className='catEventSnippet'>
+    <div className="catEventSnippet">
+      <h1 className="highlights">Most Popular Events</h1>
 
-    <h1 className="highlights">Most Popular Events</h1>
+      <div className="">
+        <Carousel
+          withIndicators
+          height={{ base: "100%", sm: "50%", md: "33.333333%" }}
+          slideSize={{ base: "100%", sm: "33%", md: "25%" }}
+          slideGap={{ base: 0, sm: "md" }}
+          loop
+          align="start"
+        >
+          <Carousel.Slide>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Card.Section>
+                <Image
+                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                  height={180}
+                  alt="Norway"
+                />
+              </Card.Section>
 
-    <div className="universalCourselView">
-        
-    <MyCoursel>
-        <div className="categoryEventEach">
+              <Text fw={500} mt="md">
+                Norway Fjord Adventures
+              </Text>
 
-          <div className="catEventImageDiv">
-            <img src="https://th.bing.com/th/id/OIP.64GEkhZ7oG2up_WZ-E2lRgHaE8?rs=1&pid=ImgDetMain" alt="Profile Pic of Vendor"/>
-          </div>
+              <Text size="sm" fw={400} c="dimmed" mt="sm">
+                Event Dates
+              </Text>
 
-          <div className="catEventDescription">
+              <Text size="sm" fw={400} c="red" mt="sm">
+                From $0.00
+              </Text>
 
-            <p className="eventTitle">Event title</p>
+              <Text size="sm" fw={400} mt="sm">
+                Oragnizer name
+              </Text>
 
-            <p className="catEventDate">Event dates</p>
+              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
+                From $0.00
+              </Text>
+            </Card>
+          </Carousel.Slide>
 
-            <p className='price'>From $0.0</p>
-          </div>
+          <Carousel.Slide>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Card.Section>
+                <Image
+                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                  height={180}
+                  alt="Norway"
+                />
+              </Card.Section>
 
-        </div>
+              <Text fw={500} mt="md">
+                Norway Fjord Adventures
+              </Text>
 
+              <Text size="sm" fw={400} c="dimmed" mt="sm">
+                Event Dates
+              </Text>
 
-        <div className="categoryEventEach">
+              <Text size="sm" fw={400} c="red" mt="sm">
+                From $0.00
+              </Text>
 
-          <div className="catEventImageDiv">
-            <img src="https://th.bing.com/th/id/OIP.64GEkhZ7oG2up_WZ-E2lRgHaE8?rs=1&pid=ImgDetMain" alt="Profile Pic of Vendor"/>
-          </div>
+              <Text size="sm" fw={400} mt="sm">
+                Oragnizer name
+              </Text>
 
-          <div className="catEventDescription">
+              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
+                From $0.00
+              </Text>
+            </Card>
+          </Carousel.Slide>
 
-            <p className="eventTitle">Event title</p>
+          <Carousel.Slide>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Card.Section>
+                <Image
+                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                  height={180}
+                  alt="Norway"
+                />
+              </Card.Section>
 
-            <p className="catEventDate">Event dates</p>
+              <Text fw={500} mt="md">
+                Norway Fjord Adventures
+              </Text>
 
-            <p className='price'>From $0.0</p>
-          </div>
+              <Text size="sm" fw={400} c="dimmed" mt="sm">
+                Event Dates
+              </Text>
 
-        </div>
+              <Text size="sm" fw={400} c="red" mt="sm">
+                From $0.00
+              </Text>
 
+              <Text size="sm" fw={400} mt="sm">
+                Oragnizer name
+              </Text>
 
-        <div className="categoryEventEach">
+              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
+                From $0.00
+              </Text>
+            </Card>
+          </Carousel.Slide>
 
-          <div className="catEventImageDiv">
-            <img src="https://th.bing.com/th/id/OIP.64GEkhZ7oG2up_WZ-E2lRgHaE8?rs=1&pid=ImgDetMain" alt="Profile Pic of Vendor"/>
-          </div>
+          <Carousel.Slide>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Card.Section>
+                <Image
+                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                  height={180}
+                  alt="Norway"
+                />
+              </Card.Section>
 
-          <div className="catEventDescription">
+              <Text fw={500} mt="md">
+                Norway Fjord Adventures
+              </Text>
 
-            <p className="eventTitle">Event title</p>
+              <Text size="sm" fw={400} c="dimmed" mt="sm">
+                Event Dates
+              </Text>
 
-            <p className="catEventDate">Event dates</p>
+              <Text size="sm" fw={400} c="red" mt="sm">
+                From $0.00
+              </Text>
 
-            <p className='price'>From $0.0</p>
-          </div>
+              <Text size="sm" fw={400} mt="sm">
+                Oragnizer name
+              </Text>
 
-        </div>
-
-
-        <div className="categoryEventEach">
-
-          <div className="catEventImageDiv">
-            <img src="https://th.bing.com/th/id/OIP.64GEkhZ7oG2up_WZ-E2lRgHaE8?rs=1&pid=ImgDetMain" alt="Profile Pic of Vendor"/>
-          </div>
-
-          <div className="catEventDescription">
-
-            <p className="eventTitle">Event title</p>
-
-            <p className="catEventDate">Event dates</p>
-
-            <p className='price'>From $0.0</p>
-          </div>
-
-        </div>
-
-         <div className="categoryEventEach">
-
-          <div className="catEventImageDiv">
-            <img src="https://th.bing.com/th/id/OIP.64GEkhZ7oG2up_WZ-E2lRgHaE8?rs=1&pid=ImgDetMain" alt="Profile Pic of Vendor"/>
-          </div>
-
-          <div className="catEventDescription">
-
-            <p className="eventTitle">Event title</p>
-
-            <p className="catEventDate">Event dates</p>
-
-            <p className='price'>From $0.0</p>
-          </div>
-
-        </div>
-
-
-         <div className="categoryEventEach">
-
-          <div className="catEventImageDiv">
-            <img src="https://th.bing.com/th/id/OIP.64GEkhZ7oG2up_WZ-E2lRgHaE8?rs=1&pid=ImgDetMain" alt="Profile Pic of Vendor"/>
-          </div>
-
-          <div className="catEventDescription">
-
-            <p className="eventTitle">Event title</p>
-
-            <p className="catEventDate">Event dates</p>
-
-            <p className='price'>From $0.0</p>
-          </div>
-
-        </div>
-
-    </MyCoursel>
-
+              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
+                From $0.00
+              </Text>
+            </Card>
+          </Carousel.Slide>
+        </Carousel>
+      </div>
     </div>
-</div>
-  )
-}
+  );
+};
 
-export default EventSnippetsCategory
+export default EventSnippetsCategory;

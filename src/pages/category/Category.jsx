@@ -1,34 +1,34 @@
-import React, { useState } from 'react'
-import CategoryIntroduction from '../../components/category/CategoryIntroduction'
-import Navbar from '../../components/navbar/Navbar'
-import DatePlaceSelector from '../../components/category/DatePlaceSelector'
-import EventSnippetsCategory from '../../components/category/EventSnippetsCategory'
-import EventTimeOptions from '../../components/category/EventTimeOptions'
-import VendorSnippets from '../../components/global/VendorSnippets'
-import { useParams } from 'react-router'
+import React, { useState } from "react";
+import CategoryIntroduction from "../../components/category/CategoryIntroduction";
+import Navbar from "../../components/navbar/Navbar";
+import DatePlaceSelector from "../../components/category/DatePlaceSelector";
+import EventSnippetsCategory from "../../components/category/EventSnippetsCategory";
+import EventTimeOptions from "../../components/category/EventTimeOptions";
+import VendorSnippets from "../../components/global/VendorSnippets";
+import { useParams } from "react-router";
 
 const Category = () => {
-
-  const {id} = useParams();
+  const { catName } = useParams();
 
   return (
-
     <main>
-    <CategoryIntroduction/>
+      <CategoryIntroduction />
 
-    <DatePlaceSelector />
+      <div className="container">
+        <DatePlaceSelector />
 
-    <EventSnippetsCategory/>
+        <EventSnippetsCategory />
 
-    <EventSnippetsCategory/>
+        <EventSnippetsCategory />
 
-    <VendorSnippets/>
+        <VendorSnippets />
 
-    <EventSnippetsCategory/>
+        <EventSnippetsCategory />
 
-    <EventTimeOptions categoryTitle= "Category Name"/>
+        <EventTimeOptions categoryTitle={catName}/>
+      </div>
     </main>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;
