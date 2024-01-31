@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import CategoryIntroduction from "../../components/category/CategoryIntroduction";
-import Navbar from "../../components/navbar/Navbar";
 import DatePlaceSelector from "../../components/category/DatePlaceSelector";
-import EventSnippetsCategory from "../../components/category/EventSnippetsCategory";
+import EventSnippetsCourselView from "../../components/global/EventSnippetsCourselView";
 import EventTimeOptions from "../../components/category/EventTimeOptions";
 import VendorSnippets from "../../components/global/VendorSnippets";
 import { useParams } from "react-router";
@@ -17,13 +16,13 @@ const Category = () => {
       <div className="container">
         <DatePlaceSelector />
 
-        <EventSnippetsCategory />
+        <EventSnippetsCourselView />
 
-        <EventSnippetsCategory />
+        <EventSnippetsCourselView />
 
         <VendorSnippets />
 
-        <EventSnippetsCategory />
+        <EventSnippetsCourselView />
 
         <EventTimeOptions categoryTitle={catName}/>
       </div>
