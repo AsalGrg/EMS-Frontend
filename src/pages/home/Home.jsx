@@ -14,7 +14,7 @@ const Home = () => {
     const [eventsPerChoice, seteventsPerChoice] = useState([])
 
   return (
-    <div className='container px-3'>
+    <div className='container px-5'>
         <Introduction/>
         <SearchFilter/>
 

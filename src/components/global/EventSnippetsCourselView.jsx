@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./EventSnippetsCategory.css";
+import "./EventSnippetsCourselView.css";
 import { Carousel } from "@mantine/carousel";
 import { Card,Image, Text } from "@mantine/core";
 import { IconUser } from "@tabler/icons-react";
 
-const EventSnippetsCategory = () => {
+const EventSnippetsCourselView = () => {
   return (
     <div className="catEventSnippet">
       <h1 className="highlights">Most Popular Events</h1>
@@ -152,4 +152,4 @@ const EventSnippetsCategory = () => {
   );
 };
 
-export default EventSnippetsCategory;
+export default EventSnippetsCourselView;
