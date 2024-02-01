@@ -21,6 +21,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import AboutEvent from "./pages/about_event/AboutEvent";
 import RootLayout from "./layout/RootLayout";
+import SearchResult from "./pages/search result/SearchResult";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -40,6 +41,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route exact path="category/:catName" element={<Category />} />
           <Route exact path="about-event" element={<AboutEvent />} />
+          <Route exact path="search/:eventName/:location" element={<SearchResult/>}/>
         </Route>
       </Route>
     )
