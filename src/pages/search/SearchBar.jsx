@@ -4,16 +4,17 @@ import { GiCancel } from "react-icons/gi";
 import SearchBarLocation from '../../components/search/SearchBarLocation'
 import './SearchBar.css'
 import QuickOptions from '../../components/search/QuickOptions'
+import EventCollection from '../../components/global/event collections/EventCollection'
 
 const SearchBar = () => {
   return (
-    <div className='searchBarMainContainer'>
+    <div className='row px-5 py-3'>
 
-      <div className="cross">
+      <div className="col-12 d-flex justify-content-end mb-5">
         <GiCancel className='searchBarIcons'/>
       </div>
 
-      <div className="searchBarContents">
+      <div className="col-6">
       <div className="searchBarInputs">
         <div className="eachInput">
           <SearchBarInput/>
@@ -31,13 +32,11 @@ const SearchBar = () => {
 
       </div>
 
-
-      <div className="searchBarCollection">
-          Collections.
       </div>
 
+      <div className="col-6">
+          <EventCollection/>
       </div>
-
     </div>
   )
 }

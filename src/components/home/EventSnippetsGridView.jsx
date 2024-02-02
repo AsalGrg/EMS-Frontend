@@ -18,6 +18,7 @@ const EventSnippetsGridView = () => {
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
               height={180}
               alt="Norway"
+              className="img-fluid"
             />
           </Card.Section>
 
@@ -48,6 +49,7 @@ const EventSnippetsGridView = () => {
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
               height={180}
               alt="Norway"
+              className="img-fluid"
             />
           </Card.Section>
 
@@ -78,6 +80,7 @@ const EventSnippetsGridView = () => {
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
               height={180}
               alt="Norway"
+              className="img-fluid"
             />
           </Card.Section>
 
@@ -108,6 +111,7 @@ const EventSnippetsGridView = () => {
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
               height={180}
               alt="Norway"
+              className="img-fluid"
             />
           </Card.Section>
 
@@ -138,6 +142,7 @@ const EventSnippetsGridView = () => {
               src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
               height={180}
               alt="Norway"
+              className="img-fluid"
             />
           </Card.Section>
 
