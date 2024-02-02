@@ -24,7 +24,39 @@ const EventSnippetsCourselView = () => {
               <Card.Section>
                 <Image
                   src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  height={180}
+                  alt="Norway"
+                  className="img-fluid"
+                />
+              </Card.Section>
+
+              <Text fw={500} mt="md">
+                Norway Fjord Adventures
+              </Text>
+
+              <Text size="sm" fw={400} c="dimmed" mt="sm">
+                Event Dates
+              </Text>
+
+              <Text size="sm" fw={400} c="red" mt="sm">
+                From $0.00
+              </Text>
+
+              <Text size="sm" fw={400} mt="sm">
+                Oragnizer name
+              </Text>
+
+              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
+                From $0.00
+              </Text>
+            </Card>
+          </Carousel.Slide>
+
+          <Carousel.Slide>
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Card.Section>
+                <Image
+                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                  className="img-fluid"
                   alt="Norway"
                 />
               </Card.Section>
@@ -56,7 +88,7 @@ const EventSnippetsCourselView = () => {
               <Card.Section>
                 <Image
                   src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  height={180}
+                  className="img-fluid"
                   alt="Norway"
                 />
               </Card.Section>
@@ -88,39 +120,7 @@ const EventSnippetsCourselView = () => {
               <Card.Section>
                 <Image
                   src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  height={180}
-                  alt="Norway"
-                />
-              </Card.Section>
-
-              <Text fw={500} mt="md">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text size="sm" fw={400} c="dimmed" mt="sm">
-                Event Dates
-              </Text>
-
-              <Text size="sm" fw={400} c="red" mt="sm">
-                From $0.00
-              </Text>
-
-              <Text size="sm" fw={400} mt="sm">
-                Oragnizer name
-              </Text>
-
-              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
-                From $0.00
-              </Text>
-            </Card>
-          </Carousel.Slide>
-
-          <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Card.Section>
-                <Image
-                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  height={180}
+                  className="img-fluid"
                   alt="Norway"
                 />
               </Card.Section>
