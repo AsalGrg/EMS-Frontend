@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router'
+import SearchResultIntroduction from '../../components/search result/SearchResultIntroduction';
 
 const SearchResult = () => {
 
@@ -7,9 +8,16 @@ const SearchResult = () => {
     const {eventName, location} = useParams();
 
   return (
-    <main>
+    <main className='px-3'>
 
-        <div>{eventName} {location}</div>
+      <SearchResultIntroduction/>
+
+      <div className='row'>
+
+          <div className='col-3'>
+            For Filters
+          </div>
+      </div>
     </main>
   )
 }

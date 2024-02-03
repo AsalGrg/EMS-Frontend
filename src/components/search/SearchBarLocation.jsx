@@ -8,12 +8,6 @@ import PlacesAutocomplete, {
 
 const SearchBarLocation = () => {
   {
-    /* <IoLocationSharp className="searchBarIcons" />
-      <input
-        type="text"
-        className="searchBarLocationInput"
-        placeholder="Location"
-      /> */
   }
 
   const [address, setAddress] = React.useState("");
@@ -30,38 +24,46 @@ const SearchBarLocation = () => {
   };
 
   return (
-    <div>
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p>
+    // <div>
+    //   <PlacesAutocomplete
+    //     value={address}
+    //     onChange={setAddress}
+    //     onSelect={handleSelect}
+    //   >
+    //     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+    //       <div>
+    //         <p>Latitude: {coordinates.lat}</p>
+    //         <p>Longitude: {coordinates.lng}</p>
 
-            <input {...getInputProps({ placeholder: "Type address" })} />
+    //         <input {...getInputProps({ placeholder: "Type address" })} />
 
-            <div>
-              {loading ? <div>...loading</div> : null}
+    //         <div>
+    //           {loading ? <div>...loading</div> : null}
 
-              {suggestions.map((suggestion) => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                };
+    //           {suggestions.map((suggestion) => {
+    //             const style = {
+    //               backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+    //             };
 
-                return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
-    </div>
+    //             return (
+    //               <div {...getSuggestionItemProps(suggestion, { style })}>
+    //                 {suggestion.description}
+    //               </div>
+    //             );
+    //           })}
+    //         </div>
+    //       </div>
+    //     )}
+    //   </PlacesAutocomplete>
+    // </div>
+    <>
+      <IoLocationSharp className="searchBarIcons" />
+      <input
+        type="text"
+        className="searchBarLocationInput w-50"
+        placeholder="Location"
+      />
+    </>
   );
 };
 

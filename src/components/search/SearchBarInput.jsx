@@ -12,7 +12,7 @@ const SearchBarInput = () => {
   return (
     <>
     <IoSearch className='searchBarIcons'/>
-    <input type="text" className="searchInputSearchBar" 
+    <input type="text" className="searchInputSearchBar w-75" 
     placeholder='Search for anything'
     value={formData.searchedEvent}
     onChange={(e)=>{

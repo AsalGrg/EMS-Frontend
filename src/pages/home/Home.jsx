@@ -49,7 +49,7 @@ const Home = () => {
         </Title>
 
         <Text size="sm" className="mb-3">Explore curated event collections of excellence in food, music, wellness, and beyond, for every enthusiast.</Text>
-        <EventCollection />
+        <EventCollection slideSize={{ base: "90%", md: "50%" }}/>
       </section>
 
       {/* events you may like */}
