@@ -1,19 +1,18 @@
 import { Carousel } from "@mantine/carousel";
 import { Avatar, Card, Image, Text } from "@mantine/core";
-import { IconUser } from "@tabler/icons-react";
 import React from "react";
 
-const EventCollection = () => {
+const EventCollection = ({ slideSize }) => {
   return (
     <main>
       <Carousel
         height={{ base: "100%", sm: "50%", md: "33.333333%" }}
-        slideSize={{ base: "90%", md: "50%" }}
+        slideSize={slideSize}
         slideGap={{ base: 10, sm: "md" }}
         align="start"
       >
         <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
+          <Card padding="lg" radius="md">
             <Card.Section>
               <img
                 src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F102708416%2F232138391026%2F1%2Foriginal.20200604-182444?w=1024&auto=format%2Ccompress&q=75&sharp=10&s=68a881f6f7a67d729dbf42e31c857b3a"
@@ -59,7 +58,7 @@ const EventCollection = () => {
         </Carousel.Slide>
 
         <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
+          <Card padding="lg" radius="md">
             <Card.Section>
               <img
                 src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F102708416%2F232138391026%2F1%2Foriginal.20200604-182444?w=1024&auto=format%2Ccompress&q=75&sharp=10&s=68a881f6f7a67d729dbf42e31c857b3a"
@@ -105,7 +104,7 @@ const EventCollection = () => {
         </Carousel.Slide>
 
         <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
+          <Card padding="lg" radius="md">
             <Card.Section>
               <img
                 src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F102708416%2F232138391026%2F1%2Foriginal.20200604-182444?w=1024&auto=format%2Ccompress&q=75&sharp=10&s=68a881f6f7a67d729dbf42e31c857b3a"
