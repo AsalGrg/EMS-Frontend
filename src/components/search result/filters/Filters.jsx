@@ -1,19 +1,15 @@
-import { Checkbox } from "@mantine/core";
 import React from "react";
-import DateFilter from "./DateFilter";
-import TicketTypeFilter from "./TicketTypeFilter";
-import CategoryFilter from "./CategoryFilter";
+import FiltersLargeScreen from "./FiltersLargeScreen";
 
 const Filters = () => {
   return (
     <main>
-      <Checkbox defaultChecked label="Show events from vendors I follow" />
+      <section className="d-none d-lg-block">
+        <FiltersLargeScreen/>
+      </section>
 
-      {/* date filter */}
-      <section>
-        <DateFilter/>
-        <TicketTypeFilter/>
-        <CategoryFilter/>
+      <section className="d-block d-lg-none">
+
       </section>
     </main>
   );

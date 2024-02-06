@@ -16,7 +16,7 @@ const SearchResult = () => {
           <Filters />
         </div>
 
-        <div className="col-xl-6 col-md-9 px-md-5 col-12">
+        <div className="col-xl-6 col-lg-9 px-md-5 col-12">
           <Results/>
         </div>
       </div>
