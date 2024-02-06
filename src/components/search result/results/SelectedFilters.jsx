@@ -1,12 +1,17 @@
-import { Badge, Text } from "@mantine/core";
+import { Badge, Button, Text } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFilters } from "../../../pages/search result/SearchResultSlice";
+import FiltersModal from "./FiltersModal";
+import { useDisclosure } from "@mantine/hooks";
 
 const SelectedFilters = () => {
   const filterData = useSelector((state) => state.searchEvent.filters);
   const dispatch = useDispatch();
+
+  const [opened, { open, close }] = useDisclosure(false);
+
   var filterCount = 0;
 
   filterData.followedVendors ? filterCount++ : null;
@@ -23,11 +28,22 @@ const SelectedFilters = () => {
     );
   }
   return (
+
+    
+    <>
+
+    <FiltersModal opened={opened} close={close} />
     <section className="d-flex gap-3 flex-wrap mb-3 ">
       {filterCount !== 0 ? (
-        <Text size="sm" fw={400}>
-          {filterCount} filter applied
-        </Text>
+        <>
+          <Text size="sm" fw={400} className="d-lg-block d-none">
+            {filterCount} filter applied
+          </Text>
+
+          <Button onClick={open} className="d-lg-none d-block">
+            Open Modal
+          </Button>
+        </>
       ) : null}
 
       {/* for vendorFollowing */}
@@ -111,9 +127,8 @@ const SelectedFilters = () => {
           {filterData.categoryType}
         </Badge>
       ) : null}
-
-      
     </section>
+    </>
   );
 };
 
