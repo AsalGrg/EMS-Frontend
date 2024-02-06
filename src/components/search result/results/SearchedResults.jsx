@@ -4,7 +4,7 @@ import SuggestedResults from './SuggestedResults'
 
 const SearchedResults = () => {
   return (
-    <section>
+    <section className=''>
 
         <MatchedResults/>
         <SuggestedResults/>

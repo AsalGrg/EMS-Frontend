@@ -8,15 +8,15 @@ const SearchResult = () => {
   const { eventName, location } = useParams();
 
   return (
-    <main className="px-3">
+    <main className="px-4">
       <SearchResultIntroduction />
 
       <div className="row">
-        <div className="col-2">
+        <div className="col-xl-2 col-3">
           <Filters />
         </div>
 
-        <div className="col-6 px-5">
+        <div className="col-xl-6 col-md-9 px-md-5 col-12">
           <Results/>
         </div>
       </div>

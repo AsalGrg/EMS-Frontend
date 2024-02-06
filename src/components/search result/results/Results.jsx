@@ -4,7 +4,7 @@ import SearchedResults from './SearchedResults'
 
 const Results = () => {
   return (
-    <main>
+    <main className=''>
         <SelectedFilters/>
         <SearchedResults/>
     </main>
