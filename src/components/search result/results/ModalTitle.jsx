@@ -1,19 +1,15 @@
-import { Badge, Button, Text } from "@mantine/core";
-import { IconAdjustments, IconX } from "@tabler/icons-react";
+import { Badge, Text } from "@mantine/core";
+import { IconX } from "@tabler/icons-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearAllFilters,
   updateFilters,
 } from "../../../pages/search result/SearchResultSlice";
-import FiltersModal from "./FiltersModal";
-import { useDisclosure } from "@mantine/hooks";
 
-const SelectedFilters = () => {
+const ModalTitle = () => {
   const filterData = useSelector((state) => state.searchEvent.filters);
   const dispatch = useDispatch();
-
-  const [opened, { open, close }] = useDisclosure(false);
 
   var filterCount = 0;
 
@@ -34,27 +30,15 @@ const SelectedFilters = () => {
   function clearFilters() {
     dispatch(clearAllFilters());
   }
-  return (
-    <>
-      <FiltersModal opened={opened} close={close} />
-      <section className="d-flex gap-3 flex-wrap mb-3 ">
-        {filterCount !== 0 ? (
-          <>
-            <Text size="sm" fw={400} className="d-lg-block d-none">
-              {filterCount} filter applied
-            </Text>
-          </>
-        ) : null}
 
-        <Badge
-          color="blue"
-          size="lg"
-          className="d-lg-none d-block btn btn-link "
-          onClick={open}
-        >
-          <IconAdjustments size={19} />{" "}
-          {filterCount != 0 ? `Filters (${filterCount})` : "Filters"}
-        </Badge>
+  return (
+    <section className="row gap-2">
+      <Text size="lg" fw={700}
+      className="col-12 px-3">
+        Filters
+      </Text>
+
+      <div className="col-12 d-flex gap-3 flex-wrap">
         {/* for vendorFollowing */}
         {filterData.followedVendors ? (
           <Badge
@@ -146,9 +130,9 @@ const SelectedFilters = () => {
             Clear All
           </Text>
         ) : null}
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default SelectedFilters;
+export default ModalTitle;

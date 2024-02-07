@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import SearchResultIntroduction from "../../components/search result/SearchResultIntroduction";
 import Filters from "../../components/search result/filters/Filters";
 import Results from "../../components/search result/results/Results";
+import Map from "../../components/search result/map/Map";
 
 const SearchResult = () => {
   const { eventName, location } = useParams();
@@ -18,6 +19,10 @@ const SearchResult = () => {
 
         <div className="col-xl-6 col-lg-9 px-md-5 col-12">
           <Results/>
+        </div>
+
+        <div className="col-xl-5 col-lg-9 px-md-5 col-12">
+          <Map/>
         </div>
       </div>
     </main>

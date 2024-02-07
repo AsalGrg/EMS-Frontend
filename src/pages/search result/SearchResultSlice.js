@@ -24,8 +24,19 @@ const searchEvent = createSlice({
 
       state.filters[field] = value;
     },
+
+    clearAllFilters: (state, action) => {
+      //changing to initial state
+
+      state.filters = {
+        followedVendors: false,
+        date: null,
+        ticketType: null,
+        categoryType: null,
+      };
+    },
   },
 });
 
-export const { updateSearchEventState, updateFilters } = searchEvent.actions;
+export const { updateSearchEventState, updateFilters,clearAllFilters } = searchEvent.actions;
 export default searchEvent.reducer;
