@@ -8,16 +8,17 @@ const icon = L.icon({
   iconSize: [38, 38],
 });
 
-const position = [51.305, -0.09];
-
 function Map(props) {
+
+  const position = [51.305, -0.09];
+
   const { selectPosition } = props;
   const map = useMap();
 
   useEffect(() => {
     if (selectPosition) {
       map.setView(
-        L.latLng(selectPosition?.lat, selectPosition?.lon),
+        L.latLng(position[0], position[1]),
         map.getZoom(),
         {
           animate: true,
@@ -29,23 +30,23 @@ function Map(props) {
   return null;
 }
 
-export default function Maps(props) {
+export default function Maps() {
   const { selectPosition } = props;
-  const locationSelection = [selectPosition?.lat, selectPosition?.lon];
+  const locationSelection = [51.305, 1.09];
 
+  const position = [20.305, -0.09];
   return (
-    <MapContainer center={position} zoom={15} style={{ width: "100%" , height: "100%"}}>
+    <MapContainer center={position} zoom={15} className="w-100 h-100">
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://api.maptiler.com/maps/cadastre/256/{z}/{x}/{y}.png?key=eCTvxloN1TyBTYhnVz4V"
+        url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=eCTvxloN1TyBTYhnVz4V"
       />
-      {selectPosition && (
-        <Marker position={locationSelection} icon={icon}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      )}
+
+      <Marker position={locationSelection} icon={icon}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
     </MapContainer>
   );
 }

@@ -35,7 +35,7 @@ const SelectedFilters = () => {
     dispatch(clearAllFilters());
   }
   return (
-    <>
+    <section className="ms-3 ms-md-0">
       <FiltersModal opened={opened} close={close} />
       <section className="d-flex gap-3 flex-wrap mb-3 ">
         {filterCount !== 0 ? (
@@ -49,7 +49,7 @@ const SelectedFilters = () => {
         <Badge
           color="blue"
           size="lg"
-          className="d-lg-none d-block btn btn-link "
+          className="d-lg-none d-block btn btn-link"
           onClick={open}
         >
           <IconAdjustments size={19} />{" "}
@@ -147,7 +147,7 @@ const SelectedFilters = () => {
           </Text>
         ) : null}
       </section>
-    </>
+    </section>
   );
 };
 
