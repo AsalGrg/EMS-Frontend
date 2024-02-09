@@ -5,7 +5,7 @@ import NotMatchedDiaglog from "./NotMatchedDiaglog";
 
 const MatchedResults = () => {
   return (
-    <div>
+    <div className="ps-5 ps-md-0">
      <EachResult/>
      <EachResult/>
 

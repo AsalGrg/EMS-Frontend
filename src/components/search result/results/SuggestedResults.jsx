@@ -4,7 +4,7 @@ import EachResult from './EachResult'
 
 const SuggestedResults = () => {
   return (
-    <div className='mt-3'>
+    <div className='mt-3 ps-5 ps-md-0'>
       <Text size='25px' fw={700} className='mb-3'>
         Popular events
       </Text>

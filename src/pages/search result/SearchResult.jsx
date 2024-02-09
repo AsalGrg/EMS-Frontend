@@ -12,20 +12,20 @@ const SearchResult = () => {
     <main className="">
       <SearchResultIntroduction />
 
-      <div className="row bg-secondary"
+      <div className="row"
       style={{
         width: "100vw"
       }}>
-        <div className="col-lg-2 col-12 bg-warning">
+        <div className="col-xl-2 col-lg-3 col-12">
           <Filters />
         </div>
 
-        <div className="col-lg-7 px-md-5 col-12 bg-danger">
+        <div className="col-xl-6 col-lg-9 px-md-5 col-12">
           
           <Results/>
         </div>
 
-        <div className="col-lg-3 d-lg-block d-none bg-primary">
+        <div className="col-xl-4 d-lg-block d-none">
           <Maps/>
         </div>
       </div>

@@ -4,7 +4,7 @@ import React from "react";
 const EachResult = () => {
   return (
     <div
-      className="row justify-content-start ps-3 mb-3 hoverShadow w-100"
+      className="row justify-content-start py-3 mb-3 hoverShadow w-100"
       style={{
         minHeight: "170px",
         maxHeight: "1000px",
