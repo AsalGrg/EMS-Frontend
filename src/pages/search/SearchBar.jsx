@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchBarInput from "../../components/search/SearchBarInput";
 import { GiCancel } from "react-icons/gi";
 import SearchBarLocation from "../../components/search/SearchBarLocation";
@@ -7,6 +7,18 @@ import QuickOptions from "../../components/search/QuickOptions";
 import EventCollection from "../../components/global/event collections/EventCollection";
 
 const SearchBar = () => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  // Event handler for focus event
+  const handleSearchLocationFocus = () => {
+    setIsFocused(true);
+  };
+
+  // Event handler for blur event
+  const handleSearchLocationBlur = () => {
+    setIsFocused(false);
+  };
+
   return (
     <div className="row justify-content-evenly">
       <div className="col-12 d-flex justify-content-end mb-5">
@@ -20,18 +32,26 @@ const SearchBar = () => {
           </div>
 
           <div className="eachInput">
-            <SearchBarLocation />
+            <SearchBarLocation
+              handleFocus={handleSearchLocationFocus}
+              handleBlur={handleSearchLocationBlur}
+            />
           </div>
 
-          <div className="eachInput">
-            <QuickOptions />
-          </div>
+          {!isFocused ? (
+            <>
+              <div className="eachInput">
+                <QuickOptions />
+              </div>
 
-          <div className="d-none d-lg-block mt-4">
-            <h5>Recent Popular Searches</h5>
-          </div>
+              <div className="d-none d-lg-block mt-4">
+                <h5>Recent Popular Searches</h5>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
+
 
       <div className="col-12 col-lg-5 row mt-lg-0 mt-3 px-4">
         <div className="col-md-6 col-12 d-block d-lg-none">
