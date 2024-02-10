@@ -1,52 +1,61 @@
-import React, { useEffect } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { Icon, divIcon, point } from "leaflet";
+import React from "react";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 
-const icon = L.icon({
-  iconUrl: "./placeholder.png",
-  iconSize: [38, 38],
+const customIcon = new Icon({
+  // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+  iconUrl: "/placeholder.png",
+  iconSize: [38, 38], // size of the icon
 });
 
-function Map(props) {
+// custom cluster icon
+const createClusterCustomIcon = function (cluster) {
+  return new divIcon({
+    html: `<span class="cluster-icon">${cluster.getChildCount()}</span>`,
+    className: "custom-marker-cluster",
+    iconSize: point(33, 33, true),
+  });
+};
 
-  const position = [51.305, -0.09];
+const markers = [
+  {
+    geocode: [28.26689000, 83.96851000],
+    popUp: "Hello, I am pop up 1",
+  },
+  {
+    geocode: [48.85, 2.3522],
+    popUp: "Hello, I am pop up 2",
+  },
+  {
+    geocode: [48.855, 2.34],
+    popUp: "Hello, I am pop up 3",
+  },
+];
 
-  const { selectPosition } = props;
-  const map = useMap();
-
-  useEffect(() => {
-    if (selectPosition) {
-      map.setView(
-        L.latLng(position[0], position[1]),
-        map.getZoom(),
-        {
-          animate: true,
-        }
-      );
-    }
-  }, [selectPosition]);
-
-  return null;
-}
-
-export default function Maps() {
-  const { selectPosition } = props;
-  const locationSelection = [51.305, 1.09];
-
-  const position = [20.305, -0.09];
+const Map = () => {
   return (
-    <MapContainer center={position} zoom={15} className="w-100 h-100">
+    <MapContainer center={[27.70169000, 85.32060000]} zoom={13}>
+      {/* OPEN STREEN MAPS TILES */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=eCTvxloN1TyBTYhnVz4V"
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <Marker position={locationSelection} icon={icon}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      <MarkerClusterGroup
+        chunkedLoading
+        iconCreateFunction={createClusterCustomIcon}
+      >
+        {/* Mapping through the markers */}
+        {markers.map((marker) => (
+          <Marker position={marker.geocode} icon={customIcon}>
+            <Popup>{marker.popUp}</Popup>
+          </Marker>
+        ))}
+      </MarkerClusterGroup>
     </MapContainer>
   );
-}
+};
+
+export default Map;
