@@ -5,6 +5,7 @@ import SearchBarLocation from "../../components/search/SearchBarLocation";
 import "./SearchBar.css";
 import QuickOptions from "../../components/search/QuickOptions";
 import EventCollection from "../../components/global/event collections/EventCollection";
+import MatchedLocation from "../../components/search/MatchedLocations";
 
 const SearchBar = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -48,7 +49,8 @@ const SearchBar = () => {
                 <h5>Recent Popular Searches</h5>
               </div>
             </>
-          ) : null}
+          ) : 
+          <MatchedLocation/>}
         </div>
       </div>
 
