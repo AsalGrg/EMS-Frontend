@@ -21,7 +21,12 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="row justify-content-evenly">
+    <div
+      className="row justify-content-evenly"
+      onClick={() => {
+        handleSearchLocationBlur();
+      }}
+    >
       <div className="col-12 d-flex justify-content-end mb-5">
         <GiCancel className="searchBarIcons" />
       </div>
@@ -36,6 +41,7 @@ const SearchBar = () => {
             <SearchBarLocation
               handleFocus={handleSearchLocationFocus}
               handleBlur={handleSearchLocationBlur}
+              isFocused={isFocused}
             />
           </div>
 
@@ -49,16 +55,18 @@ const SearchBar = () => {
                 <h5>Recent Popular Searches</h5>
               </div>
             </>
-          ) : 
-          <MatchedLocation/>}
+          ) : (
+            <MatchedLocation handleBlur={handleSearchLocationBlur} />
+          )}
         </div>
       </div>
 
-
       <div className="col-12 col-lg-5 row mt-lg-0 mt-3 px-4">
-        <div className="col-md-6 col-12 d-block d-lg-none">
-          <h5>Recent Popular Searches</h5>
-        </div>
+        {!isFocused ? (
+          <div className="col-md-6 col-12 d-block d-lg-none">
+            <h5>Recent Popular Searches</h5>
+          </div>
+        ) : null}
 
         <div className="col-md-6 col-lg-12 col-12 mt-md-0 mt-2">
           <h4>Our favourite events collection</h4>

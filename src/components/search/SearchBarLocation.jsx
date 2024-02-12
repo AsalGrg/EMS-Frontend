@@ -5,9 +5,7 @@ import getPlaces from "../utilities/places";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMatchedPlaces } from "../../pages/search/SearchBarSlice";
 
-const SearchBarLocation = ({ handleFocus, handleBlur }) => {
-  const [listPlace, setListPlace] = useState([]);
-
+const SearchBarLocation = ({ handleFocus, isFocused }) => {
   const searchBarState = useSelector((state) => state.searchBar);
   const dispatch = useDispatch();
 
@@ -15,76 +13,39 @@ const SearchBarLocation = ({ handleFocus, handleBlur }) => {
     const searchText = e.target.value;
     getPlaces(searchText)
       .then((places) => {
-        dispatch(updateMatchedPlaces(places));
+        dispatch(
+          updateMatchedPlaces({
+            matchedPlaces: places,
+          })
+        );
       })
       .catch((error) => {
         console.error("Error fetching places:", error);
       });
   };
 
+  const inputValue =
+    !isFocused && searchBarState.selectedPlaces != null
+      ? searchBarState.selectedPlaces.address.country
+      : null
+
   return (
     <>
       <IoLocationSharp className="searchBarIcons" />
       <input
         type="text"
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         className="searchInputSearchBar w-50"
         id="searchLocation"
         placeholder="Location"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleFocus();
+        }}
         onChange={handleChange}
-        value={
-          searchBarState.selectedPlace != null
-            ? searchBarState.selectedPlace.address.country
-            : null
-        }
+        value={inputValue}
       />
     </>
   );
-
-  // return (
-  //   // <div>
-  //   //   <PlacesAutocomplete
-  //   //     value={address}
-  //   //     onChange={setAddress}
-  //   //     onSelect={handleSelect}
-  //   //   >
-  //   //     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-  //   //       <div>
-  //   //         <p>Latitude: {coordinates.lat}</p>
-  //   //         <p>Longitude: {coordinates.lng}</p>
-
-  //   //         <input {...getInputProps({ placeholder: "Type address" })} />
-
-  //   //         <div>
-  //   //           {loading ? <div>...loading</div> : null}
-
-  //   //           {suggestions.map((suggestion) => {
-  //   //             const style = {
-  //   //               backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-  //   //             };
-
-  //   //             return (
-  //   //               <div {...getSuggestionItemProps(suggestion, { style })}>
-  //   //                 {suggestion.description}
-  //   //               </div>
-  //   //             );
-  //   //           })}
-  //   //         </div>
-  //   //       </div>
-  //   //     )}
-  //   //   </PlacesAutocomplete>
-  //   // </div>
-  //   <>
-  //     {/* <IoLocationSharp className="searchBarIcons" />
-  //     <input
-  //       type="text"
-  //       className="searchBarLocationInput w-50"
-  //       placeholder="Location"
-  //     /> */}
-
-  //   </>
-  // );
 };
 
 export default SearchBarLocation;
