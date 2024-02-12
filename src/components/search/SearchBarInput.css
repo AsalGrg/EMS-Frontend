@@ -1,12 +1,22 @@
-.searchInputSearchBar{
-    width: 40%;
+.searchInputSearchBar {
+  width: 40%;
 
-    border: none;
+  border: none;
 
-    padding: 0px 10px 0px 0px;
-    margin-bottom: 20px;
+  padding: 0px 10px 0px 0px;
+  margin-bottom: 20px;
 
-    transition: all ease;
+  transition: all ease;
 
-    border-bottom: 4px solid grey;
+  border-bottom: 4px solid grey;
+}
+
+.arrowRightIcon {
+    border-radius: 30% 70% 59% 41% / 30% 29% 71% 70% ;
+    cursor: pointer;
+    transition: all ease-in 0.3s;
+}
+
+.arrowRightIcon:hover{
+    background-color: silver;
 }
