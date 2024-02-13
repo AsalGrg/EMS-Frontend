@@ -12,7 +12,7 @@
 }
 
 .arrowRightIcon {
-    border-radius: 30% 70% 59% 41% / 30% 29% 71% 70% ;
+    border-radius: 51% 49% 100% 0% / 100% 100% 0% 0% ;
     cursor: pointer;
     transition: all ease-in 0.3s;
 }
