@@ -39,17 +39,18 @@ const Home = () => {
           backgroundColor: "#f8f7fa",
         }}
       >
-        <Title order={3}
-        className="mb-2"
-        >
+        <Title order={3} className="mb-2">
           Hand-picked{" "}
           <Text span c="#0A66C2" inherit>
             Collection
           </Text>
         </Title>
 
-        <Text size="sm" className="mb-3">Explore curated event collections of excellence in food, music, wellness, and beyond, for every enthusiast.</Text>
-        <EventCollection slideSize={{ base: "90%", md: "50%" }}/>
+        <Text size="sm" className="mb-3">
+          Explore curated event collections of excellence in food, music,
+          wellness, and beyond, for every enthusiast.
+        </Text>
+        <EventCollection slideSize={{ base: "90%", md: "50%" }} />
       </section>
 
       {/* events you may like */}
