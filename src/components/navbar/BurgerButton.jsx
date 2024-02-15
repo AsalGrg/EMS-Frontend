@@ -15,6 +15,7 @@ const BurgerButton = () => {
         opened={opened}
         onClose={close}
         withCloseButton={false}
+        yOffset="19vh"
         size="100%"
         overlayProps={{
           backgroundOpacity: 0,

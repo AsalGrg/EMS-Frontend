@@ -33,7 +33,7 @@ const UserActionButtons = ({ isFollowing, followBtnHandler }) => {
           </Button>
         ) : (
           <Button onClick={followBtnHandler} variant="light" color="gray">
-            <IconUserCheck size={20} className="fw-bold" />
+            <IconUserCheck size={15} className="fw-bold" />
           </Button>
         )}
       </div>
