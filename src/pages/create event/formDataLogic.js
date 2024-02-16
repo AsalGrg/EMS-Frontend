@@ -42,7 +42,8 @@ export const formDataLogic = (formState) => {
   const ticketType = formState.ticketType;
   const ticketName = formState.ticketName;
   const ticketQuantity = formState.ticketQuantity;
-  const ticketPrice = formState.ticketType=="paid"? formState.ticketPrice: 0;
+  const ticketPrice =
+    formState.ticketType == "paid" ? formState.ticketPrice : 0;
   const saleStartDate =
     formState.ticketSaleDates[0] != null
       ? format(formState.ticketSaleDates[0], "yyyy-MM-dd")
@@ -70,22 +71,11 @@ export const formDataLogic = (formState) => {
   const aboutEvent = formState.aboutEvent;
 
   const hasStarring = formState.hasStarring;
-  var starrings = [];
+  
+  var starrings = null;
 
   if (hasStarring) {
-    formState.starrings.forEach((eachStarring) => {
-      // starrings.push({
-      //   starringPhoto: eachStarring.starringPhoto,
-      //   starringName: eachStarring.starringName,
-      // });
-      const eachStarringFormData = new FormData();
-      eachStarringFormData.append("starringPhoto", eachStarring.starringPhoto);
-      eachStarringFormData.append("starringName", eachStarring.starringPhoto);
-
-      starrings.push(eachStarringFormData);
-    });
-  } else {
-    starrings = null;
+   starrings= formState.starrings
   }
 
   const isPrivate = formState.isPrivate;
@@ -101,16 +91,6 @@ export const formDataLogic = (formState) => {
     eventAccessPassword = "";
   } else {
     eventAccessPassword = formState.accessPassword;
-  }
-
-  let starringImages = [];
-  let starringNames = [];
-
-  if (hasStarring) {
-    formState.starrings.forEach((eachStarring) => {
-      starringImages.push(eachStarring.starringPhoto);
-      starringNames.push(eachStarring.starringName);
-    });
   }
 
   return {
@@ -146,7 +126,6 @@ export const formDataLogic = (formState) => {
     },
     eventCoverImage: formState.coverImage,
     hasStarring: hasStarring,
-    starringImages: starringImages,
-    starringNames: starringNames,
+    starrings: starrings
   };
 };

@@ -24,7 +24,8 @@ const initialState = {
     {
       id: 1,
       starringPhoto: "",
-      starringName: ""
+      starringName: "",
+      starringRole: "",
     },
   ],
   ticketType: "",
@@ -54,6 +55,7 @@ const createEventSlice = createSlice({
         id: Date.now(),
         starringPhoto: "",
         starringName: "",
+        starringRole: ""
       });
     },
     changeStarringName: (state, action) => {
