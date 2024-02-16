@@ -29,29 +29,31 @@ export default async function create_event(formData) {
   );
 
   if (formData.hasStarring) {
-    // formData.starrings.forEach((eachStarring,index) => {
-    //     form.append(`starringNames[${index}]`, eachStarring.starringName);
-    //     form.append(`starringImages[${index}]`, eachStarring.starringPhoto);
-    //     console.log("in")
-    // });
+    var starringDetails = {};
+
+    for (var i = 0; i < formData.starrings.length; i++) {
+      starringDetails = {
+        ...starringDetails,
+        ["starring" + i + 1 + "Name"]: formData.starrings[i].starringName,
+        ["starring" + i + 1 + "Role"]: formData.starrings[i].starringRole,
+      };
+
+      form.append(`starring${i + 1}Photo`, formData.starrings[i].starringPhoto);
+    }
 
     form.append(
-      "starringNames",
-      new Blob([JSON.stringify(formData.starringNames)], {
+      "eventStarringDetails",
+      new Blob([JSON.stringify(starringDetails)], {
         type: "application/json",
       })
     );
-    form.append("starringImages", formData.starringImages);
   }
-
-  console.log(form.get("starringNames"));
 
   const res = await fetch(api_url, {
     method: "POST",
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
-
     body: form,
   });
 
