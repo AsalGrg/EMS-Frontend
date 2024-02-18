@@ -32,11 +32,10 @@ export default async function create_event(formData) {
     var starringDetails = {};
 
     for (var i = 0; i < formData.starrings.length; i++) {
-      starringDetails = {
-        ...starringDetails,
-        ["starring" + i + 1 + "Name"]: formData.starrings[i].starringName,
-        ["starring" + i + 1 + "Role"]: formData.starrings[i].starringRole,
-      };
+      starringDetails["starring" + (i + 1) + "Name"] =
+        formData.starrings[i].starringName;
+      starringDetails["starring" + (i + 1) + "Role"] =
+        formData.starrings[i].starringRole;
 
       form.append(`starring${i + 1}Photo`, formData.starrings[i].starringPhoto);
     }

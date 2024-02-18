@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   eventTitle: "",
-  category: "check",
+  category: "x",
 
   venueType: "",
   location: "",
@@ -40,6 +40,12 @@ const initialState = {
   visibilityOption: "public" //can be of types: public, private with link, private with password
   ,
   accessPassword: null,
+
+  matchedPlaces: null,
+  selectedPlace: null,
+
+  errors: null,
+  touched: null
 };
 
 const createEventSlice = createSlice({
@@ -95,8 +101,15 @@ const createEventSlice = createSlice({
       const starringToChange = state.starrings.find((each) => each.id === id);
 
       starringToChange.starringPhoto= ""
+    },
+
+    updateMatchedPlacesCreateEvent: (state, action)=>{
+      const { matchedPlaces } = action.payload;
+      state.matchedPlaces= matchedPlaces;
     }
   },
+
+
 });
 
 export const {
@@ -106,6 +119,7 @@ export const {
   removeStarringImage,
   changeStarringName,
   changeStarringImage,
-  getStarringImageFile
+  getStarringImageFile,
+  updateMatchedPlacesCreateEvent
 } = createEventSlice.actions;
 export default createEventSlice.reducer;

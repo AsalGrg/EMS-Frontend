@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Stepper } from "@mantine/core";
 import "../../components/create event/createEvent.css";
@@ -11,6 +11,7 @@ import { formDataLogic } from "./formDataLogic";
 import create_event from "../../services/create event/create_event";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createEventFirstPageSchema } from "../../schemas";
 
 const CreateEvent = () => {
   const [active, setactive] = useState(0);
@@ -29,29 +30,54 @@ const CreateEvent = () => {
   const formData = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
-  const handleNextBtn = () => {
-    setactive((prevPage) => prevPage + 1);
+  const firstPageInitialValue = {
+    eventTitle: formData.eventTitle,
+    category: formData.category,
+    location: formData.selectedPlace ? formData.selectedPlace.display_name : "",
+    meetingLink: formData.meetingLink,
+    eventDates: formData.eventStartDates,
+    eventStartTime: formData.eventStartTime,
+    eventEndTime: formData.eventEndTime,
   };
+
+  const initialValues = active === 0 ? firstPageInitialValue : null;
 
   const handlePrevBtn = () => {
     setactive((prevPage) => prevPage - 1);
   };
 
+  const handleNextBtn = () => {
+    // const user =  createEventFirstPageSchema.validate(initialValues):null;
+    // console.log(user)
+    // setactive((prevPage) => prevPage + 1);
+
+    try {
+      active === 0 ? createEventFirstPageSchema.validate(initialValues) : null;
+      // If validation succeeds, submit the form
+      console.log("Form data:", initialValues);
+    }  catch (validationErrors) {
+      // If validation fails, update errors state with all error messages
+      const errors = validationErrors.inner.reduce((acc, error) => {
+        acc[error.path] = error.message;
+        return acc;
+      }, {});
+      console.log(errors);
+    }
+  };
+
   function checkStarringFields() {
     if (formData.hasStarring) {
       formData.starrings.forEach((eachStarring) => {
-        if (eachStarring.starringName ==="") {
+        if (eachStarring.starringName === "") {
           toast.error("Starring name cannot be empty");
           return false;
-        }
-        else if (eachStarring.starringPhoto ==="") {
+        } else if (eachStarring.starringPhoto === "") {
           toast.error("Starring photo cannot be empty");
           return false;
         }
       });
 
-      return true
-      
+      return true;
     } else {
       return true;
     }
@@ -97,7 +123,11 @@ const CreateEvent = () => {
           </button>
 
           {active !== 3 ? (
-            <button className="signButton" onClick={handleNextBtn}>
+            <button
+              className="signButton"
+              type="submit"
+              onClick={handleNextBtn}
+            >
               Next
             </button>
           ) : (
