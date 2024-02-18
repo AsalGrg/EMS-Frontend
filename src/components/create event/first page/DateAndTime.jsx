@@ -29,12 +29,7 @@ const DateAndTime = () => {
 
   const handleInputChange = (e) => {
     console.log(e.target.value);
-    // const fieldValue = {
-    //   field: e.target.name,
-    //   value: e.target.value,
-    // };
-    // dispatch(updateCreateEventField(fieldValue));
-  };
+  }
 
   return (
     <>
@@ -49,7 +44,7 @@ const DateAndTime = () => {
           className="col-12 col-md-6"
           type="range"
           label="Event dates"
-          name="eventStartDate"
+          name="eventDates"
           placeholder="Start Date - End Date"
           value={formState.eventDates}
           onChange={(date) => {
@@ -85,7 +80,7 @@ const DateAndTime = () => {
           label="Select start time"
           leftSection={clockIcon}
           placeholder="Start Time"
-          name="eventStartTime"
+          name="eventEndTime"
           className="col-6 col-md-3"
           value={formState.eventEndTime}
           onChange={(time) => {

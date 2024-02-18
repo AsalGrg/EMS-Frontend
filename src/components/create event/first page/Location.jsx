@@ -1,7 +1,14 @@
 import { Card, Center, TextInput } from "@mantine/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
+import {
+  updateCreateEventField,
+  updateMatchedPlacesCreateEvent,
+} from "../../../pages/create event/CreateEventSlice";
+import getPlaces from "../../utilities/places";
+import MatchedLocation from "./MatchedLocation";
+import Map from "../../utilities/Map";
+import ShowMap from "./ShowMap";
 
 const Location = () => {
   const selectedOptionStyle = {
@@ -12,6 +19,29 @@ const Location = () => {
 
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.createEvent);
+
+  const handleLocationChange = (e) => {
+
+    //to 
+    dispatch(
+      updateCreateEventField({
+        field: "selectedPlace",
+        value: null,
+      })
+    );
+    const searchText = e.target.value;
+    getPlaces(searchText)
+      .then((places) => {
+        dispatch(
+          updateMatchedPlacesCreateEvent({
+            matchedPlaces: places,
+          })
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching places:", error);
+      });
+  };
 
   return (
     <>
@@ -56,8 +86,12 @@ const Location = () => {
         <TextInput
           leftSectionPointerEvents="none"
           label="Event Venue"
-          name="eventTitle"
-          value={formData.location}
+          name="location"
+          value={
+            formData.selectedPlace != null
+              ? formData.selectedPlace.display_name
+              : null
+          }
           onChange={(e) => {
             dispatch(
               updateCreateEventField({
@@ -65,6 +99,8 @@ const Location = () => {
                 value: e.target.value,
               })
             );
+
+            handleLocationChange(e);
           }}
           placeholder="Location"
         />
@@ -72,7 +108,7 @@ const Location = () => {
         <TextInput
           leftSectionPointerEvents="none"
           label="URL"
-          name="eventTitle"
+          name="meetingLink"
           value={formData.meetingLink}
           onChange={(e) => {
             dispatch(
@@ -85,6 +121,16 @@ const Location = () => {
           placeholder="https://www.metting_link"
         />
       ) : null}
+
+      {formData.venueType === "venue" && formData.matchedPlaces != null ? (
+        <MatchedLocation />
+      ) : null}
+
+
+      {formData.venueType==="venue" && formData.selectedPlace !=null?(
+
+        <ShowMap/>
+      ): null}
     </>
   );
 };

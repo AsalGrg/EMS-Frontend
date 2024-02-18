@@ -5,7 +5,7 @@ import { Select, TextInput } from "@mantine/core";
 
 const BasicInfo = () => {
   const dispatch = useDispatch();
-  const formState = useSelector((state) => state.createEvent);
+  const {category, eventTitle, errors, touched} = useSelector((state) => state.createEvent);
 
   const handleInputChange = (e) => {
     const fieldValue = {
@@ -29,9 +29,13 @@ const BasicInfo = () => {
             label="Event Title"
             name="eventTitle"
             placeholder="Be clear and concise"
-            value={formState.eventTitle}
+            value={eventTitle}
             onChange={(e) =>
               e.target.value.length <= 50 ? handleInputChange(e) : null
+            }
+            error={
+
+              errors!=null
             }
           />
         </div>
@@ -40,7 +44,8 @@ const BasicInfo = () => {
         <Select
           label="Select category"
           placeholder="Category"
-          value={formState.category}
+          name="category"
+          value={category}
           onChange={(selectedValue) => dispatch(updateCreateEventField({
             field:"category",
             // value: selectdValue

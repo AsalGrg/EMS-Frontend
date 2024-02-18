@@ -21,7 +21,7 @@ const createClusterCustomIcon = function (cluster) {
 
 const markers = [
   {
-    geocode: [28.26689000, 83.96851000],
+    geocode: [28.26689, 83.96851],
     popUp: "Hello, I am pop up 1",
   },
   {
@@ -34,9 +34,9 @@ const markers = [
   },
 ];
 
-const Map = () => {
+const Map = ({ geoCode, popup }) => {
   return (
-    <MapContainer center={[27.70169000, 85.32060000]} zoom={13}>
+    <MapContainer center={geoCode} zoom={13}>
       {/* OPEN STREEN MAPS TILES */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -47,12 +47,15 @@ const Map = () => {
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}
       >
+        <Marker position={geoCode} icon={customIcon}>
+          <Popup>{popup}</Popup>
+        </Marker>
         {/* Mapping through the markers */}
-        {markers.map((marker) => (
-          <Marker position={marker.geocode} icon={customIcon}>
-            <Popup>{marker.popUp}</Popup>
+        {/* {markers.map((marker) => (
+          <Marker position={geoCode} icon={customIcon}>
+            <Popup>{popup}</Popup>
           </Marker>
-        ))}
+        ))} */}
       </MarkerClusterGroup>
     </MapContainer>
   );
