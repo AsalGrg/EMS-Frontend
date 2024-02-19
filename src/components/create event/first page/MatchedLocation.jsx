@@ -1,27 +1,24 @@
 import { List, ThemeIcon, rem } from "@mantine/core";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
 import { IconMapPinFilled } from "@tabler/icons-react";
 
-const MatchedLocation = ({ handleBlur }) => {
-  const dispatch = useDispatch();
-  const matchedLocationState = useSelector((state) => state.createEvent);
+const MatchedLocation = ({ formik }) => {
+  const { handleChange, values, errors } = formik;
 
   function updateSelectedPlace(selectedPlace) {
-    dispatch(
-      updateCreateEventField({
-        field: "selectedPlace",
+    handleChange({
+      target: {
+        name: "selectedPlace",
         value: selectedPlace,
-      })
-    );
+      },
+    });
 
-    dispatch(
-      updateCreateEventField({
-        field: "matchedPlaces",
+    handleChange({
+      target: {
+        name: "matchedPlaces",
         value: null,
-      })
-    );
+      },
+    });
   }
 
   return (
@@ -38,7 +35,7 @@ const MatchedLocation = ({ handleBlur }) => {
           </ThemeIcon>
         }
       >
-        {matchedLocationState.matchedPlaces.map((eachLocation) => (
+        {values.matchedPlaces.map((eachLocation) => (
           <List.Item
             key={eachLocation.place_id}
             onClick={(e) => {

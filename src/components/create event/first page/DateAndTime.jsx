@@ -7,7 +7,7 @@ import { updateCreateEventField } from "../../../pages/create event/CreateEventS
 import { IconCalendar, IconClock } from "@tabler/icons-react";
 import { times } from "../../utilities/times";
 
-const DateAndTime = () => {
+const DateAndTime = ({formik}) => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.createEvent);
 

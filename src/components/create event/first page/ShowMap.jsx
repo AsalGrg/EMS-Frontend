@@ -5,7 +5,7 @@ import Map from "../../utilities/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { popup } from "leaflet";
 
-const ShowMap = () => {
+const ShowMap = ({formik}) => {
   const [isShowing, setisShowing] = useState(false);
 
   const dispatch = useDispatch();
@@ -32,8 +32,8 @@ const ShowMap = () => {
           }}
         >
           <Map
-            geoCode={[formData.selectedPlace.lat, formData.selectedPlace.lon]}
-            popup={formData.selectedPlace.display_name}
+            geoCode={[formik.values.selectedPlace.lat, formik.values.selectedPlace.lon]}
+            popup={formik.values.selectedPlace.display_name}
           />
         </div>
       ) : null}

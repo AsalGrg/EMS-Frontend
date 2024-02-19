@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   eventTitle: "",
-  category: "x",
+  category: "",
 
   venueType: "",
   location: "",
@@ -16,8 +16,8 @@ const initialState = {
 
   coverImage: null,
   isAboutClicked: false,
-  aboutEvent: '',
- 
+  aboutEvent: "",
+
   hasStarring: false,
 
   starrings: [
@@ -33,19 +33,17 @@ const initialState = {
   ticketPrice: null,
   ticketQuantity: null,
   ticketSaleDates: [null, null],
-  saleStartTime:null,
+  saleStartTime: null,
   saleEndTime: null,
 
   isPrivate: false,
-  visibilityOption: "public" //can be of types: public, private with link, private with password
-  ,
+  visibilityOption: "public", //can be of types: public, private with link, private with password
   accessPassword: null,
 
   matchedPlaces: null,
   selectedPlace: null,
 
-  errors: null,
-  touched: null
+  active: 0,
 };
 
 const createEventSlice = createSlice({
@@ -61,7 +59,7 @@ const createEventSlice = createSlice({
         id: Date.now(),
         starringPhoto: "",
         starringName: "",
-        starringRole: ""
+        starringRole: "",
       });
     },
     changeStarringName: (state, action) => {
@@ -74,14 +72,13 @@ const createEventSlice = createSlice({
       }
     },
 
-    getStarringImageFile :(state, action)=>{
-      const id= action.payload;
+    getStarringImageFile: (state, action) => {
+      const id = action.payload;
       const filteredStarring = state.starrings.filter((each) => each.id === id);
       return filteredStarring.starringPhoto;
     },
 
     changeStarringImage: (state, action) => {
-
       const { id, changedImage } = action.payload;
 
       // Use Immer to update the state in a mutable way
@@ -96,20 +93,25 @@ const createEventSlice = createSlice({
       );
     },
 
-    removeStarringImage: (state, action)=>{
-      const id = action.payload
+    removeStarringImage: (state, action) => {
+      const id = action.payload;
       const starringToChange = state.starrings.find((each) => each.id === id);
 
-      starringToChange.starringPhoto= ""
+      starringToChange.starringPhoto = "";
     },
 
-    updateMatchedPlacesCreateEvent: (state, action)=>{
+    updateMatchedPlacesCreateEvent: (state, action) => {
       const { matchedPlaces } = action.payload;
-      state.matchedPlaces= matchedPlaces;
-    }
+      state.matchedPlaces = matchedPlaces;
+    },
+    increaseActive: (state) => {
+      state.active += 1;
+    },
+
+    decreaseActive: (state) => {
+      state.active -= 1;
+    },
   },
-
-
 });
 
 export const {
@@ -120,6 +122,8 @@ export const {
   changeStarringName,
   changeStarringImage,
   getStarringImageFile,
-  updateMatchedPlacesCreateEvent
+  updateMatchedPlacesCreateEvent,
+  increaseActive,
+  decreaseActive,
 } = createEventSlice.actions;
 export default createEventSlice.reducer;

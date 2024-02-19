@@ -8,6 +8,7 @@ import {
 } from "../../../pages/create event/CreateEventSlice";
 import ImageSection from "./ImageSection";
 import EventStarringOption from "./EventStarringOption";
+import FormButtons from "../formButtons";
 
 const CreateEventSecond = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,8 @@ const CreateEventSecond = () => {
       <AboutEvent />
 
       <EventStarringOption />
+
+      <FormButtons/>
     </div>
   );
 };

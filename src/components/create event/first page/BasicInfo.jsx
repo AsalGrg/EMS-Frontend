@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
 import { Select, TextInput } from "@mantine/core";
 
-const BasicInfo = () => {
+const BasicInfo = ({ formik }) => {
   const dispatch = useDispatch();
-  const {category, eventTitle, errors, touched} = useSelector((state) => state.createEvent);
+  // const { category, eventTitle, errors, touched } = useSelector(
+  //   (state) => state.createEvent
+  // );
+
+  const { values, touched, errors } = formik;
 
   const handleInputChange = (e) => {
     const fieldValue = {
@@ -14,6 +18,15 @@ const BasicInfo = () => {
     };
     dispatch(updateCreateEventField(fieldValue));
   };
+
+  function handleSelectChange(selectedValue, field) {
+    formik.handleChange({
+      target: {
+        name: field,
+        value: selectedValue,
+      },
+    });
+  }
 
   return (
     <>
@@ -29,14 +42,11 @@ const BasicInfo = () => {
             label="Event Title"
             name="eventTitle"
             placeholder="Be clear and concise"
-            value={eventTitle}
-            onChange={(e) =>
-              e.target.value.length <= 50 ? handleInputChange(e) : null
-            }
-            error={
-
-              errors!=null
-            }
+            value={values.eventTitle}
+            onChange={(e) => {
+              formik.handleChange(e);
+            }}
+            error={touched.eventTitle && errors.eventTitle}
           />
         </div>
 
@@ -45,14 +55,13 @@ const BasicInfo = () => {
           label="Select category"
           placeholder="Category"
           name="category"
-          value={category}
-          onChange={(selectedValue) => dispatch(updateCreateEventField({
-            field:"category",
-            // value: selectdValue
-            value: "check"
-          }))}
+          value={values.category}
+          onChange={(selectedOption) =>
+            handleSelectChange(selectedOption, "category")
+          }
           data={["React", "Angular", "Vue", "Vite", "Svelte", "Hello", "Check"]}
           className="col-md-5 col-12"
+          error={touched.category && errors.category}
           // searchable
         />
       </div>
