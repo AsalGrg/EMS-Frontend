@@ -3,6 +3,7 @@ import { useState } from 'react'
 import TicketOptionSelector from './TicketOptionSelector'
 import TicketDetailsInput from './TicketDetailsInput'
 import { useSelector } from 'react-redux'
+import FormButtons from '../formButtons'
 
 const CreateEventThird = () => {
 
@@ -17,6 +18,8 @@ const CreateEventThird = () => {
         <TicketDetailsInput/>
         :null    
         }
+
+        <FormButtons/>
     </div>
   )
 }
