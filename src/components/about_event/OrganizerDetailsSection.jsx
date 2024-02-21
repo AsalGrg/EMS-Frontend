@@ -36,7 +36,7 @@ const OrganizerDetailsSection = () => {
           </p>
 
           <div className="d-flex justify-content-evenly mt-4">
-            <Button variant="light" size="md" className="me-5">
+            <Button variant="light" size="md" className="me-5" title="conact-btn">
               Contact
             </Button>
 

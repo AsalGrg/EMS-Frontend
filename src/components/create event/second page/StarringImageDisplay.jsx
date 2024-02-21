@@ -3,19 +3,31 @@ import { IconPhotoCancel, IconPhotoEdit } from "@tabler/icons-react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeStarringImage } from "../../../pages/create event/CreateEventSlice";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
 const StarringImageDisplay = ({ eventStarring, handleChangeImage }) => {
   const [btnHidden, setBntHidden] = useState(true);
 
-  const dispatch = useDispatch();
+  const { handleChange, values } = useCreateEventContext();
 
   const deleteStarringImage = () => {
-    dispatch(removeStarringImage(eventStarring.id));
+    const newList = values.starrings.map((each) => {
+      if (each.id === eventStarring.id) {
+        return { ...each, starringPhoto: null };
+      }
+
+      return each;
+    });
+
+    handleChange({
+      target: {
+        name: "starrings",
+        value: newList,
+      },
+    });
   };
   return (
-    <section
-      className="d-flex"
-    >
+    <section className="d-flex">
       <img
         src={URL.createObjectURL(eventStarring.starringPhoto)}
         className="starringImage border rounded cursor"

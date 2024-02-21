@@ -3,44 +3,89 @@ import AboutEvent from "./AboutEvent";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addStarringInput,
+  increaseActive,
   removeEachStarring,
   updateCreateEventField,
 } from "../../../pages/create event/CreateEventSlice";
 import ImageSection from "./ImageSection";
 import EventStarringOption from "./EventStarringOption";
 import FormButtons from "../formButtons";
+import { Formik } from "formik";
+import { createEventSecondPageSchema } from "../../../schemas";
+import CreateEventContextWrapper from "../../../context/CreateEventContext";
 
 const CreateEventSecond = () => {
   const dispatch = useDispatch();
 
   const formState = useSelector((state) => state.createEvent);
 
-  const handleInputChange = (e) => {
-    const fieldValue = {
-      field: e.target.name,
-      value: e.target.value,
-    };
-    dispatch(updateCreateEventField(fieldValue));
+  const initialValues = {
+    coverImage: formState.coverImage,
+    isAboutClicked: formState.isAboutClicked,
+    aboutEvent: formState.aboutEvent,
+    hasStarring: formState.hasStarring,
+    starrings: formState.starrings,
   };
 
-  const handleToggle = (e) => {
-    const fieldValue = {
-      field: e.target.name,
-      value: !formState[e.target.name],
-    };
-    console.log(fieldValue);
-    dispatch(updateCreateEventField(fieldValue));
-  };
+  function handleSubmit(values, helpers) {
+    dispatch(
+      updateCreateEventField({
+        field: "coverImage",
+        value: values.coverImage,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "isAboutClicked",
+        value: values.isAboutClicked,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "aboutEvent",
+        value: values.aboutEvent,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "hasStarring",
+        value: values.hasStarring,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "starrings",
+        value: values.starrings,
+      })
+    );
+
+    dispatch(increaseActive());
+  }
 
   return (
     <div className="container">
-      <ImageSection />
+      <Formik
+        initialValues={initialValues}
+        enableReinitialize
+        validationSchema={createEventSecondPageSchema}
+        onSubmit={handleSubmit}
+      >
+        {(formik) => (
+          <CreateEventContextWrapper formik={formik}>
+            <ImageSection />
 
-      <AboutEvent />
+            <AboutEvent/>
 
-      <EventStarringOption />
+            <EventStarringOption />
 
-      <FormButtons/>
+            <FormButtons />
+          </CreateEventContextWrapper>
+        )}
+      </Formik>
     </div>
   );
 };
