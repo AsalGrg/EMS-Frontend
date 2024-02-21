@@ -1,29 +1,27 @@
 import { Switch, rem, useMantineTheme } from "@mantine/core";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
 import EventStarringsInput from "./EventStarringsInput";
 import AddEventStarringOption from "./AddEventStarringOption";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
 const EventStarringOption = () => {
   const theme = useMantineTheme();
-  const formData = useSelector((state) => state.createEvent);
-  const dispatch = useDispatch();
+  const { handleChange, errors, touched, values } = useCreateEventContext();
 
   const handleEventStarringToggle = () => {
-    dispatch(
-      updateCreateEventField({
-        field: "hasStarring",
-        value: !formData.hasStarring,
-      })
-    );
+    handleChange({
+      target: {
+        name: "hasStarring",
+        value: !values.hasStarring,
+      },
+    });
   };
 
   return (
     <section className="my-3">
       <Switch
-        checked={formData.hasStarring}
+        checked={values.hasStarring}
         name="hasStarring"
         // onChange={(event) => setChecked(event.currentTarget.checked)}
         onChange={handleEventStarringToggle}
@@ -31,7 +29,7 @@ const EventStarringOption = () => {
         size="md"
         label="Want to add event starrings?"
         thumbIcon={
-          formData.hasStarring ? (
+          values.hasStarring ? (
             <IconCheck
               style={{ width: rem(12), height: rem(12) }}
               color={theme.colors.teal[6]}
@@ -47,17 +45,22 @@ const EventStarringOption = () => {
         }
       />
 
-      {formData.hasStarring ? (
+      {values.hasStarring ? (
         <div className="row mt-4 mx-1 justify-content-between">
-          {formData.starrings.map((eachStarring) => (
-            <div className="col-md-5 col-12 mb-3 d-flex justify-content-center">
-              <EventStarringsInput eventStarring={eachStarring} />
+          {values.starrings.map((eachStarring, index) => (
+            <div className="col-md-5 col-12 mb-3 d-flex justify-content-center"
+            key={eachStarring.id}>
+              <EventStarringsInput eventStarring={eachStarring} index={index}/>
             </div>
           ))}
 
-          <AddEventStarringOption />
+          {values.starrings.length <= 4 ? <AddEventStarringOption /> : null}
         </div>
       ) : null}
+
+      {touched.starrings && errors.starrings
+        ? console.log(errors.starrings)
+        : null}
     </section>
   );
 };

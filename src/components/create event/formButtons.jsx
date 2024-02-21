@@ -5,12 +5,15 @@ import {
   decreaseActive,
   increaseActive,
 } from "../../pages/create event/CreateEventSlice";
+import { useCreateEventContext } from "../../context/CreateEventContext";
 
-const FormButtons = ({handleSubmit}) => {
+const FormButtons = ({ formik }) => {
   const { active, hasStarring, starrings } = useSelector(
     (state) => state.createEvent
   );
   const dispatch = useDispatch();
+
+  const { handleSubmit } = useCreateEventContext();
 
   function checkStarringFields() {
     if (hasStarring) {
@@ -43,13 +46,9 @@ const FormButtons = ({handleSubmit}) => {
     }
   };
 
-  const handleNextBtn= ()=>{
-    dispatch(increaseActive())
-  }
-
-  const handlePreviousBtn= ()=>{
-    dispatch(decreaseActive())
-  }
+  const handlePreviousBtn = () => {
+    dispatch(decreaseActive());
+  };
   return (
     <div className="d-flex justify-content-between mt-4">
       <button
@@ -64,7 +63,7 @@ const FormButtons = ({handleSubmit}) => {
         <button
           className="signButton"
           type="submit"
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
         >
           Next
         </button>

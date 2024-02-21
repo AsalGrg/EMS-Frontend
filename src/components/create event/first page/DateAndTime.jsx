@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
 import { IconCalendar, IconClock } from "@tabler/icons-react";
 import { times } from "../../utilities/times";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
-const DateAndTime = ({formik}) => {
+const DateAndTime = () => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.createEvent);
 
@@ -19,6 +20,17 @@ const DateAndTime = ({formik}) => {
     <IconClock style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
   );
 
+  const { handleChange, values, errors, touched } = useCreateEventContext();
+
+  function handleDateTimeChange(name, value) {
+    handleChange({
+      target: {
+        name: name,
+        value: value,
+      },
+    });
+  }
+
   const handleToggle = (e) => {
     const fieldValue = {
       field: e.target.name,
@@ -29,7 +41,7 @@ const DateAndTime = ({formik}) => {
 
   const handleInputChange = (e) => {
     console.log(e.target.value);
-  }
+  };
 
   return (
     <>
@@ -46,15 +58,11 @@ const DateAndTime = ({formik}) => {
           label="Event dates"
           name="eventDates"
           placeholder="Start Date - End Date"
-          value={formState.eventDates}
+          value={values.eventDates}
           onChange={(date) => {
-            dispatch(
-              updateCreateEventField({
-                field: "eventDates",
-                value: date,
-              })
-            );
+            handleDateTimeChange("eventDates", date);
           }}
+          error={touched.eventDates && errors.eventDates}
         />
 
         <Select
@@ -63,15 +71,11 @@ const DateAndTime = ({formik}) => {
           placeholder="Start Time"
           name="eventStartTime"
           className="col-6 col-md-3"
-          value={formState.eventStartTime}
+          value={values.eventStartTime}
           onChange={(time) => {
-            dispatch(
-              updateCreateEventField({
-                field: "eventStartTime",
-                value: time,
-              })
-            );
+            handleDateTimeChange("eventStartTime", time);
           }}
+          error={touched.eventStartTime && errors.eventStartTime}
           data={times}
           searchable
         />
@@ -82,15 +86,11 @@ const DateAndTime = ({formik}) => {
           placeholder="Start Time"
           name="eventEndTime"
           className="col-6 col-md-3"
-          value={formState.eventEndTime}
+          value={values.eventEndTime}
           onChange={(time) => {
-            dispatch(
-              updateCreateEventField({
-                field: "eventEndTime",
-                value: time,
-              })
-            );
+            handleDateTimeChange("eventEndTime", time);
           }}
+          error={touched.eventEndTime && errors.eventEndTime}
           data={times}
           searchable
         />
@@ -124,8 +124,8 @@ const DateAndTime = ({formik}) => {
 
         <div>
           <p>
-            Display End Time <br /> The end time of your event will be shown
-            to the attendees
+            Display End Time <br /> The end time of your event will be shown to
+            the attendees
           </p>
         </div>
       </div>

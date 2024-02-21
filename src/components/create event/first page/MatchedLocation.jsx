@@ -1,9 +1,10 @@
 import { List, ThemeIcon, rem } from "@mantine/core";
 import React from "react";
 import { IconMapPinFilled } from "@tabler/icons-react";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
-const MatchedLocation = ({ formik }) => {
-  const { handleChange, values, errors } = formik;
+const MatchedLocation = () => {
+  const { handleChange, values, errors } = useCreateEventContext();
 
   function updateSelectedPlace(selectedPlace) {
     handleChange({

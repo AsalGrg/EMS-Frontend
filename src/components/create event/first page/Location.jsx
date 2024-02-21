@@ -8,20 +8,21 @@ import {
 import getPlaces from "../../utilities/places";
 import MatchedLocation from "./MatchedLocation";
 import ShowMap from "./ShowMap";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
-const Location = ({ formik }) => {
+const Location = () => {
   const selectedOptionStyle = {
     color: "#3659e3",
     borderColor: "blue",
     backgroundColor: "rgba(54,89,227,.1)",
   };
 
-  const dispatch = useDispatch();
-  const formData = useSelector((state) => state.createEvent);
+  const { values, touched, errors, handleChange } = useCreateEventContext();
+
 
   const handleLocationChange = (e) => {
     //to
-    formik.handleChange({
+    handleChange({
       target: {
         name: "selectedPlace",
         value: null,
@@ -30,7 +31,7 @@ const Location = ({ formik }) => {
     const searchText = e.target.value;
     getPlaces(searchText)
       .then((places) => {
-        formik.handleChange({
+        handleChange({
           target: {
             name: "matchedPlaces",
             value: places,
@@ -42,10 +43,9 @@ const Location = ({ formik }) => {
       });
   };
 
-  const { errors, values, touched } = formik;
 
   function handleFormikChange(field, value) {
-    formik.handleChange({
+    handleChange({
       target: {
         name: field,
         value: value,
@@ -64,7 +64,7 @@ const Location = ({ formik }) => {
         <div
           className="border rounded col-md-2 col-10 me-md-3"
           style={
-            formik.values.venueType === "venue" ? selectedOptionStyle : null
+            values.venueType === "venue" ? selectedOptionStyle : null
           }
           onClick={() => handleFormikChange("venueType", "venue")}
         >
@@ -94,37 +94,35 @@ const Location = ({ formik }) => {
           value={
             values.selectedPlace != null
               ? values.selectedPlace.display_name
-              : null
+              : values.location
           }
           onChange={(e) => {
             handleLocationChange(e);
+            formik.handleChange(e);
           }}
           placeholder="Location"
+          error={touched.selectedPlace && errors.selectedPlace}
         />
-      ) : formData.venueType === "online" ? (
+      ) : values.venueType === "online" ? (
         <TextInput
           leftSectionPointerEvents="none"
           label="URL"
           name="meetingLink"
-          value={formData.meetingLink}
+          value={values.meetingLink}
           onChange={(e) => {
-            dispatch(
-              updateCreateEventField({
-                field: "meetingLink",
-                value: e.target.value,
-              })
-            );
+            handleChange(e);
           }}
           placeholder="https://www.metting_link"
+          error={touched.meetingLink && errors.meetingLink}
         />
       ) : null}
 
       {values.venueType === "venue" && values.matchedPlaces != null ? (
-        <MatchedLocation formik={formik} />
+        <MatchedLocation />
       ) : null}
 
       {values.venueType === "venue" && values.selectedPlace != null ? (
-        <ShowMap formik={formik} />
+        <ShowMap/>
       ) : null}
     </>
   );

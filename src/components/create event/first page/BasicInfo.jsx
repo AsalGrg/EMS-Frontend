@@ -2,25 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
 import { Select, TextInput } from "@mantine/core";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
-const BasicInfo = ({ formik }) => {
-  const dispatch = useDispatch();
-  // const { category, eventTitle, errors, touched } = useSelector(
-  //   (state) => state.createEvent
-  // );
+const BasicInfo = () => {
 
-  const { values, touched, errors } = formik;
-
-  const handleInputChange = (e) => {
-    const fieldValue = {
-      field: e.target.name,
-      value: e.target.value,
-    };
-    dispatch(updateCreateEventField(fieldValue));
-  };
+  const { values, touched, errors, handleChange } = useCreateEventContext();
 
   function handleSelectChange(selectedValue, field) {
-    formik.handleChange({
+    handleChange({
       target: {
         name: field,
         value: selectedValue,
@@ -44,7 +33,7 @@ const BasicInfo = ({ formik }) => {
             placeholder="Be clear and concise"
             value={values.eventTitle}
             onChange={(e) => {
-              formik.handleChange(e);
+              handleChange(e);
             }}
             error={touched.eventTitle && errors.eventTitle}
           />

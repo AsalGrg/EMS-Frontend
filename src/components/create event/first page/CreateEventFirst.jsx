@@ -6,7 +6,11 @@ import FormButtons from "../formButtons";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { createEventFirstPageSchema } from "../../../schemas";
-
+import {
+  increaseActive,
+  updateCreateEventField,
+} from "../../../pages/create event/CreateEventSlice";
+import CreateEventContextWrapper from "../../../context/CreateEventContext";
 const CreateEventFirst = () => {
   const formData = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
@@ -15,37 +19,105 @@ const CreateEventFirst = () => {
     eventTitle: formData.eventTitle,
     category: formData.category,
     venueType: formData.venueType,
-    location: formData.selectedPlace ? formData.selectedPlace.display_name : "",
+    location: "",
     meetingLink: formData.meetingLink,
-    matchedPlaces: formData.matchedPlaces,
     selectedPlace: formData.selectedPlace,
-    eventDates: formData.eventStartDates,
+    eventDates: formData.eventDates,
     eventStartTime: formData.eventStartTime,
     eventEndTime: formData.eventEndTime,
   };
+
+  function handleSubmit(values, helpers) {
+    dispatch(
+      updateCreateEventField({
+        field: "eventTitle",
+        value: values.eventTitle,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "category",
+        value: values.category,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "venueType",
+        value: values.venueType,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "meetingLink",
+        value: values.meetingLink,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "selectedPlace",
+        value: values.selectedPlace,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "eventDates",
+        value: values.eventDates,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "eventStartTime",
+        value: values.eventStartTime,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "eventEndTime",
+        value: values.eventEndTime,
+      })
+    );
+
+    dispatch(
+      updateCreateEventField({
+        field: "eventTitle",
+        value: values.eventTitle,
+      })
+    );
+
+    dispatch(increaseActive());
+  }
+
   return (
     <Formik
       enableReinitialize
       initialValues={initialValues}
       validationSchema={createEventFirstPageSchema}
+      onSubmit={handleSubmit}
     >
       {(formik) => (
-        <>
+        <CreateEventContextWrapper formik={formik}>
           <div className="mb-3">
-            <BasicInfo formik={formik} />
+            <BasicInfo />
           </div>
 
           {formik.handleChange}
 
           <div className="mb-3">
-            <Location formik={formik} />
+            <Location />
           </div>
 
           <div className="mb-3">
-            <DateAndTime formik={formik} />
+            <DateAndTime />
           </div>
-          <FormButtons handleSubmit={formik.handleSubmit} />
-        </>
+          <FormButtons formik={formik} />
+        </CreateEventContextWrapper>
       )}
     </Formik>
   );

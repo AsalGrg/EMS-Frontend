@@ -4,13 +4,12 @@ import React, { useState } from "react";
 import Map from "../../utilities/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { popup } from "leaflet";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
-const ShowMap = ({formik}) => {
+const ShowMap = () => {
   const [isShowing, setisShowing] = useState(false);
 
-  const dispatch = useDispatch();
-  const formData = useSelector((state) => state.createEvent);
-
+  const {values}= useCreateEventContext();
   return (
     <section className="mt-3">
       <Text
@@ -32,8 +31,8 @@ const ShowMap = ({formik}) => {
           }}
         >
           <Map
-            geoCode={[formik.values.selectedPlace.lat, formik.values.selectedPlace.lon]}
-            popup={formik.values.selectedPlace.display_name}
+            geoCode={[values.selectedPlace.lat,values.selectedPlace.lon]}
+            popup={values.selectedPlace.display_name}
           />
         </div>
       ) : null}
