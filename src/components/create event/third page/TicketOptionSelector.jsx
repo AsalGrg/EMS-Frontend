@@ -1,28 +1,52 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
+import { Text } from "@mantine/core";
 
-const TicketOptionSelector = ({ setTicketOption, ticketOption }) => {
+const TicketOptionSelector = () => {
   const normal =
     "d-flex justify-content-between align-items-center col-12 px-4 py-3 rounded-3 border border-2";
-  const selectedClasses = normal + " text-primary border-primary";
+  const selectedClasses = normal + "text-primary border-primary";
 
-  const dispatch = useDispatch();
-  const formData = useSelector((state) => state.createEvent);
+  const errorsClasses = normal + "text-primary border-danger";
 
+  const { handleChange, values, errors, touched } = useCreateEventContext();
+
+  const hasErrors =
+    (errors.ticketName && touched.ticketName) ||
+    (errors.ticketPrice && touched.ticketPrice) ||
+    (errors.ticketQuantity && touched.ticketQuantity) ||
+    (errors.ticketSaleDates && touched.ticketSaleDates) ||
+    (errors.saleStartTime && touched.saleStartTime) ||
+    (errors.saleEndTime && touched.saleEndTime)
+      ? true
+      : false;
+
+  const univeralErrorMessage = (
+    <Text size="md" c={"red"}>
+      Please fill details properly
+    </Text>
+  );
+
+  function handleTicketTypeChange(ticketType) {
+    handleChange({
+      target: {
+        name: "ticketType",
+        value: ticketType,
+      },
+    });
+  }
   return (
     <div className="row gy-3">
       <div
-        className={formData.ticketType === "paid" ? selectedClasses : normal}
-        role="button"
-        onClick={() =>
-          dispatch(
-            updateCreateEventField({
-              field: "ticketType",
-              value: "paid",
-            })
-          )
+        className={
+          values.ticketType === "paid"
+            ? hasErrors
+              ? errorsClasses
+              : selectedClasses
+            : normal
         }
+        role="button"
+        onClick={() => handleTicketTypeChange("paid")}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
@@ -42,17 +66,20 @@ const TicketOptionSelector = ({ setTicketOption, ticketOption }) => {
         </div>
       </div>
 
+      {hasErrors && touched && values.ticketType === "paid"
+        ? univeralErrorMessage
+        : null}
+
       <div
-        className={formData.ticketType === "free" ? selectedClasses : normal}
-        role="button"
-        onClick={() =>
-          dispatch(
-            updateCreateEventField({
-              field: "ticketType",
-              value: "free",
-            })
-          )
+        className={
+          values.ticketType === "free"
+            ? hasErrors
+              ? errorsClasses
+              : selectedClasses
+            : normal
         }
+        role="button"
+        onClick={() => handleTicketTypeChange("free")}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
@@ -71,20 +98,20 @@ const TicketOptionSelector = ({ setTicketOption, ticketOption }) => {
           <i class="fa-solid fa-circle-chevron-right"></i>
         </div>
       </div>
+      {hasErrors && touched && values.ticketType === "free"
+        ? univeralErrorMessage
+        : null}
 
       <div
         className={
-          formData.ticketType === "donation" ? selectedClasses : normal
+          values.ticketType === "donation"
+            ? hasErrors
+              ? errorsClasses
+              : selectedClasses
+            : normal
         }
         role="button"
-        onClick={() =>
-          dispatch(
-            updateCreateEventField({
-              field: "ticketType",
-              value: "donation",
-            })
-          )
-        }
+        onClick={() => handleTicketTypeChange("donation")}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
@@ -103,6 +130,10 @@ const TicketOptionSelector = ({ setTicketOption, ticketOption }) => {
           <i class="fa-solid fa-circle-chevron-right"></i>
         </div>
       </div>
+
+      {hasErrors && touched && values.ticketType === "donation"
+        ? univeralErrorMessage
+        : null}
     </div>
   );
 };

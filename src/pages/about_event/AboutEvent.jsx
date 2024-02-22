@@ -9,8 +9,12 @@ import AboutEventSection from "../../components/about_event/AboutEventSection";
 import StarringSection from "../../components/about_event/starring section/StarringSection";
 import TicketSection from "../../components/about_event/first section/TicketSection";
 import OrganizerDetailsSection from "../../components/about_event/OrganizerDetailsSection";
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEntireStateAboutEvent } from "./AboutEventSlice";
 
 const AboutEvent = () => {
+  const formData = useSelector((state) => state.aboutEvent);
   return (
     <>
       {/* main section starts here */}
@@ -34,11 +38,22 @@ const AboutEvent = () => {
         </div>
       </main>
 
-      <StarringSection />
+      {formData.starrings ? <StarringSection /> : null}
 
-      <OrganizerDetailsSection/>
+      <OrganizerDetailsSection />
     </>
   );
 };
 
+export function aboutEventLoader() {
+  const { pageAccessType } = useParams();
+  const dispatch = useDispatch();
+
+  if (pageAccessType === "preview") {
+    const jsonData = JSON.parse(localStorage.getItem("previewEventData"));
+    dispatch(updateEntireStateAboutEvent(jsonData));
+  }
+
+  return null;
+}
 export default AboutEvent;

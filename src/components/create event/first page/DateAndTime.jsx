@@ -57,6 +57,9 @@ const DateAndTime = () => {
           type="range"
           label="Event dates"
           name="eventDates"
+          popoverProps={{
+            zIndex:1000
+          }}
           placeholder="Start Date - End Date"
           value={values.eventDates}
           onChange={(date) => {

@@ -1,7 +1,12 @@
 import { Modal, ScrollArea } from "@mantine/core";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const TicketModal = ({ opened, close }) => {
+
+  const ticketData= useSelector(state=> state.aboutEvent)
+
+
   return (
     <Modal
       opened={opened}

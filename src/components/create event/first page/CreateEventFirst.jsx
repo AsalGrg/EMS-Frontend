@@ -107,8 +107,6 @@ const CreateEventFirst = () => {
             <BasicInfo />
           </div>
 
-          {formik.handleChange}
-
           <div className="mb-3">
             <Location />
           </div>
@@ -116,7 +114,7 @@ const CreateEventFirst = () => {
           <div className="mb-3">
             <DateAndTime />
           </div>
-          <FormButtons formik={formik} />
+          <FormButtons handleSubmit={formik.handleSubmit}/>
         </CreateEventContextWrapper>
       )}
     </Formik>

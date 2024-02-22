@@ -19,7 +19,7 @@ import { store } from "./app/store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
-import AboutEvent from "./pages/about_event/AboutEvent";
+import AboutEvent, { aboutEventLoader } from "./pages/about_event/AboutEvent";
 import RootLayout from "./layout/RootLayout";
 import SearchResult from "./pages/search result/SearchResult";
 import UserProfile from "./pages/user_profile/UserProfile";
@@ -38,21 +38,28 @@ const App = () => {
         </Route>
 
         {/* for the users */}
-        <Route element={<RootLayout/>}>
+        <Route element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route exact path="category/:catName" element={<Category />} />
-          <Route exact path="about-event" element={<AboutEvent />} />
-          <Route exact path="search/:eventName/:location" element={<SearchResult/>}/>
-          <Route exact path="user" element={<UserProfile/>}/>
+          <Route
+            exact
+            path="about-event/:pageAccessType/:id"
+            element={<AboutEvent />}
+            loader={aboutEventLoader}
+          />
+          <Route
+            exact
+            path="search/:eventName/:location"
+            element={<SearchResult />}
+          />
+          <Route exact path="user" element={<UserProfile />} />
         </Route>
       </Route>
     )
   );
   return (
     <>
-      <Provider store={store}>
-        <RouterProvider router={router}/>
-      </Provider>
+      <RouterProvider router={router} />
     </>
   );
 };
