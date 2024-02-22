@@ -2,8 +2,12 @@ import { Badge } from "@mantine/core";
 import { IconSpeakerphone } from "@tabler/icons-react";
 import React from "react";
 import OrganizerSnippet from "./OrganizerSnippet";
+import { useSelector } from "react-redux";
 
 const EventIntroSection = () => {
+
+  const formData = useSelector(state=> state.aboutEvent) 
+
   return (
     <section>
       {/* div for badges */}
@@ -21,12 +25,12 @@ const EventIntroSection = () => {
 
       {/* about events */}
       <div className="mb-5">
-        <h5>Event Date</h5>
+        <h5>{formData.eventDate}</h5>
 
-        <h1 className="fw-bolder">Event Title</h1>
+        <h1 className="fw-bolder">{formData.eventTitle}</h1>
       </div>
 
-      <OrganizerSnippet/>
+      <OrganizerSnippet />
     </section>
   );
 };

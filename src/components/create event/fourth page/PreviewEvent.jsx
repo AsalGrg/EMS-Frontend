@@ -1,8 +1,40 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { updateAboutEventField } from "../../../pages/about_event/AboutEventSlice";
 
 const PreviewEvent = () => {
   const formData = useSelector((state) => state.createEvent);
+  const dispatch = useDispatch();
+
+  const handlePreviewEventClick = () => {
+    console.log("hello");
+    const data = {
+      eventAccessType: "preview",
+      coverImage: formData.coverImage,
+      eventDates: formData.eventDates,
+      eventTitle: formData.eventTitle,
+      physicalLocationDetails: formData.selectedPlace
+        ? {
+            lat: formData.selectedPlace.lat,
+            lon: formData.selectedPlace.lon,
+            display_name: formData.selectedPlace.display_name,
+          }
+        : null,
+      ticketDetails: {
+        ticketType: formData.ticketType,
+        ticketName: formData.ticketName,
+        ticketPrice: formData.ticketPrice,
+        ticketBookedQuantity: 0,
+      },
+      aboutEvent: formData.aboutEvent,
+      starrings: formData.starrings,
+    };
+
+    localStorage.setItem("previewEventData", JSON.stringify(data));
+  };
+
   return (
     <div className="row shadow rounded">
       <div className="col-md-6 col-12 d-flex justify-content-center align-items-center">
@@ -62,7 +94,9 @@ const PreviewEvent = () => {
         </div>
 
         <div className="previewEventOption">
-          <p>This may contain a preview event link</p>
+          <Link to={"/about-event/preview/now"} target="_blank">
+            <p onClick={handlePreviewEventClick}>Preview Event</p>
+          </Link>
         </div>
       </div>
     </div>

@@ -28,6 +28,7 @@ const initialState = {
       starringRole: "",
     },
   ],
+
   ticketType: "",
   ticketName: "",
   ticketPrice: null,
@@ -43,7 +44,7 @@ const initialState = {
   matchedPlaces: null,
   selectedPlace: null,
 
-  active: 0,
+  active: 3,
 };
 
 const createEventSlice = createSlice({

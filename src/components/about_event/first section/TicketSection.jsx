@@ -3,10 +3,12 @@ import React from "react";
 import TicketModal from "./TicketModal";
 import { IconHeart, IconShare2 } from "@tabler/icons-react";
 import { Button } from "@mantine/core";
+import { useSelector } from "react-redux";
 
 const TicketSection = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
+  const ticketData= useSelector(state=> state.aboutEvent).ticketDetails
   return (
     <section>
 
@@ -19,7 +21,7 @@ const TicketSection = () => {
         </div>
 
         <div className="border rounded py-3 px-4 mt-5">
-            <p className="text-center text-secondary fw-bold mb-4 lead">Ticket Price</p>
+            <p className="text-center text-secondary fw-bold mb-4 lead">{ticketData.ticketPrice? (ticketData.ticketPrice): "from $0"}</p>
             <Button variant="filled"  color="rgba(300, 118, 0, 1)" fullWidth
             size="md"
             onClick={open}>Buy Tickets</Button>

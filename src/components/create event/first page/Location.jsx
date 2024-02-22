@@ -98,7 +98,7 @@ const Location = () => {
           }
           onChange={(e) => {
             handleLocationChange(e);
-            formik.handleChange(e);
+            handleChange(e);
           }}
           placeholder="Location"
           error={touched.selectedPlace && errors.selectedPlace}

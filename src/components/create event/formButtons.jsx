@@ -7,13 +7,12 @@ import {
 } from "../../pages/create event/CreateEventSlice";
 import { useCreateEventContext } from "../../context/CreateEventContext";
 
-const FormButtons = ({ formik }) => {
+const FormButtons = ({handleSubmit}) => {
   const { active, hasStarring, starrings } = useSelector(
     (state) => state.createEvent
   );
   const dispatch = useDispatch();
 
-  const { handleSubmit } = useCreateEventContext();
 
   function checkStarringFields() {
     if (hasStarring) {

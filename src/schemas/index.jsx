@@ -51,7 +51,7 @@ export const createEventSecondPageSchema = Yup.object({
                 if (!value) return true; // Allow empty value
                 return ["image/jpeg", "image/png"].includes(value.type);
               })
-              .required("Cover image is required"),
+              .required("Starring image is required"),
 
             starringName: Yup.string().required("Starring name is required"),
           })
@@ -59,4 +59,22 @@ export const createEventSecondPageSchema = Yup.object({
         .required("Starring details are required"),
     otherwise: () => Yup.array(), // No validation when hasStarring is false
   }),
+});
+
+export const createEventThirdPageSchema = Yup.object({
+  ticketType: Yup.string().required("Ticket type is required"),
+  ticketName: Yup.string().required("Ticket name is required"),
+  ticketPrice: Yup.number().when("ticketType", {
+    is: (value) => value === "paid",
+    then: (schema) => schema.required("Ticket price is required"),
+    otherwise: (schema) => schema.nullable(),
+  }),
+  ticketQuantity: Yup.number().required("Ticket quantity is required"),
+  ticketSaleDates: Yup.array()
+    .of(Yup.date())
+    .min(2, "Start and end dates are required")
+    .max(2, "Start and end dates are required")
+    .required("Event dates are required"),
+  saleStartTime: Yup.string().required("Please select event start time"),
+  saleEndTime: Yup.string().required("Please select event end time"),
 });

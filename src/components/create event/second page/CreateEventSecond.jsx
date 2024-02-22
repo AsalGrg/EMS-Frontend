@@ -78,11 +78,11 @@ const CreateEventSecond = () => {
           <CreateEventContextWrapper formik={formik}>
             <ImageSection />
 
-            <AboutEvent/>
+            <AboutEvent />
 
             <EventStarringOption />
 
-            <FormButtons />
+            <FormButtons handleSubmit={formik.handleSubmit}/>
           </CreateEventContextWrapper>
         )}
       </Formik>

@@ -89,7 +89,10 @@ const EventStarringsInput = ({ eventStarring, index }) => {
           className="d-flex rounded container bg-secondary"
           onClick={handleClick}
           style={
-            touched.starrings[index] && errors.starrings[index].starringPhoto
+            touched.starrings &&
+            errors.starrings &&
+            touched.starrings[index] &&
+            errors.starrings[index]
               ? {
                   border: "1px solid red",
                   height: "350px",
@@ -110,9 +113,12 @@ const EventStarringsInput = ({ eventStarring, index }) => {
         />
       )}
 
-{/* event starring errors */}
-      {touched.starrings[index] && errors.starrings[index].starringPhoto ? (
-        <Text size="xs" c={"red"} mb={"sm"}>
+      {/* event starring errors */}
+      {touched.starrings &&
+      errors.starrings &&
+      touched.starrings[index] &&
+      errors.starrings[index] ? (
+        <Text size="xs" c={"red"} >
           {errors.starrings[index].starringPhoto}
         </Text>
       ) : null}
@@ -126,7 +132,12 @@ const EventStarringsInput = ({ eventStarring, index }) => {
           changeText(e, "starringName");
         }}
         error={
-          touched.starrings[index] && errors.starrings[index].starringName
+          touched.starrings &&
+          errors.starrings &&
+          touched.starrings[index] &&
+          errors.starrings[index]
+            ? errors.starrings[index].starringName
+            : false
         }
       />
 

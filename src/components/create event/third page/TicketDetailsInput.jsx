@@ -5,10 +5,13 @@ import { NumberInput, Select, TextInput, rem } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { IconCalendar, IconClock } from "@tabler/icons-react";
 import { times } from "../../utilities/times";
+import { useCreateEventContext } from "../../../context/CreateEventContext";
 
 const TicketDetailsInput = () => {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.createEvent);
+
+  const { handleChange, values, errors, touched } = useCreateEventContext();
 
   const dateIcon = (
     <IconCalendar style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
@@ -18,13 +21,13 @@ const TicketDetailsInput = () => {
     <IconClock style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
   );
 
-  const handleInputChange = (e) => {
-    const fieldValue = {
-      field: e.target.name,
-      value: e.target.value,
-    };
-
-    dispatch(updateCreateEventField(fieldValue));
+  const handleInputChange = (name, value) => {
+    handleChange({
+      target: {
+        name: name,
+        value: value,
+      },
+    });
   };
 
   return (
@@ -47,14 +50,14 @@ const TicketDetailsInput = () => {
           class="btn-close text-reset"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
-          onClick={() =>
-            dispatch(
-              updateCreateEventField({
-                field: "ticketType",
-                value: "",
-              })
-            )
-          }
+          // onClick={() =>
+          //   dispatch(
+          //     updateCreateEventField({
+          //       field: "ticketType",
+          //       value: "",
+          //     })
+          //   )
+          // }
         ></button>
       </div>
       <div class="offcanvas-body">
@@ -66,8 +69,9 @@ const TicketDetailsInput = () => {
               label="Ticket name"
               name="ticketName"
               placeholder="Ticket name"
-              value={formData.ticketName}
-              onChange={(e) => handleInputChange(e)}
+              value={values.ticketName}
+              onChange={handleChange}
+              error={touched.ticketName && errors.ticketName}
             />
 
             <NumberInput
@@ -75,33 +79,26 @@ const TicketDetailsInput = () => {
               leftSectionPointerEvents="none"
               label="Ticket Quantity"
               placeholder="Ticket quantity"
-              value={formData.ticketQuantity}
+              name="ticketQuantity"
+              value={values.ticketQuantity}
               onChange={(number) => {
-                dispatch(
-                  updateCreateEventField({
-                    field: "ticketQuantity",
-                    value: number,
-                  })
-                );
+                handleInputChange("ticketQuantity", number);
               }}
+              error={touched.ticketQuantity && errors.ticketQuantity}
             />
 
             <NumberInput
               className="col-md-6 col-12"
-              disabled={formData.ticketType !== "paid"}
+              disabled={values.ticketType !== "paid"}
               leftSectionPointerEvents="none"
               label="Ticket price"
               prefix="Rs "
               placeholder="Ticket price"
-              value={formData.ticketType !== "paid" ? null : formData.ticketPrice}
+              value={values.ticketType !== "paid" ? null : formData.ticketPrice}
               onChange={(number) => {
-                dispatch(
-                  updateCreateEventField({
-                    field: "ticketPrice",
-                    value: number,
-                  })
-                );
+                handleInputChange("ticketPrice", number);
               }}
+              error={touched.ticketPrice && errors.ticketPrice}
             />
 
             <DatePickerInput
@@ -112,15 +109,11 @@ const TicketDetailsInput = () => {
               label="Ticket sales date"
               name="ticketSaleDates"
               placeholder="Start Date - End Date"
-              value={formData.ticketSaleDates}
+              value={values.ticketSaleDates}
               onChange={(date) => {
-                dispatch(
-                  updateCreateEventField({
-                    field: "ticketSaleDates",
-                    value: date,
-                  })
-                );
+                handleInputChange("ticketSaleDates", date);
               }}
+              error={touched.ticketSaleDates && errors.ticketSaleDates}
             />
 
             <Select
@@ -130,17 +123,13 @@ const TicketDetailsInput = () => {
               leftSection={clockIcon}
               placeholder="Start Time"
               name="saleStartTime"
-              value={formData.saleStartTime}
+              value={values.saleStartTime}
               onChange={(time) => {
-                dispatch(
-                  updateCreateEventField({
-                    field: "saleStartTime",
-                    value: time,
-                  })
-                );
+                handleInputChange("saleStartTime", time);
               }}
               data={times}
               searchable
+              error={touched.saleStartTime && errors.saleStartTime}
             />
 
             <Select
@@ -150,35 +139,16 @@ const TicketDetailsInput = () => {
               leftSection={clockIcon}
               placeholder="Start Time"
               name="saleEndTime"
-              value={formData.saleEndTime}
+              value={values.saleEndTime}
               onChange={(time) => {
-                dispatch(
-                  updateCreateEventField({
-                    field: "saleEndTime",
-                    value: time,
-                  })
-                );
+                handleInputChange("saleEndTime", time);
               }}
               data={times}
               searchable
+              error={touched.saleEndTime && errors.saleEndTime}
             />
           </div>
         </div>
-
-        {/* <div className="buttonsFormatting">
-            <button
-              onClick={() =>
-                dispatch(
-                  updateCreateEventField({
-                    field: "ticketType",
-                    value: "",
-                  })
-                )
-              }
-            >
-              Cancel
-            </button>
-          </div> */}
       </div>
     </div>
   );
