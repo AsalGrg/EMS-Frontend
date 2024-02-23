@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Map from "../utilities/Map";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { Text } from "@mantine/core";
 
 const ShowMap = () => {
   const [isShowing, setisShowing] = useState(false);

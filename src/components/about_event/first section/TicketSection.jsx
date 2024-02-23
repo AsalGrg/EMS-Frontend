@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const TicketSection = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
-  const ticketData= useSelector(state=> state.aboutEvent).ticketDetails
+  const formData= useSelector(state=> state.aboutEvent)
   return (
     <section>
 
@@ -21,7 +21,7 @@ const TicketSection = () => {
         </div>
 
         <div className="border rounded py-3 px-4 mt-5">
-            <p className="text-center text-secondary fw-bold mb-4 lead">{ticketData.ticketPrice? (ticketData.ticketPrice): "from $0"}</p>
+            <p className="text-center text-secondary fw-bold mb-4 lead">{formData.ticketDetails.ticketPrice? ("Rs "+formData.ticketDetails.ticketPrice): "from $0"}</p>
             <Button variant="filled"  color="rgba(300, 118, 0, 1)" fullWidth
             size="md"
             onClick={open}>Buy Tickets</Button>

@@ -26,10 +26,9 @@ const Navbar = ({ theme = "dark" }) => {
 
   return (
     <nav
-      className="row px-5 pe-1 pe-md-5 py-2 border-bottom border-2 justify-content-between"
+      className="row px-5 pe-1 pe-md-5 py-1 border-bottom border-2 justify-content-between w-100"
       style={{
         height: "80px",
-        zIndex: "10000"
       }}
     >
       <Navlinks />

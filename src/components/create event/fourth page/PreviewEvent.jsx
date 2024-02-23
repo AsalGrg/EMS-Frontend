@@ -2,19 +2,18 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { updateAboutEventField } from "../../../pages/about_event/AboutEventSlice";
 
 const PreviewEvent = () => {
   const formData = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
   const handlePreviewEventClick = () => {
-    console.log("hello");
     const data = {
       eventAccessType: "preview",
       coverImage: formData.coverImage,
       eventDates: formData.eventDates,
       eventTitle: formData.eventTitle,
+      locationType: formData.venueType,
       physicalLocationDetails: formData.selectedPlace
         ? {
             lat: formData.selectedPlace.lat,
@@ -29,6 +28,7 @@ const PreviewEvent = () => {
         ticketBookedQuantity: 0,
       },
       aboutEvent: formData.aboutEvent,
+      hasStarring: formData.hasStarring,
       starrings: formData.starrings,
     };
 
@@ -94,7 +94,7 @@ const PreviewEvent = () => {
         </div>
 
         <div className="previewEventOption">
-          <Link to={"/about-event/preview/now"} target="_blank">
+          <Link to={"/event/preview"} target="_blank">
             <p onClick={handlePreviewEventClick}>Preview Event</p>
           </Link>
         </div>

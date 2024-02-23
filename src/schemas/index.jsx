@@ -78,3 +78,13 @@ export const createEventThirdPageSchema = Yup.object({
   saleStartTime: Yup.string().required("Please select event start time"),
   saleEndTime: Yup.string().required("Please select event end time"),
 });
+
+export const createEventFourthPageSchema = Yup.object({
+  isPrivate: Yup.boolean(),
+  visibilityOption: Yup.string(),
+  accessPassword: Yup.string().when("visibilityOption", {
+    is: (value) => value === "Password",
+    then: (schema) => schema.required("Event access password is required"),
+    otherwise: (schema) => schema,
+  }),
+});

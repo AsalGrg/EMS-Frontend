@@ -8,7 +8,7 @@ const EventCoverImage = () => {
       <div className="coverImageDisplayDiv rounded d-flex justify-content-center">
         {formData.eventAccessType === "preview" ? (
           <img
-            src={URL.createObjectURL(formData.coverImage)}
+            // src={URL.createObjectURL(formData.coverImage)}
             className="img-fluid rounded"
             style={{
               height: "100%",
