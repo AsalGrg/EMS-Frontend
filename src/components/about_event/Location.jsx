@@ -21,16 +21,16 @@ const Location = () => {
           <p>Online</p>
         </div>
       ) : formData.locationType === "venue" ? (
-        <div className="d-flex">
-          <IconCurrentLocation size={20} className="me-3" />
-
-          <div>
+        <>
+          <div className="d-flex">
+            <IconCurrentLocation size={20} className="me-3" />
             <p className="mb-none">
               {formData.physicalLocationDetails.display_name}
             </p>
-            <ShowMap />
           </div>
-        </div>
+
+          <ShowMap />
+        </>
       ) : null}
     </section>
   );

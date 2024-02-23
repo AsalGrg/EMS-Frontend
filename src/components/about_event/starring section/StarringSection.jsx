@@ -23,7 +23,7 @@ const StarringSection = () => {
                 {formData.eventAccessType === "preview" ? (
                   <img
                     className="rounded"
-                    src={URL.createObjectURL(eachStarring.starringPhoto)}
+                    // src={URL.createObjectURL(eachStarring.starringPhoto)}
                     alt=""
                   />
                 ) : (

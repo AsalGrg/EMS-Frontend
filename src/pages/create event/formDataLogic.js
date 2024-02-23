@@ -4,7 +4,7 @@ import { format, parse } from "date-fns";
 
 export const formDataLogic = (formState) => {
   const name = formState.eventTitle;
-  const category = formState.category;
+  const category = "Music";
   const locationType = formState.venueType;
 
   let locationName;

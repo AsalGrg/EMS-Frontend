@@ -38,18 +38,19 @@ const AboutEvent = () => {
         </div>
       </main>
 
-      {formData.starrings ? <StarringSection /> : null}
+      {formData.hasStarring ? <StarringSection /> : null}
 
       <OrganizerDetailsSection />
     </>
   );
 };
 
-export function aboutEventLoader() {
-  const { pageAccessType } = useParams();
+export function aboutEventLoader({ params }) {
   const dispatch = useDispatch();
+  const pageAccessType = params.pageAccessType;
 
   if (pageAccessType === "preview") {
+    console.log("hehhehe");
     const jsonData = JSON.parse(localStorage.getItem("previewEventData"));
     dispatch(updateEntireStateAboutEvent(jsonData));
   }

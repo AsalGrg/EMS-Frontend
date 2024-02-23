@@ -7,43 +7,29 @@ import {
 } from "../../pages/create event/CreateEventSlice";
 import { useCreateEventContext } from "../../context/CreateEventContext";
 
-const FormButtons = ({handleSubmit}) => {
+const FormButtons = ({ handleSubmit }) => {
   const { active, hasStarring, starrings } = useSelector(
     (state) => state.createEvent
   );
   const dispatch = useDispatch();
 
+  // function checkStarringFields() {
+  //   if (hasStarring) {
+  //     starrings.forEach((eachStarring) => {
+  //       if (eachStarring.starringName === "") {
+  //         toast.error("Starring name cannot be empty");
+  //         return false;
+  //       } else if (eachStarring.starringPhoto === "") {
+  //         toast.error("Starring photo cannot be empty");
+  //         return false;
+  //       }
+  //     });
 
-  function checkStarringFields() {
-    if (hasStarring) {
-      starrings.forEach((eachStarring) => {
-        if (eachStarring.starringName === "") {
-          toast.error("Starring name cannot be empty");
-          return false;
-        } else if (eachStarring.starringPhoto === "") {
-          toast.error("Starring photo cannot be empty");
-          return false;
-        }
-      });
-
-      return true;
-    } else {
-      return true;
-    }
-  }
-  const handlePublishBtn = async () => {
-    let isStarringFieldValid = checkStarringFields();
-
-    if (isStarringFieldValid) {
-      const res = await create_event(formDataLogic(formData));
-      // const res= await create_event();
-      const data = await res.json();
-
-      // console.log( formDataLogic({ formState: formData }))
-
-      console.log(data);
-    }
-  };
+  //     return true;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   const handlePreviousBtn = () => {
     dispatch(decreaseActive());
@@ -58,19 +44,13 @@ const FormButtons = ({handleSubmit}) => {
         Previous
       </button>
 
-      {active !== 3 ? (
-        <button
-          className="signButton"
-          type="submit"
-          onClick={(e) => handleSubmit(e)}
-        >
-          Next
-        </button>
-      ) : (
-        <button className="signButton" onClick={handlePublishBtn}>
-          Publish
-        </button>
-      )}
+      <button
+        className="signButton"
+        type="submit"
+        onClick={(e) => handleSubmit(e)}
+      >
+        {active !== 3 ? "Next" : "Publish"}
+      </button>
     </div>
   );
 };

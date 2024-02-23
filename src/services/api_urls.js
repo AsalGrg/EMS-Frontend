@@ -6,7 +6,7 @@ const api_urls= {
     registerUser: ()=> `${BASE_URL}/register`,
     verifyOtp: ()=> `${BASE_URL}/verify-otp`,
     createEvent: ()=> `${BASE_URL}/addEvent`,
-    check: ()=> `${BASE_URL}/check`
+    searchEvent: (eventTitle, location)=> `${BASE_URL}/search/${eventTitle}/${location}`,
 }
 
 export default api_urls

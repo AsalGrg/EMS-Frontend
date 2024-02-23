@@ -44,7 +44,7 @@ const initialState = {
   matchedPlaces: null,
   selectedPlace: null,
 
-  active: 3,
+  active: 0,
 };
 
 const createEventSlice = createSlice({
