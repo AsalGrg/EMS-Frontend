@@ -1,7 +1,7 @@
 import { Badge, Text } from "@mantine/core";
 import React from "react";
 
-const EachResult = () => {
+const EachResult = ({eachResult}) => {
   return (
     <div
       className="row justify-content-start py-3 mb-3 hoverShadow w-100"
@@ -13,7 +13,7 @@ const EachResult = () => {
     >
       <div className="col-md-5 col-12 rounded mb-2 d-flex align-items-center justify-content-center">
         <img
-          src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F674985949%2F1616120905893%2F1%2Foriginal.20240115-192228?h=230&w=460&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C1920%2C960&s=67eff135bf075e12dea191295a20abf6"
+          src={eachResult.eventCoverImgUrl}
           className="img-fluid rounded w-100"
           alt=""
         />
@@ -30,20 +30,26 @@ const EachResult = () => {
         </div>
 
         <Text size="md" fw={600}>
-          Web Development Seminar jssdjw hdh
+          {eachResult.eventName}
         </Text>
 
         <Text size="sm" fw={500} c={"grey"}>
-          Fri Sep 3, 2005
+          {eachResult.startDate}
         </Text>
 
         <Text size="sm" fw={500} c={"grey"} className="mt-1">
-          Pokhara
+          {eachResult.location_display_name}
         </Text>
 
-        <Text size="sm" fw={500} className="mt-1">
-          Free
-        </Text>
+        {eachResult.ticketType === "paid" ? (
+          <Text size="sm" fw={500} className="mt-1">
+            Rs {eachResult.ticketPrice}
+          </Text>
+        ) : (
+          <Text size="sm" fw={500} className="mt-1">
+            {eachResult.ticketType}
+          </Text>
+        )}
       </div>
     </div>
   );

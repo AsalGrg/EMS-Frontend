@@ -71,11 +71,11 @@ export const formDataLogic = (formState) => {
   const aboutEvent = formState.aboutEvent;
 
   const hasStarring = formState.hasStarring;
-  
+
   var starrings = null;
 
   if (hasStarring) {
-   starrings= formState.starrings
+    starrings = formState.starrings;
   }
 
   const isPrivate = formState.isPrivate;
@@ -124,8 +124,15 @@ export const formDataLogic = (formState) => {
       saleEndDate: saleEndDate,
       saleEndTime: saleEndTime,
     },
+
+    eventPhysicalLocationDetails: {
+      displayName: formState.selectedPlace.display_name,
+      country: formState.selectedPlace.address.country,
+      lat: formState.selectedPlace.lat,
+      lon: formState.selectedPlace.lon,
+    },
     eventCoverImage: formState.coverImage,
     hasStarring: hasStarring,
-    starrings: starrings
+    starrings: starrings,
   };
 };

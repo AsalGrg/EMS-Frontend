@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { isThisWeek, isTomorrow } from "../../components/utilities/DateChecker";
+import { isThisWeek, isToday, isTomorrow } from "date-fns";
 
 const initialState = {
   data: null,
@@ -35,8 +37,50 @@ const searchEvent = createSlice({
         categoryType: null,
       };
     },
+
+    applyFilters: (state, action) => {
+      const dateFilterState= state.filters.date
+      // const dateFilterState= state.filters.date
+      // const dateFilterState= state.filters.date
+      // const dateFilterState= state.filters.date
+
+      var filteredData= state.data;
+
+      if(dateFilterState){
+        if(dateFilterState=="today"){
+          filteredData= filteredData.filter(eachData=> {
+            return isToday(eachData.startDate)
+          })
+
+          console.log("today here")
+          console.log(filteredData)
+        }
+
+        if(dateFilterState=="tommorow"){
+          filteredData= state.data.filter(eachData=> {
+            return isTomorrow(eachData.startDate)
+          })
+        }
+
+        if(dateFilterState=="this weekend"){
+          filteredData= state.data.filter(eachData=> {
+            return isThisWeek(eachData.startDate)
+          })
+        }
+      }
+      
+      state.filteredData = filteredData;
+
+      console.log(state.filteredData)
+    },
   },
 });
 
-export const { updateSearchEventState, updateFilters,clearAllFilters } = searchEvent.actions;
+export const {
+  initializeSearchResultState,
+  updateSearchEventState,
+  updateFilters,
+  clearAllFilters,
+  applyFilters,
+} = searchEvent.actions;
 export default searchEvent.reducer;

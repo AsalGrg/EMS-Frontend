@@ -83,8 +83,8 @@ export const createEventFourthPageSchema = Yup.object({
   isPrivate: Yup.boolean(),
   visibilityOption: Yup.string(),
   accessPassword: Yup.string().when("visibilityOption", {
-    is: (value) => value === "Password",
+    is: (value) => value === "password",
     then: (schema) => schema.required("Event access password is required"),
-    otherwise: (schema) => schema,
+    otherwise: (schema) => schema.nullable(),
   }),
 });
