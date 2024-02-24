@@ -14,8 +14,24 @@ export const CreateEventFourth = () => {
   const formState = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
-  const handlePublishSubmit = () => {
-    console.log("here");
+  const handlePublishSubmit = async(values,helpers) => {
+
+    dispatch(updateCreateEventField({
+      field: "isPrivate",
+      value: values.isPrivate
+    }))
+
+    dispatch(updateCreateEventField({
+      field: "visibilityOption",
+      value: values.visibilityOption
+    }))
+
+    dispatch(updateCreateEventField({
+      field: "accessPassword",
+      value: values.accessPassword
+    }))
+
+    console.log(formState)
     // const res = await create_event(formDataLogic(formState));
     // // const res= await create_event();
     // const data = await res.json();
@@ -57,6 +73,13 @@ export const CreateEventFourth = () => {
                           value: false,
                         },
                       });
+
+                      formik.handleChange({
+                        target: {
+                          name: "visibilityOption",
+                          value: "public",
+                        },
+                      });
                     }}
                   />
                 </div>
@@ -77,6 +100,13 @@ export const CreateEventFourth = () => {
                           value: true,
                         },
                       });
+
+                      formik.handleChange({
+                        target: {
+                          name: "visibilityOption",
+                          value: "link",
+                        },
+                      });
                     }}
                   />
                 </div>
@@ -92,14 +122,16 @@ export const CreateEventFourth = () => {
                 <div>
                   <select className="ps-2 pe-2 py-2 rounded">
                     <option
-                      defaultValue={formik.values.visibilityOption === "Link"}
+                      defaultValue={formik.values.visibilityOption === "link"}
                       onClick={() => {
                         formik.handleChange({
                           target: {
                             name: "visibilityOption",
-                            value: "Link",
+                            value: "link",
                           },
                         });
+
+                        console.log("linkkk")
                       }}
                     >
                       Anyone with the link
@@ -107,13 +139,13 @@ export const CreateEventFourth = () => {
 
                     <option
                       defaultValue={
-                        formik.values.visibilityOption === "Password"
+                        formik.values.visibilityOption === "password"
                       }
                       onClick={() => {
                         formik.handleChange({
                           target: {
                             name: "visibilityOption",
-                            value: "Password",
+                            value: "password",
                           },
                         });
                       }}
@@ -126,7 +158,7 @@ export const CreateEventFourth = () => {
             ) : null}
           </div>
 
-          {formik.values.visibilityOption === "Password" ? (
+          {formik.values.visibilityOption === "password" ? (
             <TextInput
               className="col-6"
               leftSectionPointerEvents="none"

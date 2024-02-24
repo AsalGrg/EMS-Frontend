@@ -48,6 +48,15 @@ export default async function create_event(formData) {
     );
   }
 
+  if(formData.eventDetails.locationType=="venue"){
+    form.append(
+      "eventPhysicalLocationDetails",
+      new Blob([JSON.stringify(formData.eventPhysicalLocationDetails)], {
+        type: "application/json",
+      })
+    );
+  }
+
   const res = await fetch(api_url, {
     method: "POST",
     headers: {

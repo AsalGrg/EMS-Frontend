@@ -3,6 +3,7 @@ import React from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import getPlaces from "./places";
 
 const customIcon = new Icon({
   // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
@@ -56,6 +57,33 @@ const Map = ({ geoCode, popup }) => {
             <Popup>{popup}</Popup>
           </Marker>
         ))} */}
+      </MarkerClusterGroup>
+    </MapContainer>
+  );
+};
+
+export const Maps = ({ center, geoCodes }) => {
+
+
+  return (
+    <MapContainer center={[center.lat, center.lon]} zoom={13}>
+      {/* OPEN STREEN MAPS TILES */}
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+
+      <MarkerClusterGroup
+        chunkedLoading
+        iconCreateFunction={createClusterCustomIcon}
+      >
+
+        {/* Mapping through the markers */}
+        {geoCodes.map((each) => (
+          <Marker position={[each.lat, each.lon]} icon={customIcon}>
+            <Popup>{each.display_name}</Popup>
+          </Marker>
+        ))}
       </MarkerClusterGroup>
     </MapContainer>
   );

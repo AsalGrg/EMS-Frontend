@@ -7,7 +7,7 @@ const SearchedResults = () => {
     <section className=''>
 
         <MatchedResults/>
-        <SuggestedResults/>
+        {/* <SuggestedResults/> */}
     </section>
   )
 }
