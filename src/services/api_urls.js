@@ -2,6 +2,7 @@ const BASE_URL = "http://localhost:3232"
 
 const api_urls= {
 
+    getUserData: ()=> `${BASE_URL}/user`,
     loginUser: () => `${BASE_URL}/login`,
     registerUser: ()=> `${BASE_URL}/register`,
     verifyOtp: ()=> `${BASE_URL}/verify-otp`,

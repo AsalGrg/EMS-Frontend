@@ -16,13 +16,14 @@ const StarringSection = () => {
           Event Honorables
         </h4>
         {/* each starring div */}
-        <div className=" d-flex justify-content-evenly mt-5">
+        <div className=" d-flex justify-content-center mt-5 flex-wrap">
           {formData.starrings.map((eachStarring) => (
-            <div className="eachStarringDiv rounded m-1">
+            <div className="eachStarringDiv rounded m-1 mx-5">
               <div className="rounded starring-img">
                 {formData.eventAccessType === "preview" ? (
                   <img
                     className="rounded"
+                    src={`data:image/png;base64,${eachStarring.starringPhoto}`}
                     // src={URL.createObjectURL(eachStarring.starringPhoto)}
                     alt=""
                   />

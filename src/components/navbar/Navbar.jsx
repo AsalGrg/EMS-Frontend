@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 
 import { BiLogIn } from "react-icons/bi";
 import { GiArchiveRegister } from "react-icons/gi";
 import { Affix, Burger, Button, Text, rem } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
 import Navlinks from "./Navlinks";
-import { useDisclosure } from "@mantine/hooks";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router";
 import BurgerButton from "./BurgerButton";
+import { get_user_data } from "../../services/check loggedIn/get_user_data";
 
-const Navbar = ({ theme = "dark" }) => {
+const Navbar = () => {
   const navigate = useNavigate();
-  const navStyles = [
-    { theme: "dark", backgroundColor: "#00192F", textColor: "#FFFF" },
-    { theme: "white", backgroundColor: "#FFFF", textColor: "black" },
-  ];
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
-  const navImplStyle = navStyles.filter((style) => {
-    if (style.theme === theme) {
-      return style;
-    }
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await get_user_data();
+
+      if (res.ok) {
+        setisLoggedIn(true);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <nav
@@ -46,17 +48,24 @@ const Navbar = ({ theme = "dark" }) => {
 
       <div className="col-lg-5 col-5 d-flex justify-content-end align-items-center gap-3">
         <SearchBar />
-        <Text size="md" fw={500} className="d-none d-lg-block">
-          Login
-        </Text>
 
-        <Button
-          radius={"xl"}
-          color="#0A66C2"
-          onClick={() => navigate("register")}
-        >
-          Get Started!
-        </Button>
+        {isLoggedIn ? (
+          <p>LoggedIn</p>
+        ) : (
+          <>
+            <Text size="md" fw={500} className="d-none d-lg-block">
+              Login
+            </Text>
+
+            <Button
+              radius={"xl"}
+              color="#0A66C2"
+              onClick={() => navigate("register")}
+            >
+              Get Started!
+            </Button>
+          </>
+        )}
       </div>
     </nav>
   );

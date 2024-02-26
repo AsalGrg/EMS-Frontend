@@ -15,6 +15,7 @@ export default function getPlaces(searchText) {
   return fetch(`${NOMINATIM_BASE_URL}${queryString}`, requestOptions)
     .then((response) => response.json()) // Parse response as JSON
     .then((result) => {
+      console.log(result)
       return result;
     })
     .catch((err) => {
