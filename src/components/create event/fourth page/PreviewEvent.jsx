@@ -7,10 +7,65 @@ const PreviewEvent = () => {
   const formData = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
-  const handlePreviewEventClick = () => {
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const base64String = reader.result.split(",")[1];
+        resolve(base64String); // Resolve with the Base64 string
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const convertStarringImage = async (starrings) => {
+    try {
+      const starringsWithBase64Images = await Promise.all(starrings.map(async (each) => {
+        try {
+          const base64String = await getBase64(each.starringPhoto);
+          return {
+            starringPhoto: base64String,
+            starringName: each.starringName,
+          };
+        } catch (error) {
+          console.error("Error:", error);
+          // Handle any errors that occurred during conversion
+          return null; // Or some default value indicating an error
+        }
+      }));
+      return starringsWithBase64Images;
+    } catch (error) {
+      console.error("Error:", error);
+      return []; // Return empty array if an error occurred
+    }
+  };
+  const handlePreviewEventClick =async () => {
+    let coverImageBase64 = null;
+    let convertedStarrings= []
+
+    await getBase64(formData.coverImage)
+      .then((base64String) => {
+        coverImageBase64 = base64String;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle any errors that occurred during conversion
+      });
+
+      await convertStarringImage(formData.starrings)
+      .then((convertedStarringsResult) => {
+        convertedStarrings = convertedStarringsResult;
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle any errors that occurred during conversion
+      });
+
+
     const data = {
       eventAccessType: "preview",
-      coverImage: formData.coverImage,
+      coverImage: coverImageBase64,
       eventDates: formData.eventDates,
       eventTitle: formData.eventTitle,
       locationType: formData.venueType,
@@ -29,7 +84,9 @@ const PreviewEvent = () => {
       },
       aboutEvent: formData.aboutEvent,
       hasStarring: formData.hasStarring,
-      starrings: formData.starrings,
+      starrings: formData.hasStarring
+        ? convertedStarrings
+        : null,
     };
 
     localStorage.setItem("previewEventData", JSON.stringify(data));

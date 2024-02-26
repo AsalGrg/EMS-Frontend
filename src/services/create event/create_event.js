@@ -65,6 +65,5 @@ export default async function create_event(formData) {
     body: form,
   });
 
-  console.log("Yeta chu");
   return res;
 }

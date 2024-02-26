@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 const EventIntroSection = () => {
 
   const formData = useSelector(state=> state.aboutEvent) 
+ const checkData = useSelector(state=> state.createEvent) 
 
   return (
     <section>
@@ -27,7 +28,7 @@ const EventIntroSection = () => {
       <div className="mb-5">
         <h5>{formData.eventDate}</h5>
 
-        <h1 className="fw-bolder">{formData.eventTitle}</h1>
+        <h1 className="fw-bolder">{checkData.eventTitle}</h1>
       </div>
 
       <OrganizerSnippet />

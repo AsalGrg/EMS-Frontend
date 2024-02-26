@@ -64,9 +64,11 @@ const Map = ({ geoCode, popup }) => {
 
 export const Maps = ({ center, geoCodes }) => {
 
+  const geoCode= [center[0].lat, center[0].lon]
 
+  console.log(geoCode)
   return (
-    <MapContainer center={[center.lat, center.lon]} zoom={13}>
+    <MapContainer center={geoCode} zoom={3}>
       {/* OPEN STREEN MAPS TILES */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -81,7 +83,7 @@ export const Maps = ({ center, geoCodes }) => {
         {/* Mapping through the markers */}
         {geoCodes.map((each) => (
           <Marker position={[each.lat, each.lon]} icon={customIcon}>
-            <Popup>{each.display_name}</Popup>
+            <Popup>{each.location_display_name}</Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>

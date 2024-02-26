@@ -18,10 +18,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import AboutEvent, { aboutEventLoader } from "./pages/about_event/AboutEvent";
 import RootLayout from "./layout/RootLayout";
-import SearchResult, { searchResultLoader } from "./pages/search result/SearchResult";
+import SearchResult, {
+  searchResultLoader,
+} from "./pages/search result/SearchResult";
 import UserProfile from "./pages/user_profile/UserProfile";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
