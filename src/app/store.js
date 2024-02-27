@@ -3,7 +3,8 @@ import createEventReducer from "../pages/create event/CreateEventSlice";
 import categoryReducer from "../pages/category/CategorySlice";
 import searchEventReducer from "../pages/search result/SearchResultSlice";
 import searchBarReducer from "../pages/search/SearchBarSlice";
-import aboutEventSlice from "../pages/about_event/AboutEventSlice";
+import aboutEventReducer from "../pages/about_event/AboutEventSlice";
+import userProfileReducer from "../pages/user_profile/UserProfileSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     category: categoryReducer,
     searchEvent: searchEventReducer,
     searchBar: searchBarReducer,
-    aboutEvent: aboutEventSlice,
+    aboutEvent: aboutEventReducer,
+    userProfile: userProfileReducer,
   },
 });

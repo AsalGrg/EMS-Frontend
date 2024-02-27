@@ -1,34 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import IntroSection from "../../components/user_profile/Intro_section/IntroSection";
-import { Tabs, rem } from "@mantine/core";
+import { Badge, Tabs, rem } from "@mantine/core";
 import AboutTab from "../../components/user_profile/user_details/about_tab/AboutTab";
 import UpcomingEventsTab from "../../components/user_profile/user_details/events_Tab/UpcomingEventsTab";
 import PastEventsTab from "../../components/user_profile/user_details/events_Tab/PastEventsTab";
+import { get_user_details } from "../../services/user details/getUserDetails";
+import { useLoaderData, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEntireUserProfileState } from "./UserProfileSlice";
+import { store } from "../../app/store";
 const UserProfile = () => {
-  const iconStyle = { width: rem(12), height: rem(12) };
+  const navigate = useNavigate();
+
+  const userData = useSelector((state) => state.userProfile);
 
   return (
-    <main className="">
+    <main className="w-100">
       <IntroSection />
 
       <div className="mt-5">
         <Tabs color="blue" radius="xs" defaultValue="gallery">
           <Tabs.List className="d-flex justify-content-center fw-bold">
             <Tabs.Tab value="gallery">Profile</Tabs.Tab>
-            <Tabs.Tab value="messages">Upcoming</Tabs.Tab>
-            <Tabs.Tab value="settings">Past</Tabs.Tab>
+            <Tabs.Tab value="messages">
+              Upcoming <Badge size="sm">{userData.upcomingEvents.length}</Badge>
+            </Tabs.Tab>
+            <Tabs.Tab value="settings">
+              Past <Badge size="sm">{userData.pastEvents.length}</Badge>
+            </Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="gallery">
-            <AboutTab/>
+            <AboutTab />
           </Tabs.Panel>
 
           <Tabs.Panel value="messages">
-            <UpcomingEventsTab/>
+            <UpcomingEventsTab />
           </Tabs.Panel>
 
           <Tabs.Panel value="settings">
-            <PastEventsTab/>
+            <PastEventsTab />
           </Tabs.Panel>
         </Tabs>
       </div>
@@ -36,4 +47,15 @@ const UserProfile = () => {
   );
 };
 
+export async function userProfileLoader() {
+  const res = await get_user_details();
+
+  if (res.status == 200) {
+    store.dispatch(updateEntireUserProfileState(res.data));
+  } else {
+    throw new Error("Error fetching data");
+  }
+
+  return null;
+}
 export default UserProfile;

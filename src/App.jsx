@@ -21,7 +21,9 @@ import RootLayout from "./layout/RootLayout";
 import SearchResult, {
   searchResultLoader,
 } from "./pages/search result/SearchResult";
-import UserProfile from "./pages/user_profile/UserProfile";
+import UserProfile, {
+  userProfileLoader,
+} from "./pages/user_profile/UserProfile";
 import { useDispatch } from "react-redux";
 
 const App = () => {
@@ -61,7 +63,12 @@ const App = () => {
             element={<SearchResult />}
             loader={searchResultLoader}
           />
-          <Route exact path="user" element={<UserProfile />} />
+          <Route
+            exact
+            path="user"
+            element={<UserProfile />}
+            loader={userProfileLoader}
+          />
         </Route>
       </Route>
     )

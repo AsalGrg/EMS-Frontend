@@ -1,7 +1,12 @@
 import { Avatar } from "@mantine/core";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const UserImages = () => {
+
+  const userData = useSelector((state) => state.userProfile);
+
+
   return (
     <div
       className="w-100 position-relative img-fluid coverImageDisplayDiv rounded d-flex justify-content-center"
@@ -17,8 +22,8 @@ const UserImages = () => {
         }}
       ></img>
       <Avatar
-        src="https://scontent.fktm16-1.fna.fbcdn.net/v/t39.30808-6/316669820_1486705245141001_8411721115992888449_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=4z1bURYvngwAX-xdn65&_nc_ht=scontent.fktm16-1.fna&oh=00_AfBTrV0BEAG8wEyfwwQN_maUgyC6lOhI5OcCk4kgZ9ylEg&oe=65CFFABC"
-        alt="Vitaly Rtishchev"
+        src={userData.userSnippetDetails.userDp}
+        alt= {userData.userSnippetDetails.username}
         color="red"
         size={"xl"}
         className="position-absolute top-100 start-50 translate-middle"
