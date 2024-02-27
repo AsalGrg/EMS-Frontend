@@ -1,18 +1,17 @@
+import axios from "axios";
 import api_urls from "../api_urls";
 
 export async function get_user_data() {
   const api_url = api_urls.getUserData();
   const token = "Bearer "+localStorage.getItem("token");
 
-  console.log(token)
-
   try {
-    const res = await fetch(api_url, {
-      method: "GET",
-      headers: {
-        Authorization: token,
-      },
-    });
+    const res = await axios.get(api_url, {
+        headers:{
+            Authorization: token,
+        }
+    }
+    );
 
     return res;
   } catch (error) {

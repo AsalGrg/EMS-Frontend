@@ -10,10 +10,11 @@ const SearchBar = () => {
   return (
     <>
       <div
-        className="rounded-pill border w-50 px-3 align-items-center d-none d-lg-flex"
+        className="rounded-pill border px-3 align-items-center d-none d-lg-flex"
         style={{
           backgroundColor: "#F4F5FB",
           height: "40px",
+          width: "240px"
         }}
         onClick={()=>navigate("search")}
       >

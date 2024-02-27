@@ -8,29 +8,39 @@ const BurgerButton = () => {
 
   return (
     <section className="d-block d-lg-none w-100">
-      <Burger opened={opened} onClick={toggle} aria-label="Toggle navigation" />
+      <Menu trigger="click"
+      width={"300px"}>
+        <Menu.Target>
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            aria-label="Toggle navigation"
+          />
+        </Menu.Target>
 
-      <Modal
-        zIndex={10000}
-        opened={opened}
-        onClose={close}
-        withCloseButton={false}
-        yOffset="19vh"
-        size="100%"
-        overlayProps={{
-          backgroundOpacity: 0,
-        }}
-      >
-        <div className="ms-3 d-flex flex-column gap-4">
-          <Text size="lg" fw={600}>Create Event</Text>
-
-          <Text size="lg" fw={600}>Find Vendor</Text>
-
-          <Text size="lg" fw={600}>Browse Event</Text>
-
-          <Text size="lg" fw={600}>Login</Text>
-        </div>
-      </Modal>
+        <Menu.Dropdown className="mt-3">
+          <Menu.Item>
+            <Text size="lg" fw={600}>
+              Create Event
+            </Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text size="lg" fw={600}>
+              Find Vendor
+            </Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text size="lg" fw={600}>
+              Browse Event
+            </Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text size="lg" fw={600}>
+              Login
+            </Text>
+          </Menu.Item>
+        </Menu.Dropdown>
+      </Menu>
     </section>
   );
 };

@@ -1,13 +1,13 @@
 import { Card, Image, Text } from "@mantine/core";
 import React from "react";
 
-const EachEvent = () => {
+const EachEvent = ({eachEvent}) => {
   return (
     <div className="col-lg-3 col-md-4 col-12">
       <Card shadow="sm" padding="lg" radius="md" withBorder>
         <Card.Section>
           <Image
-            src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+            src={eachEvent.eventCoverImgUrl}
             height={180}
             alt="Norway"
             className="img-fluid"
@@ -15,24 +15,24 @@ const EachEvent = () => {
         </Card.Section>
 
         <Text fw={500} mt="md">
-          Norway Fjord Adventures
+          {eachEvent.eventName}
         </Text>
 
         <Text size="sm" fw={400} c="dimmed" mt="sm">
-          Event Dates
+          {eachEvent.startDate}- {eachEvent.endData}
         </Text>
 
         <Text size="sm" fw={400} c="red" mt="sm">
-          From $0.00
+          {eachEvent.ticketType==="Free"? "Free":"From $"+ eachEvent.ticketPrice}
         </Text>
 
-        <Text size="sm" fw={400} mt="sm">
+        {/* <Text size="sm" fw={400} mt="sm">
           Oragnizer name
         </Text>
 
         <Text size="sm" mt="sm" fw={400}>
           From $0.00
-        </Text>
+        </Text> */}
       </Card>
     </div>
   );
