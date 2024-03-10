@@ -17,7 +17,6 @@ const UserProfile = () => {
   return (
     <main className="w-100">
       <IntroSection />
-
       <div className="mt-5">
         <Tabs color="blue" radius="xs" defaultValue="gallery">
           <Tabs.List className="d-flex justify-content-center fw-bold">
