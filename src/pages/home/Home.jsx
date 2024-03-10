@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Introduction from "../../components/home/Introduction";
 import SearchFilter from "../../components/home/SearchFilter";
+import EventAsPerLocation from "../../components/home/EventAsPerLocation";
 import EventSnippets from "../../components/global/EventSnippets";
 import VendorSnippets from "../../components/global/VendorSnippets";
 import Categories from "../../components/home/category/Categories";
@@ -27,7 +28,7 @@ const Home = () => {
 
       {/* events as per user location choice/ nepal, online */}
 
-      <EventSnippets events={upcomingEvents} title="Upcoming events" />
+      <EventAsPerLocation/>
 
       {/* accessible only after the user is logged in */}
       <VendorSnippets />

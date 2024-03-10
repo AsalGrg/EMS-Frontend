@@ -1,32 +1,32 @@
-import { rem } from "@mantine/core";
+import { Input, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import React from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <>
-      <div
-        className="rounded-pill border px-3 align-items-center d-none d-lg-flex"
+      <Input
+
+      className="d-lg-block d-none"
         style={{
-          backgroundColor: "#F4F5FB",
           height: "40px",
-          width: "240px"
+          width: "250px",
         }}
-        onClick={()=>navigate("search")}
-      >
-        <IconSearch
-          className="me-2"
-          style={{
-            height: rem(20),
-            width: rem(20),
-          }}
-        />
-        Search Events
-      </div>
+
+        placeholder="Search Events"
+        leftSection={
+          <IconSearch
+            className="me-2"
+            style={{
+              height: rem(18),
+              width: rem(18),
+            }}
+          />
+        }
+      />
 
       <div className="d-block d-lg-none">
         <IconSearch
