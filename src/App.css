@@ -1,3 +1,15 @@
+:root {
+  --primary-color: #175bda;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --lighter-color: #fafafa;
+  --dark-color: #2c3e50;
+}
+
 .hoverShadow {
   transition: all ease-out 0.4s;
 }
@@ -5,6 +17,10 @@
 .hoverShadow:hover {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 
 
@@ -26,4 +42,79 @@
   border-radius: 50%;
   font-size: 1.2rem;
   box-shadow: 0 0 0px 5px #fff;
+}
+
+.sidebar-style{
+  background-color: transparent;
+  min-height: 100vh;
+}
+
+.highlight-div{
+  background-color:#F8F7FA;
+  min-height: 300px;
+}
+
+.dashboard-btn{
+  border: 2px solid #c9cad3;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  min-width: 150px;
+  transition: 0.3s ease-out;
+}
+
+.dashboard-btn:hover{
+  border: 2px solid #6F7287;
+  background-color: #F8F7FA;
+}
+
+.dashboard-btn-catchy{
+  color: #fff;
+  padding: 10px;
+  border: none;
+  background-color: #1d63c7;
+  border-radius: 5px;
+  min-width: 150px;
+  transition: 0.3s ease-out;
+}
+
+.dashboard-btn-catchy:hover{
+  background-color: #2f61ec;
+}
+
+
+
+.highlight-icon{
+  font-size: 30px;
+  color: #3659E3;
+}
+
+
+
+.admin-page-container{
+  min-height: 100vh;
+}
+
+
+.active {
+  color: var(--primary-color);
+}
+
+.fontawesome-custom {
+  color: var(--dark-color);
+}
+
+
+.iconHighlighter{
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  color: #175bda;
+}
+
+.iconHighlighter:hover{
+  background-color: #F8F7FA;
 }

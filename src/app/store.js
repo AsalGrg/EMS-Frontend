@@ -5,7 +5,7 @@ import searchEventReducer from "../pages/search result/SearchResultSlice";
 import searchBarReducer from "../pages/search/SearchBarSlice";
 import aboutEventReducer from "../pages/about_event/AboutEventSlice";
 import userProfileReducer from "../pages/user_profile/UserProfileSlice";
-
+import vendorReducer from "../pages/vendor/VendorSlice";
 export const store = configureStore({
   reducer: {
     createEvent: createEventReducer,
@@ -14,5 +14,6 @@ export const store = configureStore({
     searchBar: searchBarReducer,
     aboutEvent: aboutEventReducer,
     userProfile: userProfileReducer,
+    vendor: vendorReducer
   },
 });
