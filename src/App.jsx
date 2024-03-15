@@ -24,7 +24,15 @@ import SearchResult, {
 import UserProfile, {
   userProfileLoader,
 } from "./pages/user_profile/UserProfile";
+import AdminHome from './pages/admin/home/AdminHome'
 import { useDispatch } from "react-redux";
+import AdminLayout from "./layout/AdminLayout";
+import VendorLayout from "./layout/VendorLayout";
+import VendorHome from "./pages/vendor/home/VendorHome";
+import VendorEvents from "./pages/vendor/events/VendorEvents";
+import VendorLayoutAlt from "./layout/VendorLayoutAlt";
+import EventDescription from "./pages/vendor/event_description/EventDescription";
+import VendorOrder from "./pages/vendor/orders/VendorOrder";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,7 +78,26 @@ const App = () => {
             loader={userProfileLoader}
           />
         </Route>
+
+{/* Admin Routes */}
+        <Route element= {<AdminLayout/>} path="admin">
+          <Route exact path="home" element={<AdminHome/>}/>
+        </Route>
+
+        {/* vendor routes */}
+
+        <Route element= {<VendorLayout/>} path="vendor">
+          <Route exact path="home" element={<VendorHome/>}/>
+        </Route>
+
+        <Route element= {<VendorLayoutAlt/>} path="vendor">
+          <Route exact path="events" element={<VendorEvents/>}/>
+          <Route exact path="myEvent" element={<EventDescription/>}/>
+          <Route exact path="orders" element={<VendorOrder/>}/>
+        </Route>
+
       </Route>
+
     )
   );
   return (

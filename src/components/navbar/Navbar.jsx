@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-
-import { BiLogIn } from "react-icons/bi";
-import { GiArchiveRegister } from "react-icons/gi";
 import { Affix, Burger, Button, Text, rem } from "@mantine/core";
 import Navlinks from "./Navlinks";
 import SearchBar from "./SearchBar";

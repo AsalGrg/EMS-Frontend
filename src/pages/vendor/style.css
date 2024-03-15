@@ -1,0 +1,41 @@
+.eventTable> th{
+    padding: 2em 1em;
+}
+
+.eventTable-headers{
+    height: 60px;
+    background-color: #F8F7FA;
+}
+
+.eventTable-headers>th{
+    padding-left: 2em;
+    background-color: #F8F7FA;
+}
+
+.eachEventRow{
+    min-height: 500px;
+    transition: all 0.5s ease-out;
+}
+
+.eachEventRow:hover{
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+
+.eachEventRow>td{
+    padding-left: 2em;
+    padding: 10px 2em;
+}
+
+.eachEventRow-img-div{
+    height: 60px;
+    width: 60px;
+}
+
+
+.iconHighlight{
+    font-size: small;
+    border: none;
+
+}
