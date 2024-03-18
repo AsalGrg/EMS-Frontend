@@ -30,22 +30,14 @@ const SidebarVendor = ({ collapsed, toggled, settoggled, setBroken }) => {
       <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <div style={{ flex: 1, marginBottom: "32px" }}>
           <Menu>
-            <MenuItem icon={<IconDashboard />}>Dashboard</MenuItem>
-            <MenuItem icon={<IconCalendar />}>Events</MenuItem>
-            <MenuItem icon={<IconReceipt />}>Orders</MenuItem>
-          </Menu>
-
-          <Menu>
-            <MenuItem
-              icon={<IconCalendar />}
-              suffix={<Badge variant="success">New</Badge>}
-            >
-              Calendar
-            </MenuItem>
-            <MenuItem icon={<IconBook />}>Documentation</MenuItem>
-            <MenuItem disabled icon={<IconHotelService />}>
-              Examples
-            </MenuItem>
+            <MenuItem icon={<IconDashboard />}
+            component={<Link to="/vendor/home"/>}>Dashboard</MenuItem>
+            <MenuItem icon={<IconCalendar />}
+            component={<Link to="/vendor/events"/>}
+            >Events</MenuItem>
+            <MenuItem icon={<IconReceipt />}
+            component={<Link to="/vendor/orders"/>}
+            >Orders</MenuItem>
           </Menu>
         </div>
       </div>
