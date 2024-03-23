@@ -6,6 +6,8 @@ const api_urls= {
     loginUser: () => `${BASE_URL}/login`,
     registerUser: ()=> `${BASE_URL}/register`,
     verifyOtp: ()=> `${BASE_URL}/verify-otp`,
+    createEventFirstPage: ()=> `${BASE_URL}/addFirstPageInfo`,
+    createEventSecondPage: ()=> `${BASE_URL}/addSecondPageInfo`,
     createEvent: ()=> `${BASE_URL}/addEvent`,
     searchEvent: (eventTitle, location)=> `${BASE_URL}/search/${eventTitle}/${location}`,
 }

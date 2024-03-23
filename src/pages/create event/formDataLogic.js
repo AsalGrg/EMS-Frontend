@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { convertTimeStringToBackendFormat } from "../../components/utilities/convertStringTimeToLocal";
+
 import { format, parse } from "date-fns";
 
 export const formDataLogic = (formState) => {
@@ -94,16 +93,21 @@ export const formDataLogic = (formState) => {
   }
 
   return {
-    eventDetails: {
+
+    eventId: formState.eventId,
+
+    eventFirstPageDetails: {
       eventName: name,
       eventCategory: category,
       locationType: locationType,
       locationName: locationName,
-      aboutEvent: aboutEvent,
-      hasStarring: hasStarring,
       isPrivate: isPrivate,
-      eventVisibilityType: eventVisibilityType,
-      eventAccessPassword: eventAccessPassword,
+      eventId: formState.eventId
+      // aboutEvent: aboutEvent,
+      // hasStarring: hasStarring,
+      // isPrivate: isPrivate,
+      // eventVisibilityType: eventVisibilityType,
+      // eventAccessPassword: eventAccessPassword,
     },
 
     eventDateDetails: {
