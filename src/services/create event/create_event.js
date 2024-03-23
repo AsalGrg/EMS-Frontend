@@ -5,8 +5,6 @@ export default async function create_event(formData) {
   // const api_url = api_urls.createEvent();
   const api_url = api_urls.createEvent();
 
-  console.log(formData.hasStarring);
-
   const form = new FormData();
   form.append("eventCoverImage", formData.eventCoverImage);
   form.append(

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AdminNavbar from "../components/admin/navbar/AdminNavbar";
 import SidebarVendor from "../components/vendor/sidebar/SidebarVendor";
 import { Outlet } from "react-router";
-import { IconBrandThreejs } from "@tabler/icons-react";
+import { IconBrandThreejs, IconMenu2 } from "@tabler/icons-react";
 
 const VendorLayoutAlt = () => {
   const [collapsed, setcollapsed] = useState(false);
@@ -30,7 +30,7 @@ const VendorLayoutAlt = () => {
                   settoggled(!toggled);
                 }}
               >
-                <IconBrandThreejs />
+                <IconMenu2 />
               </button>
             )}
             <Outlet />

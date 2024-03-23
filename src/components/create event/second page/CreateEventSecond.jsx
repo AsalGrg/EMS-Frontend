@@ -13,13 +13,19 @@ import FormButtons from "../formButtons";
 import { Formik } from "formik";
 import { createEventSecondPageSchema } from "../../../schemas";
 import CreateEventContextWrapper from "../../../context/CreateEventContext";
+import create_event_second_page from "../../../services/create event/create_event_second_page";
+import formDataLogicSecondPage from "../../../pages/create event/formDataLogicSecondPage";
 
 const CreateEventSecond = () => {
   const dispatch = useDispatch();
 
   const formState = useSelector((state) => state.createEvent);
 
+  console.log(formState)
+
+
   const initialValues = {
+    eventId: formState.eventId,
     coverImage: formState.coverImage,
     isAboutClicked: formState.isAboutClicked,
     aboutEvent: formState.aboutEvent,
@@ -27,7 +33,7 @@ const CreateEventSecond = () => {
     starrings: formState.starrings,
   };
 
-  function handleSubmit(values, helpers) {
+  async function handleSubmit(values, helpers) {
     dispatch(
       updateCreateEventField({
         field: "coverImage",
@@ -63,7 +69,14 @@ const CreateEventSecond = () => {
       })
     );
 
-    dispatch(increaseActive());
+
+    const res = await create_event_second_page(formDataLogicSecondPage(values));
+
+    if(res.ok){
+      var data = await res.text();
+      console.log("Data"+data)
+      dispatch(increaseActive());
+    }
   }
 
   return (
