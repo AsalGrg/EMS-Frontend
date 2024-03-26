@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PlaceSelector from '../utilities/placeSelector';
 
 const EventAsPerLocation = () => {
 
@@ -17,8 +18,7 @@ const EventAsPerLocation = () => {
   return (
     <section>
 
-        <input type="text" 
-        onChange={setlocation}/>
+        <PlaceSelector/>
 
     </section>
   )

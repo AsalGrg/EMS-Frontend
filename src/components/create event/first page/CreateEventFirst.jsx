@@ -12,14 +12,11 @@ import {
 } from "../../../pages/create event/CreateEventSlice";
 import CreateEventContextWrapper from "../../../context/CreateEventContext";
 import create_event_first from "../../../services/create event/create_event_first_page";
-import { formDataLogic } from "../../../pages/create event/formDataLogic";
 import formDataLogicFirstPage from "../../../pages/create event/formDataLogicFirstPage";
 const CreateEventFirst = () => {
 
-  
   const formData = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
-
 
   const initialValues = {
     eventId: formData.eventId,
@@ -125,6 +122,8 @@ const CreateEventFirst = () => {
       onSubmit={handleSubmit}
     >
       {(formik) => (
+
+        
         <CreateEventContextWrapper formik={formik}>
           <div className="mb-3">
             <BasicInfo />
@@ -138,6 +137,7 @@ const CreateEventFirst = () => {
             <DateAndTime />
           </div>
           <FormButtons handleSubmit={formik.handleSubmit}/>
+
         </CreateEventContextWrapper>
       )}
     </Formik>

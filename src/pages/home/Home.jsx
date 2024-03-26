@@ -7,6 +7,7 @@ import VendorSnippets from "../../components/global/VendorSnippets";
 import Categories from "../../components/home/category/Categories";
 import EventCollection from "../../components/global/event collections/EventCollection";
 import { Text, Title } from "@mantine/core";
+import axios from "axios";
 
 const Home = () => {
   const [trendingEvents, settrendingEvents] = useState([]);
@@ -28,7 +29,7 @@ const Home = () => {
 
       {/* events as per user location choice/ nepal, online */}
 
-      <EventAsPerLocation/>
+      <EventAsPerLocation />
 
       {/* accessible only after the user is logged in */}
       <VendorSnippets />

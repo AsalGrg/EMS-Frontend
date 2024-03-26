@@ -1,7 +1,7 @@
 import api_urls from "../api_urls";
 
-export default async function create_event_second_page(formData) {
-  const api_url = api_urls.createEventSecondPage();
+export default async function create_event_second_page(formData, api_url) {
+
 
   const form = new FormData();
 
@@ -36,13 +36,18 @@ export default async function create_event_second_page(formData) {
     );
   }
 
+ 
+  const token = "Bearer "+ localStorage.getItem("token")
   const res = await fetch(api_url, {
     method: "POST",
+    
     headers: {
+      Authorization : token,
       "Access-Control-Allow-Origin": "*",
     },
     body: form,
   });
+
 
   return res;
 }

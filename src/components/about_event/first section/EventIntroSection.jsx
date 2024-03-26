@@ -3,6 +3,7 @@ import { IconSpeakerphone } from "@tabler/icons-react";
 import React from "react";
 import OrganizerSnippet from "./OrganizerSnippet";
 import { useSelector } from "react-redux";
+import { faPray } from "@fortawesome/free-solid-svg-icons";
 
 const EventIntroSection = () => {
 
@@ -28,7 +29,7 @@ const EventIntroSection = () => {
       <div className="mb-5">
         <h5>{formData.eventDate}</h5>
 
-        <h1 className="fw-bolder">{checkData.eventTitle}</h1>
+        <h1 className="fw-bolder">{formData.eventTitle}</h1>
       </div>
 
       <OrganizerSnippet />

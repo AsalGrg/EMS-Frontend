@@ -38,6 +38,7 @@ export const formDataLogic = (formState) => {
     eventEndTime = format(parsedEndTime, "HH:mm:ss");
   }
 
+  
   const ticketType = formState.ticketType;
   const ticketName = formState.ticketName;
   const ticketQuantity = formState.ticketQuantity;

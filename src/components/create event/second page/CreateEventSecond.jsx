@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import AboutEvent from "./AboutEvent";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addStarringInput,
+  decreaseActive,
   increaseActive,
   removeEachStarring,
   updateCreateEventField,
@@ -15,14 +16,12 @@ import { createEventSecondPageSchema } from "../../../schemas";
 import CreateEventContextWrapper from "../../../context/CreateEventContext";
 import create_event_second_page from "../../../services/create event/create_event_second_page";
 import formDataLogicSecondPage from "../../../pages/create event/formDataLogicSecondPage";
+import api_urls from "../../../services/api_urls";
 
 const CreateEventSecond = () => {
   const dispatch = useDispatch();
 
   const formState = useSelector((state) => state.createEvent);
-
-  console.log(formState)
-
 
   const initialValues = {
     eventId: formState.eventId,
@@ -33,7 +32,8 @@ const CreateEventSecond = () => {
     starrings: formState.starrings,
   };
 
-  async function handleSubmit(values, helpers) {
+  
+  const updateState = (values) => {
     dispatch(
       updateCreateEventField({
         field: "coverImage",
@@ -68,13 +68,26 @@ const CreateEventSecond = () => {
         value: values.starrings,
       })
     );
+  };
+
+  const handlePrevBtn = (values) => {
+    updateState(values);
+    dispatch(decreaseActive());
+  };
 
 
-    const res = await create_event_second_page(formDataLogicSecondPage(values));
+  async function handleSubmit(values, helpers) {
+   
+    updateState(values)
 
-    if(res.ok){
+    const res = await create_event_second_page(
+      formDataLogicSecondPage(values),
+      api_urls.createEventSecondPage()
+    );
+
+    if (res.ok) {
       var data = await res.text();
-      console.log("Data"+data)
+      console.log("Data" + data);
       dispatch(increaseActive());
     }
   }
@@ -95,7 +108,16 @@ const CreateEventSecond = () => {
 
             <EventStarringOption />
 
-            <FormButtons handleSubmit={formik.handleSubmit}/>
+            <FormButtons
+              handleSubmit={formik.handleSubmit}
+              handlePreviousBtn= {()=>handlePrevBtn(formik.values)}
+              handleDraft={() => {
+                create_event_second_page(
+                  formDataLogicSecondPage(formik.values),
+                  api_urls.saveEventSecondPageDraft()
+                );
+              }}
+            />
           </CreateEventContextWrapper>
         )}
       </Formik>
