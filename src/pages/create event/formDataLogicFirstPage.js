@@ -1,7 +1,7 @@
 import { format, parse } from "date-fns";
 export default function formDataLogicFirstPage(formState) {
   const name = formState.eventTitle;
-  const category = "Music";
+  const category = formState.category;
   const locationType = formState.venueType;
 
   let locationName;

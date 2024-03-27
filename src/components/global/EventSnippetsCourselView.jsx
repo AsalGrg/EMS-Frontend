@@ -2,14 +2,13 @@ import React from "react";
 
 import "./EventSnippetsCourselView.css";
 import { Carousel } from "@mantine/carousel";
-import { Card,Image, Text } from "@mantine/core";
+import { Card, Image, Text } from "@mantine/core";
 import { IconUser } from "@tabler/icons-react";
+import EventCard from "./EventCard";
 
-const EventSnippetsCourselView = () => {
+const EventSnippetsCourselView = ({ events }) => {
   return (
-    <div className="catEventSnippet">
-      <h1 className="highlights">Most Popular Events</h1>
-
+    <div className="catEventSnippet mt-4">
       <div className="">
         <Carousel
           withIndicators
@@ -19,133 +18,11 @@ const EventSnippetsCourselView = () => {
           loop
           align="start"
         >
-          <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Card.Section>
-                <Image
-                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  alt="Norway"
-                  className="img-fluid"
-                />
-              </Card.Section>
-
-              <Text fw={500} mt="md">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text size="sm" fw={400} c="dimmed" mt="sm">
-                Event Dates
-              </Text>
-
-              <Text size="sm" fw={400} c="red" mt="sm">
-                From $0.00
-              </Text>
-
-              <Text size="sm" fw={400} mt="sm">
-                Oragnizer name
-              </Text>
-
-              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
-                From $0.00
-              </Text>
-            </Card>
-          </Carousel.Slide>
-
-          <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Card.Section>
-                <Image
-                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  className="img-fluid"
-                  alt="Norway"
-                />
-              </Card.Section>
-
-              <Text fw={500} mt="md">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text size="sm" fw={400} c="dimmed" mt="sm">
-                Event Dates
-              </Text>
-
-              <Text size="sm" fw={400} c="red" mt="sm">
-                From $0.00
-              </Text>
-
-              <Text size="sm" fw={400} mt="sm">
-                Oragnizer name
-              </Text>
-
-              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
-                From $0.00
-              </Text>
-            </Card>
-          </Carousel.Slide>
-
-          <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Card.Section>
-                <Image
-                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  className="img-fluid"
-                  alt="Norway"
-                />
-              </Card.Section>
-
-              <Text fw={500} mt="md">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text size="sm" fw={400} c="dimmed" mt="sm">
-                Event Dates
-              </Text>
-
-              <Text size="sm" fw={400} c="red" mt="sm">
-                From $0.00
-              </Text>
-
-              <Text size="sm" fw={400} mt="sm">
-                Oragnizer name
-              </Text>
-
-              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
-                From $0.00
-              </Text>
-            </Card>
-          </Carousel.Slide>
-
-          <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
-              <Card.Section>
-                <Image
-                  src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                  className="img-fluid"
-                  alt="Norway"
-                />
-              </Card.Section>
-
-              <Text fw={500} mt="md">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text size="sm" fw={400} c="dimmed" mt="sm">
-                Event Dates
-              </Text>
-
-              <Text size="sm" fw={400} c="red" mt="sm">
-                From $0.00
-              </Text>
-
-              <Text size="sm" fw={400} mt="sm">
-                Oragnizer name
-              </Text>
-
-              <Text size="sm" mt="sm" fw={400} right={<IconUser/>}>
-                From $0.00
-              </Text>
-            </Card>
-          </Carousel.Slide>
+          {events.map((each) => (
+            <Carousel.Slide>
+              <EventCard event={each} />
+            </Carousel.Slide>
+          ))}
         </Carousel>
       </div>
     </div>

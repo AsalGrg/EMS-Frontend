@@ -1,12 +1,13 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCreateEventField } from "../../../pages/create event/CreateEventSlice";
+import React, { useEffect, useState } from "react";
 import { Select, TextInput } from "@mantine/core";
 import { useCreateEventContext } from "../../../context/CreateEventContext";
+import get_all_categories from "../../../services/create event/get_all_categories";
 
 const BasicInfo = () => {
 
   const { values, touched, errors, handleChange } = useCreateEventContext();
+
+  const [allCategories, setallCategories] = useState([])
 
   function handleSelectChange(selectedValue, field) {
     handleChange({
@@ -16,6 +17,21 @@ const BasicInfo = () => {
       },
     });
   }
+
+  useEffect(() => {
+    async function getCategories(){
+      
+      const res = await get_all_categories();
+      if(res.ok){
+        const data = await res.json();
+        setallCategories(data)
+        console.log(data)
+      }
+    }
+
+    getCategories();
+  }, [])
+  
 
   return (
     <>
@@ -48,7 +64,7 @@ const BasicInfo = () => {
           onChange={(selectedOption) =>
             handleSelectChange(selectedOption, "category")
           }
-          data={["React", "Angular", "Vue", "Vite", "Svelte", "Hello", "Check"]}
+          data={allCategories}
           className="col-md-5 col-12"
           error={touched.category && errors.category}
           // searchable

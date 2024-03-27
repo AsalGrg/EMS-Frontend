@@ -8,8 +8,8 @@ export const formDataLogicFourthPage = (formState) => {
   }
 
   let eventAccessPassword;
-  if (eventVisibilityType !== "Link") {
-    eventAccessPassword = "";
+  if (eventVisibilityType !== "password") {
+    eventAccessPassword = null;
   } else {
     eventAccessPassword = formState.accessPassword;
   }

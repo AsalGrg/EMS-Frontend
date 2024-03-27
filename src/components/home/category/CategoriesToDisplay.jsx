@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 export const CategoriesToDisplay = [
   <Link to={`/category/music`}>
     <div
-    style={{
-      textDecoration: "none"
-    }}
+      style={{
+        textDecoration: "none",
+      }}
     >
       <div className="border rounded-circle p-4">
         <img src="/category svgs/music.svg" alt="" />

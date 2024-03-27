@@ -1,71 +1,166 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Menu, Text, rem } from "@mantine/core";
-import { IconArrowsLeftRight, IconSearch, IconTrash } from "@tabler/icons-react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import {
+  IconCircleX,
+  IconClock,
+  IconCross,
+  IconGps,
+} from "@tabler/icons-react";
+import getPlaces from "./places";
+import { getCurrentLocation } from "./getCurrentLocation";
 
-const PlaceSelector = () => {
+//css in app.css
+const PlaceSelector = ({ setLocation }) => {
+  const [currentLocation, setcurrentLocation] = useState(null);
 
-    const [isFocused, setisFocused] = useState(false)
+  const [valuesToBeShown, setvaluesToBeShown] = useState();
+
+  const [valuesToBeWritten, setvaluesToBeWritten] = useState("");
+  const [matchedPlaces, setmatchedPlaces] = useState([]);
+
+  const [isSearching, setisSearching] = useState(false);
+
+  const handleLocationChange = (menuFrom) => {
+    let changedValue;
+
+    if (menuFrom === "current") {
+      changedValue = currentLocation.country;
+      setvaluesToBeShown(changedValue);
+      setLocation(changedValue);
+    } else if (menuFrom === "online") {
+      console.log("online");
+      changedValue = "Online Events";
+      setvaluesToBeShown(changedValue);
+      setLocation(changedValue);
+    } else if (menuFrom === "search") {
+      console.log("search");
+      setisSearching(true);
+      setvaluesToBeWritten("");
+    }
+  };
 
   useEffect(() => {
-    function getCurrentLocation() {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const response = await axios.get(
-              `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`
-            );
-            const { address } = response.data;
-            console.log(address);
-          },
-          (error) => {
-            console.error("Error getting geolocation:", error);
-          }
-        );
-      } else {
-        console.error("Geolocation not supported");
-      }
+    function getInitialLocation() {
+      getCurrentLocation((error, address) => {
+        if (error) {
+          console.error("Error:", error);
+        } else {
+          setLocation(address.country);
+          setcurrentLocation(address);
+          setvaluesToBeShown(address.country);
+        }
+      });
     }
 
-    getCurrentLocation();
+    getInitialLocation();
   }, []);
 
+  const handleChange = (e) => {
+    const searchText = e.target.value;
+    setvaluesToBeWritten(searchText);
+    getPlaces(searchText)
+      .then((places) => {
+        setmatchedPlaces(places);
+      })
+      .catch((error) => {
+        console.error("Error fetching places:", error);
+      });
+  };
+
+  function updateSelectedPlace(selectedPlace) {
+    setmatchedPlaces([]);
+    setisSearching(false);
+    setLocation(selectedPlace.address.country);
+    setvaluesToBeWritten(selectedPlace.address.country);
+    setvaluesToBeShown(selectedPlace.address.country);
+    console.log(selectedPlace.address.country);
+  }
+
   return (
+    <>
+      {!isSearching ? (
+        <Menu shadow="md" width={300}>
+          <Menu.Target>
+            <input
+              placeholder="Location"
+              className="SelectorInput"
+              value={valuesToBeShown}
+            />
+          </Menu.Target>
 
-    <Menu shadow="md" width={200}>
-      <Menu.Target>
-        <input />
-      </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item
+              onClick={() => handleLocationChange("current")}
+              leftSection={
+                <IconGps
+                  style={{ width: rem(25), height: rem(25) }}
+                  color="#3659E3"
+                />
+              }
+            >
+              <Text size="md">Use current Location</Text>
+            </Menu.Item>
+            <Menu.Item
+              onClick={() => handleLocationChange("online")}
+              leftSection={
+                <IconClock
+                  style={{ width: rem(25), height: rem(25) }}
+                  color="#3659E3"
+                />
+              }
+            >
+              <Text size="md">Online</Text>
+            </Menu.Item>
 
-      <Menu.Dropdown>
-        <Menu.Label>Application</Menu.Label>
-        <Menu.Item
-          leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
-          rightSection={
-            <Text size="xs" c="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
-        </Menu.Item>
+            <Menu.Item
+              onClick={() => handleLocationChange("search")}
+              leftSection={
+                <IconClock
+                  style={{ width: rem(25), height: rem(25) }}
+                  color="#3659E3"
+                />
+              }
+            >
+              <Text size="md">Search Location</Text>
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+      ) : (
+        <Menu shadow="md" width={300} opened={matchedPlaces.length > 0}>
+          <Menu.Target>
+            <div className="d-flex align-items-center cursor-pointer">
+              <input
+                placeholder="Location"
+                className="SelectorInput"
+                value={valuesToBeWritten}
+                onChange={(e) => handleChange(e)}
+              />
 
-        <Menu.Divider />
+              <IconCircleX
+                onClick={() => setisSearching(false)}
+                style={{ width: rem(25), height: rem(25) }}
+                color="#3659E3"
+              />
+            </div>
+          </Menu.Target>
 
-        <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item
-          leftSection={<IconArrowsLeftRight style={{ width: rem(14), height: rem(14) }} />}
-        >
-          Transfer my data
-        </Menu.Item>
-        <Menu.Item
-          color="red"
-          leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}
-        >
-          Delete my account
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
+          <Menu.Dropdown>
+            {matchedPlaces.map((eachLocation) => (
+              <Menu.Item
+                key={eachLocation.place_id}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateSelectedPlace(eachLocation);
+                }}
+              >
+                {eachLocation.display_name}
+              </Menu.Item>
+            ))}
+          </Menu.Dropdown>
+        </Menu>
+      )}
+    </>
   );
 };
 

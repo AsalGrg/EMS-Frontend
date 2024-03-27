@@ -6,6 +6,7 @@ const api_urls= {
     loginUser: () => `${BASE_URL}/login`,
     registerUser: ()=> `${BASE_URL}/register`,
     verifyOtp: ()=> `${BASE_URL}/verify-otp`,
+    getAllCategories: ()=> `${BASE_URL}/allCategories`,
     createEventFirstPage: ()=> `${BASE_URL}/addFirstPageInfo`,
     createEventSecondPage: ()=> `${BASE_URL}/addSecondPageInfo`,
     saveEventSecondPageDraft: ()=> `${BASE_URL}/draftSecondPageInfo`,
@@ -15,6 +16,7 @@ const api_urls= {
     saveEventFourthPageDraft: ()=> `${BASE_URL}/draftFourthPageDetails`,
     createEvent: ()=> `${BASE_URL}/addEvent`,
     searchEvent: (eventTitle, location)=> `${BASE_URL}/search/${eventTitle}/${location}`,
+    getEventByPlace: (location)=> `${BASE_URL}/place/${location}`,
 }
 
 export default api_urls

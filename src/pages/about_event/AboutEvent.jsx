@@ -45,16 +45,22 @@ const AboutEvent = () => {
   );
 };
 
-export function aboutEventLoader({ params }) {
+export async function aboutEventLoader({ params }) {
   const dispatch = useDispatch();
   const pageAccessType = params.pageAccessType;
+  const eventId = params.id;
 
+  let data;
   if (pageAccessType === "preview") {
     console.log("hehhehe");
-    const jsonData = JSON.parse(localStorage.getItem("previewEventData"));
-    dispatch(updateEntireStateAboutEvent(jsonData));
+    data = JSON.parse(localStorage.getItem("previewEventData"));
+    // dispatch(updateEntireStateAboutEvent(jsonData));
   }
 
-  return null;
+  else if(pageAccessType==="about"){
+    const res = get
+  }
+
+  return data;
 }
 export default AboutEvent;
