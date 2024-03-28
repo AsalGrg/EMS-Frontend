@@ -9,12 +9,19 @@ import AboutEventSection from "../../components/about_event/AboutEventSection";
 import StarringSection from "../../components/about_event/starring section/StarringSection";
 import TicketSection from "../../components/about_event/first section/TicketSection";
 import OrganizerDetailsSection from "../../components/about_event/OrganizerDetailsSection";
-import { useParams } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEntireStateAboutEvent } from "./AboutEventSlice";
+import get_event_data from "../../services/about_event/get_event_data";
 
 const AboutEvent = () => {
   const formData = useSelector((state) => state.aboutEvent);
+  const dispatch = useDispatch();
+
+  const data = useLoaderData();
+  
+  dispatch(updateEntireStateAboutEvent(data))
+  
   return (
     <>
       {/* main section starts here */}
@@ -46,7 +53,6 @@ const AboutEvent = () => {
 };
 
 export async function aboutEventLoader({ params }) {
-  const dispatch = useDispatch();
   const pageAccessType = params.pageAccessType;
   const eventId = params.id;
 
@@ -58,7 +64,11 @@ export async function aboutEventLoader({ params }) {
   }
 
   else if(pageAccessType==="about"){
-    const res = get
+    const res = await get_event_data(eventId);
+    if(res.ok){
+      const fetchedData = await res.json();
+      data= fetchedData;
+    }
   }
 
   return data;

@@ -16,6 +16,7 @@ const api_urls= {
     saveEventFourthPageDraft: ()=> `${BASE_URL}/draftFourthPageDetails`,
     createEvent: ()=> `${BASE_URL}/addEvent`,
     searchEvent: (eventTitle, location)=> `${BASE_URL}/search/${eventTitle}/${location}`,
+    getAboutEvent: (eventId)=> `${BASE_URL}/event_id/${eventId}`,
     getEventByPlace: (location)=> `${BASE_URL}/place/${location}`,
 }
 
