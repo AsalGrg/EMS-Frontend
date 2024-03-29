@@ -30,33 +30,33 @@ const DateFilter = () => {
       <div className="d-grid gap-3 mt-2">
         <Checkbox
           label="Today"
-          checked={filterData.date == "today"}
-          onClick={() => updateDateFilter("date", "today")}
+          checked={filterData.date == "Today"}
+          onClick={() => updateDateFilter("date", "Today")}
         />
         <Checkbox
           label="Tommorow"
-          checked={filterData.date == "tommorow"}
-          onClick={() => updateDateFilter("date", "tommorow")}
+          checked={filterData.date == "Tomorrow"}
+          onClick={() => updateDateFilter("date", "Tomorrow")}
         />
         <Checkbox
           label="This weekend"
-          checked={filterData.date == "this Weekend"}
-          onClick={() => updateDateFilter("date", "this Weekend")}
+          checked={filterData.date == "This weekend"}
+          onClick={() => updateDateFilter("date", "This weekend")}
         />
         <Checkbox
           label="This week"
-          checked={filterData.date == "this Week"}
-          onClick={() => updateDateFilter("date", "this Week")}
+          checked={filterData.date == "This week"}
+          onClick={() => updateDateFilter("date", "This week")}
         />
         <Checkbox
           label="This month"
-          checked={filterData.date == "this Month"}
-          onClick={() => updateDateFilter("date", "this Month")}
+          checked={filterData.date == "This month"}
+          onClick={() => updateDateFilter("date", "This month")}
         />
         <Checkbox
           label="Next month"
-          checked={filterData.date == "next Month"}
-          onClick={() => updateDateFilter("date", "next Month")}
+          checked={filterData.date == "Next month"}
+          onClick={() => updateDateFilter("date", "Next month")}
         />
 
         <Checkbox

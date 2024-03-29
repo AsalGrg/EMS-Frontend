@@ -7,7 +7,6 @@ import VendorSnippets from "../../components/global/VendorSnippets";
 import Categories from "../../components/home/category/Categories";
 import EventCollection from "../../components/global/event collections/EventCollection";
 import { Text, Title } from "@mantine/core";
-import axios from "axios";
 
 const Home = () => {
   const [trendingEvents, settrendingEvents] = useState([]);

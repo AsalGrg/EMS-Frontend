@@ -23,7 +23,6 @@ const EventAsPerLocation = () => {
         setisLoading(false);
       }
     }
-
     getEventAsPerLocation();
   }, [location]);
 

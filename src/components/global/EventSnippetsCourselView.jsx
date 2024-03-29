@@ -2,8 +2,6 @@ import React from "react";
 
 import "./EventSnippetsCourselView.css";
 import { Carousel } from "@mantine/carousel";
-import { Card, Image, Text } from "@mantine/core";
-import { IconUser } from "@tabler/icons-react";
 import EventCard from "./EventCard";
 
 const EventSnippetsCourselView = ({ events }) => {

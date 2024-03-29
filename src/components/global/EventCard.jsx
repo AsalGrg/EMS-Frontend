@@ -12,7 +12,7 @@ const EventCard = ({ event }) => {
     <Card shadow="sm" radius="md" withBorder
     className="cursor-pointer"
 
-    onClick={()=> naviagte(`event/about/${event.eventId}`)}
+    onClick={()=> naviagte(`/event/about/${event.eventId}`)}
     >
       
       <Card.Section style={{ height: "180px", overflow: "hidden" }}
@@ -36,7 +36,7 @@ const EventCard = ({ event }) => {
       </Text>
 
       <Text size="md" fw={500} c="red" mt="sm">
-        {event.ticketType === "Free" ? "Free" : $`From Rs ${event.ticketPrice}`}
+        {event.ticketType === "Free" ? "Free" : `From Rs ${event.ticketPrice}`}
       </Text>
 
       <Text size="md" fw={500} mt="sm">
