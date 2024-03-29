@@ -9,8 +9,6 @@ const CategoryIntroduction = () => {
 
   const introStyle = introStyles[catName];
 
-  console.log(catName);
-  console.log(introStyle);
   return (
     <section
       className="d-flex justify-content-md-between flex-md-row-reverse align-items-center flex-column ps-5"

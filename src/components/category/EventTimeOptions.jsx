@@ -3,6 +3,7 @@ import React from "react";
 import "./EventTimeOptions.css";
 import MyCoursel from "../utilities/MyCoursel";
 import { Carousel } from "@mantine/carousel";
+
 const EventTimeOptions = ({ categoryTitle }) => {
   return (
     <section className="eventTimeOptionsDiv mb-5">

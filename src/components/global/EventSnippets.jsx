@@ -11,7 +11,7 @@ const EventSnippets = ({events, title}) => {
     <section className='mt-5'>
 
 
-        {/* grid view */}
+        {/* grid view
         <div className='d-none d-lg-block'>
            <EventSnippetsGridView/>
         </div>
@@ -19,9 +19,9 @@ const EventSnippets = ({events, title}) => {
 
         {/* coursel view */}
 
-        <div className='d-block d-lg-none'>
+        {/* <div className='d-block d-lg-none'>
             <EventSnippetsCourselView/>
-        </div>
+        </div> */}
     </section>
   )
 }

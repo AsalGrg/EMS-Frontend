@@ -8,10 +8,14 @@ import CreateEventContextWrapper from "../../../context/CreateEventContext";
 import { Formik } from "formik";
 import { createEventThirdPageSchema } from "../../../schemas";
 import {
+  decreaseActive,
   increaseActive,
   updateCreateEventField,
 } from "../../../pages/create event/CreateEventSlice";
 import { Text } from "@mantine/core";
+import create_event_third from "../../../services/create event/ceate_event_third_page";
+import formDataLogicThirdPage from "../../../pages/create event/formDataLogicThirdPage";
+import api_urls from "../../../services/api_urls";
 
 const CreateEventThird = () => {
   const formData = useSelector((state) => state.createEvent);
@@ -19,6 +23,7 @@ const CreateEventThird = () => {
   const dispatch = useDispatch();
 
   const initialValues = {
+    eventId: formData.eventId,
     ticketType: formData.ticketType,
     ticketName: formData.ticketName,
     ticketPrice: formData.ticketPrice,
@@ -28,7 +33,8 @@ const CreateEventThird = () => {
     saleEndTime: formData.saleEndTime,
   };
 
-  const handleSubmit = (values, helpers) => {
+    
+  const updateState = (values) => {
     dispatch(
       updateCreateEventField({
         field: "ticketType",
@@ -77,9 +83,27 @@ const CreateEventThird = () => {
         value: values.saleEndTime,
       })
     );
-
-    dispatch(increaseActive());
   };
+
+  const handlePrevBtn = (values) => {
+    updateState(values);
+    dispatch(decreaseActive());
+  };
+
+
+
+  async function handleSubmit(values, helpers) {
+   
+    updateState(values)
+    
+    const res = await create_event_third(formDataLogicThirdPage(values), api_urls.createEventThirdPage());
+
+    if (res.ok) {
+      var data = await res.text();
+      console.log("Data" + data);
+      dispatch(increaseActive());
+    }
+  }
 
   return (
     <div className="container">
@@ -92,12 +116,24 @@ const CreateEventThird = () => {
         {(formik) => (
           <CreateEventContextWrapper formik={formik}>
             {formik.touched.ticketType && formik.errors.ticketType ? (
-              <Text size="md" c={"red"} mb={"sm"}>Select a ticket type</Text>
+              <Text size="md" c={"red"} mb={"sm"}>
+                Select a ticket type
+              </Text>
             ) : null}
             <TicketOptionSelector />
 
             {formik.values.ticketType ? <TicketDetailsInput /> : null}
-            <FormButtons handleSubmit={formik.handleSubmit} />
+            <FormButtons
+              handleSubmit={formik.handleSubmit}
+              handlePreviousBtn= {()=>handlePrevBtn(formik.values)}
+
+              handleDraft={() => {
+                create_event_third(
+                  formDataLogicThirdPage(formik.values),
+                  api_urls.saveEventThirdPageDraft()
+                );
+              }}
+            />
           </CreateEventContextWrapper>
         )}
       </Formik>

@@ -1,4 +1,5 @@
-export default function getPlaces(searchText) {
+export default async function getPlaces(searchText) {
+
   const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
   const params = {
     q: searchText,

@@ -1,24 +1,17 @@
-import React, { useState } from 'react'
-import './DatePlaceSelector.css'
-import PlaceInput from './PlaceInput'
-const DatePlaceSelector = () => {
-  const [isLocationBtnClicked, setisLocationBtnClicked] = useState(false);
-  console.log(isLocationBtnClicked);
+import React, { useState } from "react";
+import "./DatePlaceSelector.css";
+import PlaceSelector from "../utilities/placeSelector";
+import DateSelector from "../utilities/DateSelector";
+const DatePlaceSelector = ({setLocation, setDate, clearDateFilter}) => {
+
 
   return (
-    <div className=''>
+    <div className="mt-3 d-flex gap-3 align-items-center">
+      <PlaceSelector setLocation={setLocation} />
 
-      {isLocationBtnClicked &&
-    <PlaceInput/>}
-    <button className='dateLocationButton'
-      onClick={()=> setisLocationBtnClicked((prev)=> !prev)}
-      >{isLocationBtnClicked ? "Hide Input": "Select Location"}</button>
-
-        <button className='dateLocationButton'>Date</button>
-
-       
+      <DateSelector setDate={setDate} clearDateFilter={clearDateFilter}/>
     </div>
-  )
-}
+  );
+};
 
-export default DatePlaceSelector
+export default DatePlaceSelector;

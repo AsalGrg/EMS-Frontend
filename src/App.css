@@ -118,3 +118,29 @@
 .iconHighlighter:hover{
   background-color: #F8F7FA;
 }
+
+
+
+/* PLACE SELECTOR CSS */
+.SelectorInput{
+  border: none;
+  border-bottom: 2px solid #EDEDF1;
+  color: #3659E3;
+  font-size: x-large;
+  font-weight: bold;
+  width: fit-content;
+  max-width: 170px;
+  min-width: 100px;
+  padding-left: 5px;
+}
+
+.SelectorInput:focus{
+  outline: none;
+  border: none;
+  border-bottom: 2px solid  #3659E3;
+}
+
+
+.SelectorInput::placeholder{
+  color: #b1b1b7;
+}

@@ -2,7 +2,9 @@ import React from "react";
 import "./VendorSnippets.css";
 import { Avatar, Button, Card, Image, Text } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
-const VendorSnippets = () => {
+
+
+const VendorSnippets = ({vendors}) => {
   return (
     <div className="vendorSnippets">
       <h1 className="highlights">Vendors To Follow</h1>
@@ -15,19 +17,21 @@ const VendorSnippets = () => {
         loop
         align="start"
       >
-        <Carousel.Slide>
+
+        {vendors.map(each=>(
+          <Carousel.Slide>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
             <div>
               <Card.Section className="d-flex justify-content-center" mt="sm">
-                <Avatar src="avatar.png" alt="it's me" size="lg" />
+                <Avatar src={each.vendorProfile} alt="it's me" size="lg" />
               </Card.Section>
 
               <Text fw={600} mt="md" className="text-center">
-                Norway Fjord Adventures
+                {each.vendorName}
               </Text>
 
               <Text fw={400} c="dimmed" className="text-center">
-                1000 followers
+                {each.vendorFollowers} followers
               </Text>
             </div>
 
@@ -36,94 +40,9 @@ const VendorSnippets = () => {
             </Button>
           </Card>
         </Carousel.Slide>
+        ))}
+        
 
-        <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <div>
-              <Card.Section className="d-flex justify-content-center" mt="sm">
-                <Avatar src="avatar.png" alt="it's me" size="lg" />
-              </Card.Section>
-
-              <Text fw={600} mt="md" className="text-center">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text fw={400} c="dimmed" className="text-center">
-                1000 followers
-              </Text>
-            </div>
-
-            <Button variant="filled" radius="lg" mt="xl">
-              Follow
-            </Button>
-          </Card>
-        </Carousel.Slide>
-
-        <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <div>
-              <Card.Section className="d-flex justify-content-center" mt="sm">
-                <Avatar src="avatar.png" alt="it's me" size="lg" />
-              </Card.Section>
-
-              <Text fw={600} mt="md" className="text-center">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text fw={400} c="dimmed" className="text-center">
-                1000 followers
-              </Text>
-            </div>
-
-            <Button variant="filled" radius="lg" mt="xl">
-              Follow
-            </Button>
-          </Card>
-        </Carousel.Slide>
-
-        <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <div>
-              <Card.Section className="d-flex justify-content-center" mt="sm">
-                <Avatar src="avatar.png" alt="it's me" size="lg" />
-              </Card.Section>
-
-              <Text fw={600} mt="md" className="text-center">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text fw={400} c="dimmed" className="text-center">
-                1000 followers
-              </Text>
-            </div>
-
-            <Button variant="filled" radius="lg" mt="xl">
-              Follow
-            </Button>
-          </Card>
-        </Carousel.Slide>
-
-        <Carousel.Slide>
-          <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <div>
-              <Card.Section className="d-flex justify-content-center" mt="sm">
-                <Avatar src="avatar.png" alt="it's me" size="lg" />
-              </Card.Section>
-
-              <Text fw={600} mt="md" className="text-center">
-                Norway Fjord Adventures
-              </Text>
-
-              <Text fw={400} c="dimmed" className="text-center">
-                1000 followers
-              </Text>
-            </div>
-
-            <Button variant="filled" radius="lg" mt="xl">
-              Follow
-            </Button>
-          </Card>
-        </Carousel.Slide>
       </Carousel>
     </div>
   );

@@ -7,7 +7,7 @@ const EventCoverImage = () => {
     <section className="mt-5">
       <div className="coverImageDisplayDiv rounded d-flex justify-content-center bg-secondary px-lg-5"
       style={{
-        maxHeight: "400px"
+        maxHeight: "450px"
       }}
       >
         {formData.eventAccessType === "preview" ? (
@@ -15,13 +15,16 @@ const EventCoverImage = () => {
             src={`data:image/png;base64,${formData.coverImage}`}
             className="img-fluid rounded mx-5"
             style={{
-              objectFit: "contain"
+              objectFit: "cover"
             }}
           ></img>
         ) : (
           <img
             src={formData.coverImage}
-            className="img-fluid rounded"
+            className="img-fluid rounded mx-5"
+            style={{
+              objectFit: "contain"
+            }}
           ></img>
         )}
       </div>

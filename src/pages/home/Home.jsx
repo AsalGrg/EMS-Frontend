@@ -28,7 +28,7 @@ const Home = () => {
 
       {/* events as per user location choice/ nepal, online */}
 
-      <EventAsPerLocation/>
+      <EventAsPerLocation />
 
       {/* accessible only after the user is logged in */}
       <VendorSnippets />

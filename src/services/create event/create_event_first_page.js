@@ -36,10 +36,13 @@ export default async function create_event_first(firstPageFormData){
 
     console.log(firstPageFormData.eventDateDetails)
 
-    
+    const token = "Bearer "+ localStorage.getItem("token")
+
     const res = await fetch(api_url, {
       method: "POST",
+      
       headers: {
+        Authorization : token,
         "Access-Control-Allow-Origin": "*",
       },
       body: form,

@@ -1,27 +1,62 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import PlaceSelector from "../utilities/placeSelector";
+import { Text } from "@mantine/core";
+import get_event_by_location from "../../services/user/get_event_by_location";
+import EventCard from "../global/EventCard";
+import EventSnippetsGridView from "./EventSnippetsGridView";
+import EventSnippetsCourselView from "../global/EventSnippetsCourselView";
+import NoEventsBanner from "../global/NoEventsBanner";
 
 const EventAsPerLocation = () => {
+  const [location, setlocation] = useState();
+  const [events, setEvents] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
 
-    const [location, setlocation] = useState();
+  useEffect(() => {
+    async function getEventAsPerLocation() {
+      console.log(location);
+      const res = await get_event_by_location(location);
+      if (res.ok) {
+        const data = await res.json();
+        setEvents(data);
+        console.log(data);
+        setisLoading(false);
+      }
+    }
+    getEventAsPerLocation();
+  }, [location]);
 
-    useEffect(() => {
-      console.log("first")
-    }, [])
-
-    useEffect(() => {
-
-        console.log("second")
-      
-    }, [location])
-    
   return (
-    <section>
+    <section className="mt-5">
+      <div className="d-flex align-items-center gap-3">
+        <Text size="xl" fw="bold">
+          Browsing Events in
+        </Text>
+        <PlaceSelector setLocation={setlocation} />
+      </div>
 
-        <input type="text" 
-        onChange={setlocation}/>
-
+      {isLoading ? (
+        <p>Loading</p>
+      ) : events.length>0?(
+        (
+          <>
+            {/* grid view */}
+            <div className="d-none d-lg-block">
+              <EventSnippetsGridView events={events}/>
+            </div>
+  
+            {/* coursel view */}
+  
+            <div className="d-block d-lg-none">
+              <EventSnippetsCourselView events={events}/>
+            </div>
+          </>
+        )
+      ):(
+        <NoEventsBanner/>
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default EventAsPerLocation
+export default EventAsPerLocation;

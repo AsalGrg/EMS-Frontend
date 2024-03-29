@@ -3,9 +3,9 @@ import { IconUser } from "@tabler/icons-react";
 import React from "react";
 import EventCard from "../global/EventCard";
 
-const EventSnippetsGridView = () => {
+const EventSnippetsGridView = ({ events }) => {
   return (
-    <section>
+    <section className="mt-4">
       <div
         className=" gap-4"
         style={{
@@ -13,8 +13,9 @@ const EventSnippetsGridView = () => {
           gridTemplateColumns: "repeat(4,1fr)",
         }}
       >
-        <EventCard />
-        <EventCard />
+        {events.map((each) => (
+          <EventCard  event={each}/>
+        ))}
       </div>
     </section>
   );

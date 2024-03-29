@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import SearchResultIntroduction from "../../components/search result/SearchResultIntroduction";
 import Filters from "../../components/search result/filters/Filters";
 import Results from "../../components/search result/results/Results";
@@ -9,13 +9,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { store } from "../../app/store";
 import {
   applyFilters,
+  clearAllFilters,
   initializeSearchResultState,
+  updateFilters,
   updateSearchEventState,
 } from "./SearchResultSlice";
 import getPlaces from "../../components/utilities/places";
+import get_category_events from "../../services/get_category_events";
+import get_event_by_location from "../../services/user/get_event_by_location";
 
 const SearchResult = () => {
   const { eventName, location } = useParams();
+
+  const [isFirstMount, setIsFirstMount] = useState(true);
+
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.searchEvent);
@@ -24,6 +33,7 @@ const SearchResult = () => {
 
   const fetchedData = useLoaderData();
 
+  //for getting a centered geoLocation of the map
   useEffect(() => {
     const fetchLocationDetails = async () => {
       try {
@@ -35,16 +45,63 @@ const SearchResult = () => {
     };
 
     fetchLocationDetails();
+    updateInitialState();
+    checkForFilters();
+
+    console.log("State updated");
   }, []);
 
-  dispatch(
-    updateSearchEventState({
-      field: "data",
-      value: fetchedData,
-    })
-  );
+  function updateInitialState() {
+    dispatch(
+      updateSearchEventState({
+        field: "data",
+        value: fetchedData,
+      })
+    );
+
+    dispatch(
+      updateSearchEventState({
+        field: "filteredData",
+        value: fetchedData,
+      })
+    );
+  }
+
+  function checkForFilters() {
+    if (eventName.includes("--")) {
+      const parts = eventName.split("--");
+      const categoryName = parts[0];
+      const date = parts[2];
+
+      dispatch(
+        updateFilters({
+          field: "categoryType",
+          value: categoryName,
+        })
+      );
+
+      if (date !== "all") {
+        dispatch(
+          updateFilters({
+            field: "date",
+            value: date,
+          })
+        );
+      }
+    }
+  }
 
   useEffect(() => {
+
+    if (isFirstMount) {
+      setIsFirstMount(false); // Set isFirstMount to false after the initial mount
+      return; // Don't perform the check on initial mount
+    }
+
+    console.log("----"+ state.filters.categoryType)
+    if (state.filters.categoryType === null) {
+      navigate(`/search/All--events--all/${location}`);
+    }
     dispatch(applyFilters());
   }, [dispatch, state.filters]);
 
@@ -80,24 +137,39 @@ const SearchResult = () => {
   );
 };
 
-export async function searchResultLoader({ params}) {
+export async function searchResultLoader({ params }) {
   const eventName = params.eventName;
   const location = params.location;
-  const res = await search_event(eventName, location);
 
-  if (res.ok) {
-    const fetchedData = res.json();
-    
-    store.dispatch(
-      updateSearchEventState({
-        field: "filteredData",
-        value: fetchedData,
-      })
-    );
+  let fetchedData;
 
-    return fetchedData;
+  if (eventName.includes("--")) {
+    const parts = eventName.split("--");
+    const categoryName = parts[0];
+
+    if (categoryName == "All") {
+      const res = await get_event_by_location(location);
+      if (res.ok) {
+        const data = await res.json();
+        fetchedData = data;
+      }
+    } else {
+      const res = await get_category_events(categoryName, location);
+      if (res.ok) {
+        const data = await res.json();
+        fetchedData = data.categoryEvents;
+      }
+    }
+    console.log("loader checks");
+  } else {
+    const res = await search_event(eventName, location);
+    if (res.ok) {
+      const data = await res.json();
+      fetchedData = data;
+    }
   }
-  return null;
+
+  return fetchedData;
 }
 
 export default SearchResult;
