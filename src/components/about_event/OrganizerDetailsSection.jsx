@@ -8,9 +8,28 @@ import {
   IconWorld,
 } from "@tabler/icons-react";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { followVendorStateAboutEvent, unfollowVendorStateAboutEvent } from "../../pages/about_event/AboutEventSlice";
+import follow_vendor from "../../services/user/follow_vendor";
+import unfollow_vendor from "../../services/user/unfollow_vendor";
 
 const OrganizerDetailsSection = () => {
-  const [isFollowing, setisFollowing] = useState(false);
+  
+  const vendorDetails = useSelector((state) => state.aboutEvent).vendorDetails;
+  const dispatch = useDispatch();
+  const followVendor= async ()=>{
+    const res= await follow_vendor(vendorDetails.vendorId)
+    if(res.ok){
+      dispatch(followVendorStateAboutEvent())
+    }
+  }
+
+  const unfollowVendor= async ()=>{
+    const res= await unfollow_vendor(vendorDetails.vendorId)
+    if(res.ok){
+      dispatch(unfollowVendorStateAboutEvent())
+    }
+  }
 
   return (
     <section className="container px-5 mt-5 mb-5">
@@ -18,19 +37,19 @@ const OrganizerDetailsSection = () => {
       <div className="d-flex justify-content-center mt-3">
         <div className="shadow organizerDetailContainer d-flex justify-content-center align-items-center flex-column py-5 rounded">
           <Avatar
-            src="https://scontent.fktm16-1.fna.fbcdn.net/v/t39.30808-6/316669820_1486705245141001_8411721115992888449_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=cJktd2uGkiUAX_8bPuQ&_nc_ht=scontent.fktm16-1.fna&oh=00_AfCVVFoPFJt6gBoDEyQdHwXV-nUeBVGi2dojOua2YdNiow&oe=65B44B3C"
+            src={vendorDetails.vendorProfile}
             alt="it's me"
             size="xl"
           />
 
-          <p className="mt-4">
+          <p className="mt-4 text-center">
             <span className="text-secondary">Organized By</span>
             <br />
-            <span className="fw-bold">Asal Gurung</span>
+            <span className="fw-bold">{vendorDetails.vendorName}</span>
           </p>
 
           <p className="mt-4 text-center">
-            <span className="fw-bold">1000</span>
+            <span className="fw-bold">{vendorDetails.vendorFollowers}</span>
             <br />
             <span className="text-secondary">Followers</span>
           </p>
@@ -40,17 +59,17 @@ const OrganizerDetailsSection = () => {
               Contact
             </Button>
 
-            {!isFollowing ? (
+            {!vendorDetails.hasFollowed ? (
               <Button
                 variant="filled"
                 size="md"
-                onClick={() => setisFollowing((prev) => !prev)}
+                onClick={() => followVendor()}
               >
                 Follow
               </Button>
             ) : (
               <Button
-                onClick={() => setisFollowing((prev) => !prev)}
+                onClick={() => unfollowVendor()}
                 variant="light"
                 size="md"
                 color="gray"

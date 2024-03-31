@@ -15,17 +15,17 @@ const Location = () => {
       <h4 className="fw-bold mb-3">Location</h4>
 
       {/* for online */}
-      {formData.locationType === "online" ? (
+      {formData.locationType === "Online" ? (
         <div className="d-flex">
           <IconBrandYoutube size={20} className="me-3" />
           <p>Online</p>
         </div>
-      ) : formData.locationType === "venue" ? (
+      ) : formData.locationType === "Venue" ? (
         <>
           <div className="d-flex">
             <IconCurrentLocation size={20} className="me-3" />
             <p className="mb-none">
-              {formData.physicalLocationDetails.display_name}
+              {formData.physicalLocationDetails.displayName}
             </p>
           </div>
 
