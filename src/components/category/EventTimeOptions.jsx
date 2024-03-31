@@ -3,8 +3,19 @@ import React from "react";
 import "./EventTimeOptions.css";
 import MyCoursel from "../utilities/MyCoursel";
 import { Carousel } from "@mantine/carousel";
+import { useNavigate } from "react-router";
 
-const EventTimeOptions = ({ categoryTitle }) => {
+const EventTimeOptions = ({ categoryTitle, location }) => {
+
+  const navigate = useNavigate();
+
+  function handleCategoryTimeNavigate(time){
+
+    console.log("hehheheh")
+    window.location.href = `/search/${categoryTitle}--events--${time}/${location}`
+  }
+
+
   return (
     <section className="eventTimeOptionsDiv mb-5">
       <h1 className="highlights">{categoryTitle} Event Time</h1>
@@ -20,43 +31,57 @@ const EventTimeOptions = ({ categoryTitle }) => {
       >
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">Today</p>
+            <p className="mt-3"
+            onClick={()=> handleCategoryTimeNavigate('Today')}
+            >Today</p>
           </div>
         </Carousel.Slide>
 
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">Tommorow</p>
+            <p className="mt-3"
+             onClick={()=> handleCategoryTimeNavigate('Tomorrow')}
+            >Tomorrow</p>
           </div>
         </Carousel.Slide>
 
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">This weekend</p>
+            <p className="mt-3"
+            onClick={()=> handleCategoryTimeNavigate('This weekend')}
+            >This weekend</p>
           </div>
         </Carousel.Slide>
 
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">This week</p>
+            <p className="mt-3"
+            onClick={()=> handleCategoryTimeNavigate('This week')}
+            >This week</p>
           </div>
         </Carousel.Slide>
 
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">Next week</p>
+            <p className="mt-3"
+            onClick={()=> handleCategoryTimeNavigate('Next week')}
+            >Next week</p>
           </div>
         </Carousel.Slide>
 
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">This month</p>
+            <p className="mt-3"
+            onClick={()=> handleCategoryTimeNavigate('This month')}
+            >This month</p>
           </div>
         </Carousel.Slide>
 
         <Carousel.Slide>
           <div className="eventTimeOptionsView my-4">
-            <p className="mt-3">Next month</p>
+            <p className="mt-3"
+            onClick={()=> handleCategoryTimeNavigate('Next month')}
+            >Next month</p>
           </div>
         </Carousel.Slide>
       </Carousel>

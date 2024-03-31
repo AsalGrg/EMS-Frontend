@@ -17,9 +17,10 @@ const categorySlice= createSlice({
         },
         updateEntireCategoryState: (state, action)=>{
 
-            state.events= action.payload.data.categoryEvents;
-            state.vendors= action.payload.data.categoryVendors;
-            state.filteredEvents= action.payload.data.categoryEvents;
+            const {data}= action.payload;
+            state.events= data.categoryEvents;
+            state.vendors= data.categoryVendors;
+            state.filteredEvents= data.categoryEvents;
         }
         ,
         filterCategoryEventsByDate: (state, action)=>{

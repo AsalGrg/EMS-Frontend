@@ -4,6 +4,7 @@ import { isThisWeek, isToday, isTomorrow } from "date-fns";
 import { filterCategoryEventsByDate } from "../category/CategorySlice";
 import { filterEventsByDate } from "../../components/utilities/filterEventsByDate";
 import filterEventsByTicketType from "../../components/utilities/filterEventsByTicketType";
+import capitalizeWord from "../../components/utilities/capitalizeWord";
 
 const initialState = {
   data: [],
@@ -53,6 +54,7 @@ const searchEvent = createSlice({
       // const dateFilterState= state.filters.date
 
       var filteredData= state.data;
+      console.log(filteredData)
 
       console.log("Inside Slice")
       console.log("Inside Slice: "+ filteredData)
@@ -68,7 +70,7 @@ const searchEvent = createSlice({
 
       if(categoryTypeFilterState){
         filteredData= filteredData.filter(each=>(
-          each.category===categoryTypeFilterState
+          each.category===capitalizeWord(categoryTypeFilterState)
         ))
       }
 

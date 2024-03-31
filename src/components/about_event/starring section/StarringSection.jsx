@@ -30,7 +30,7 @@ const StarringSection = () => {
                 ) : (
                   <img
                     className="rounded"
-                    src="https://images.unsplash.com/photo-1489602642804-64dea1e3ebc1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2luZ2VyJTIwcG90cmFpdHN8ZW58MHx8MHx8fDA%3D"
+                    src={eachStarring.starringPhoto}
                     alt=""
                   />
                 )}
