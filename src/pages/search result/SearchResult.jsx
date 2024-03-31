@@ -6,23 +6,20 @@ import Results from "../../components/search result/results/Results";
 import Map, { Maps } from "../../components/utilities/Map";
 import search_event from "../../services/search event/search_event";
 import { useDispatch, useSelector } from "react-redux";
-import { store } from "../../app/store";
 import {
   applyFilters,
-  clearAllFilters,
-  initializeSearchResultState,
   updateFilters,
   updateSearchEventState,
 } from "./SearchResultSlice";
 import getPlaces from "../../components/utilities/places";
 import get_category_events from "../../services/get_category_events";
 import get_event_by_location from "../../services/user/get_event_by_location";
+import capitalizeWord from "../../components/utilities/capitalizeWord";
 
 const SearchResult = () => {
   const { eventName, location } = useParams();
 
   const [isFirstMount, setIsFirstMount] = useState(true);
-
 
   const navigate = useNavigate();
 
@@ -59,6 +56,7 @@ const SearchResult = () => {
       })
     );
 
+
     dispatch(
       updateSearchEventState({
         field: "filteredData",
@@ -73,14 +71,17 @@ const SearchResult = () => {
       const categoryName = parts[0];
       const date = parts[2];
 
-      dispatch(
-        updateFilters({
-          field: "categoryType",
-          value: categoryName,
-        })
-      );
+      if (categoryName !== "All") {
+        dispatch(
+          updateFilters({
+            field: "categoryType",
+            value: categoryName,
+          })
+        );
+      }
 
       if (date !== "all") {
+        console.log();
         dispatch(
           updateFilters({
             field: "date",
@@ -92,15 +93,21 @@ const SearchResult = () => {
   }
 
   useEffect(() => {
-
     if (isFirstMount) {
+      console.log("1st mount");
+      dispatch(applyFilters());
       setIsFirstMount(false); // Set isFirstMount to false after the initial mount
       return; // Don't perform the check on initial mount
     }
 
-    console.log("----"+ state.filters.categoryType)
-    if (state.filters.categoryType === null) {
-      navigate(`/search/All--events--all/${location}`);
+    let categoryName;
+    if (eventName.includes("--")) {
+      const parts = eventName.split("--");
+      categoryName = parts[0];
+    }
+
+    if (state.filters.categoryType === null && categoryName && capitalizeWord(categoryName)!=="All") {
+      window.location.href = `/search/All--events--all/${location}`;
     }
     dispatch(applyFilters());
   }, [dispatch, state.filters]);

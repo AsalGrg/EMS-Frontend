@@ -18,7 +18,9 @@ const api_urls= {
     searchEvent: (eventTitle, location)=> `${BASE_URL}/search/${eventTitle}/${location}`,
     getAboutEvent: (eventId)=> `${BASE_URL}/event_id/${eventId}`,
     getEventByPlace: (location)=> `${BASE_URL}/place/${location}`,
-    getEventByCategory: (category, location)=> `${BASE_URL}/event/${category}/${location}`
+    getEventByCategory: (category, location)=> `${BASE_URL}/event/${category}/${location}`,
+    followVendor :(vendorId)=> `${BASE_URL}/followVendor/${vendorId}`,
+    unfollowVendor :(vendorId)=> `${BASE_URL}/unfollowVendor/${vendorId}`
 }
 
 export default api_urls

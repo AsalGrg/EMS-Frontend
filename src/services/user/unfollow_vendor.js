@@ -1,7 +1,7 @@
-import api_urls from "./api_urls";
+import api_urls from "../api_urls";
 
-export default async function get_category_events(category, location) {
-  const api_url = api_urls.getEventByCategory(category, location);
+export default async function unfollow_vendor(vendorId) {
+  const api_url = api_urls.unfollowVendor(vendorId);
 
   const token = "Bearer " + localStorage.getItem("token");
 
