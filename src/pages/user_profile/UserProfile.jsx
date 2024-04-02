@@ -13,7 +13,13 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   const userData = useSelector((state) => state.userProfile);
+  const dispatch = useDispatch();
 
+  const data = useLoaderData();
+  useEffect(() => {
+    dispatch(updateEntireUserProfileState(data))
+  }, [])
+  
   return (
     <main className="w-100">
       <IntroSection />
@@ -50,11 +56,10 @@ export async function userProfileLoader() {
   const res = await get_user_details();
 
   if (res.status == 200) {
-    store.dispatch(updateEntireUserProfileState(res.data));
+    console.log(res.data)
+    return res.data;
   } else {
     throw new Error("Error fetching data");
   }
-
-  return null;
 }
 export default UserProfile;

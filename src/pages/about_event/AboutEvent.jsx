@@ -49,6 +49,7 @@ const AboutEvent = () => {
         </div>
       </main>
 
+
       {formData.hasStarring ? <StarringSection /> : null}
 
       <OrganizerDetailsSection />

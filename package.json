@@ -33,6 +33,7 @@
     "embla-carousel-react": "^8.0.0-rc21",
     "formik": "^2.4.5",
     "fortawesome": "^0.0.1-security",
+    "khalti-checkout-web": "^2.2.0",
     "leaflet": "^1.9.4",
     "mdbootstrap": "^4.20.0",
     "react": "^18.2.0",

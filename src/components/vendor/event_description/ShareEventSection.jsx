@@ -1,6 +1,7 @@
 import { Text, rem } from "@mantine/core";
 import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
 import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const ShareEventSection = () => {
   const icoStyle = {
@@ -18,6 +19,12 @@ const ShareEventSection = () => {
     setTimeout(()=>{setisCopied(false)},2000)
   };
 
+
+  const dispatch = useDispatch();
+  const formData = useSelector(state=> state.eventDescription)
+
+  const basicEventDetails = formData.eventBasicDetails;
+
   return (
     <div className="mt-5">
       <Text size="xl" fw={600}>
@@ -31,7 +38,7 @@ const ShareEventSection = () => {
 
         <div className="d-flex gap-4 align-items-center">
           <Text size="md" fw={600} truncate="end" id="event-link">
-            https://www.eventbrite.com/e/hello-tickets-776870008107
+          http://localhost:5175/event/about/{basicEventDetails.eventId}
           </Text>
 
           {!isCopied ? (

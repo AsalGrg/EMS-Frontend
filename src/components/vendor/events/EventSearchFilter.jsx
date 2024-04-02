@@ -1,13 +1,13 @@
 import { Select } from "@mantine/core";
 import React, { useState } from "react";
 
-const EventSearchFilter = () => {
-  const [selectedValue, setselectedValue] = useState("Upcoming events");
+const EventSearchFilter = ({selectedValue, setselectedValue}) => {
+
   return (
     <Select
       size="md"
       placeholder="Event filter"
-      data={["Upcoming events", "Past events", "Draft", "All events"]}
+      data={["Upcoming events", "Past events", "Draft", "Completed", "To be accepted","All events"]}
       defaultValue="React"
       allowDeselect={false}
       value={selectedValue}

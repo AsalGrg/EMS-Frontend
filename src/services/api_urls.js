@@ -20,7 +20,13 @@ const api_urls= {
     getEventByPlace: (location)=> `${BASE_URL}/place/${location}`,
     getEventByCategory: (category, location)=> `${BASE_URL}/event/${category}/${location}`,
     followVendor :(vendorId)=> `${BASE_URL}/followVendor/${vendorId}`,
-    unfollowVendor :(vendorId)=> `${BASE_URL}/unfollowVendor/${vendorId}`
+    unfollowVendor :(vendorId)=> `${BASE_URL}/unfollowVendor/${vendorId}`,
+    likeEvent :(eventId)=> `${BASE_URL}/likeEvent/${eventId}`,
+    unlikeEvent: (eventId)=> `${BASE_URL}/unlikeEvent/${eventId}`,
+    getAllLikedEvents: ()=>`${BASE_URL}/getAllLikedEvents`,
+    getFollowings: ()=>`${BASE_URL}/following`,
+    getAllVendorEvents: ()=>`${BASE_URL}/getAllVendorEvents`,
+    getVendorEventInternalDetails : (eventId)=>`${BASE_URL}/getEventInternalDescription/${eventId}`
 }
 
 export default api_urls

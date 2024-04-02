@@ -24,7 +24,8 @@ const initialState = {
       "vendorProfile":null,
       "vendorFollowers": 0,
       "hasFollowed": false
-  }
+  },
+  hasLiked: false
 };
 
 const aboutEventSlice = createSlice({
@@ -48,6 +49,12 @@ const aboutEventSlice = createSlice({
       state.vendorDetails.vendorFollowers -=1
       state.vendorDetails.hasFollowed= false;
     },
+    likeEventState:(state, action)=>{
+      state.hasLiked= true
+    },
+    unlikeEventState : (state, action)=>{
+      state.hasLiked= false
+    }
   },
 
 });
@@ -57,5 +64,7 @@ export const {
   updateEntireStateAboutEvent,
   followVendorStateAboutEvent,
   unfollowVendorStateAboutEvent,
+  likeEventState,
+  unlikeEventState
 } = aboutEventSlice.actions;
 export default aboutEventSlice.reducer;

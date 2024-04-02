@@ -40,9 +40,7 @@ const VendorSnippets = ({ vendors }) => {
   }
 
   return (
-    <div className="vendorSnippets">
-      <Title className="highlights mb-3" order={2}>Vendors To Follow</Title>
-
+    <div className="">
       <Carousel
         withIndicators
         height={{ base: "100%", sm: "50%", md: "33.333333%" }}
@@ -53,7 +51,8 @@ const VendorSnippets = ({ vendors }) => {
       >
         {vendorsList.vendors.map((each) => (
           <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
+            <Card shadow="sm" padding="lg" radius="md" withBorder
+            >
               <div className="mb-3">
                 <Card.Section className="d-flex justify-content-center" mt="sm">
                   <Avatar src={each.vendorProfile} alt="it's me" size="lg" />

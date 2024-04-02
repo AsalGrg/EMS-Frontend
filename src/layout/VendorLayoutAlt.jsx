@@ -33,6 +33,17 @@ const VendorLayoutAlt = () => {
                 <IconMenu2 />
               </button>
             )}
+
+            {!broken && (
+              <button
+                className="iconHighlight rounded"
+                onClick={() => {
+                  setcollapsed(!collapsed);
+                }}
+              >
+                <IconMenu2 />
+              </button>
+            )}
             <Outlet />
           </div>
         </div>
