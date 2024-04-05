@@ -8,6 +8,7 @@ import like_event from "../../../services/user/like_event";
 import { useParams } from "react-router";
 import { likeEventState, unlikeEventState } from "../../../pages/about_event/AboutEventSlice";
 import unlike_event from "../../../services/user/unlike_event";
+import make_payment from "../../../services/user/make_payment";
 
 const TicketSection = () => {
 
@@ -33,9 +34,21 @@ const TicketSection = () => {
       dispatch(unlikeEventState())
     }
   }
+
+  
+  async function makePayment(paymentDetails){
+
+    console.log(paymentDetails)
+    const res = await make_payment(paymentDetails);
+
+    if(res.ok){
+      const data = await res.text();
+      console.log(data) 
+    }
+  }
   return (
     <section>
-      <TicketModal opened={opened} close={close} />
+      <TicketModal opened={opened} close={close} makePayment={makePayment}/>
 
       {/* share and like icons */}
       <div className="d-flex justify-content-end">
@@ -65,7 +78,7 @@ const TicketSection = () => {
       <div className="border rounded py-3 px-4 mt-5">
         <p className="text-center text-secondary fw-bold mb-4 lead">
           {formData.ticketDetails.ticketPrice
-            ? "Rs " + formData.ticketDetails.ticketPrice
+            ? "From Rs " + formData.ticketDetails.ticketPrice
             : "from $0"}
         </p>
         <Button

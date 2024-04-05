@@ -10,9 +10,16 @@ const VendorLayoutAlt = () => {
   const [broken, setBroken] = useState(false);
 
   return (
-    <section className="admin-page-container">
+    <section className="admin-page-container fonts">
       {/* common navbar for vendor and admin */}
-      <AdminNavbar />
+      <AdminNavbar
+        broken={broken}
+        setcollapsed={setcollapsed}
+        collapsed={collapsed}
+        setBroken={setBroken}
+        settoggled={settoggled}
+        toggled={toggled}
+      />
       <div className="d-flex">
         <SidebarVendor
           collapsed={collapsed}
@@ -22,28 +29,7 @@ const VendorLayoutAlt = () => {
         />
 
         <div className="w-100 mb-5 container-fluid">
-          <div className="ms-4 mt-4">
-            {broken && (
-              <button
-                className="iconHighlight rounded"
-                onClick={() => {
-                  settoggled(!toggled);
-                }}
-              >
-                <IconMenu2 />
-              </button>
-            )}
-
-            {!broken && (
-              <button
-                className="iconHighlight rounded"
-                onClick={() => {
-                  setcollapsed(!collapsed);
-                }}
-              >
-                <IconMenu2 />
-              </button>
-            )}
+          <div className="">
             <Outlet />
           </div>
         </div>

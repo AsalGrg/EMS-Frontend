@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import TicketModalTitle from "./TicketModalTitle";
 import TicketModalContent from "./TicketModalContent";
 
-const TicketModal = ({ opened, close }) => {
+const TicketModal = ({ opened, close, makePayment }) => {
 
   const ticketData= useSelector(state=> state.aboutEvent)
 
@@ -17,7 +17,7 @@ const TicketModal = ({ opened, close }) => {
       scrollAreaComponent={ScrollArea.Autosize}
       centered
     >
-      <TicketModalContent/>
+      <TicketModalContent makePayment={makePayment}/>
     </Modal>
   );
 };

@@ -21,7 +21,7 @@ const UserProfile = () => {
   }, [])
   
   return (
-    <main className="w-100">
+    <main className="w-100 fonts">
       <IntroSection />
       <div className="mt-5">
         <Tabs color="blue" radius="xs" defaultValue="gallery">

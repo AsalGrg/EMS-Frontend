@@ -19,6 +19,8 @@ const AboutEvent = () => {
   const dispatch = useDispatch();
 
   const data = useLoaderData();
+
+  console.log(data)
   
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const AboutEvent = () => {
   
   
   return (
-    <>
+    <div className="fonts">
       {/* main section starts here */}
       <main className="container px-5">
         <EventCoverImage />
@@ -53,7 +55,7 @@ const AboutEvent = () => {
       {formData.hasStarring ? <StarringSection /> : null}
 
       <OrganizerDetailsSection />
-    </>
+    </div>
   );
 };
 

@@ -7,10 +7,17 @@ const MatchedLocation = () => {
   const { handleChange, values, errors } = useCreateEventContext();
 
   function updateSelectedPlace(selectedPlace) {
+
+    const selectedPlaceDetail={
+      lat: selectedPlace.lat,
+      lon: selectedPlace.lon,
+      display_name: selectedPlace.display_name,
+      country: selectedPlace.country
+    }
     handleChange({
       target: {
         name: "selectedPlace",
-        value: selectedPlace,
+        value: selectedPlaceDetail,
       },
     });
 

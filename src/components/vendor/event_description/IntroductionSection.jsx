@@ -13,14 +13,6 @@ const IntroductionSection = () => {
 
   return (
     <div className="d-flex justify-content-between mt-4 align-items-center">
-      <div>
-        <Text size="xl" fw={600}>
-          {basicEventDetails.eventName}
-        </Text>
-        <Text size="md" c={"dimmed"}>
-          {formatDate(basicEventDetails.startDate)}
-        </Text>
-      </div>
 
       <div className="d-flex gap-4">
         {basicEventDetails.eventStatus === "completed" ? (
@@ -32,11 +24,6 @@ const IntroductionSection = () => {
             {basicEventDetails.eventStatus}
           </Badge>
         )}
-
-        <div className="d-flex gap-2">
-          <IconEye />
-          <Text>Preview Event</Text>
-        </div>
       </div>
     </div>
   );

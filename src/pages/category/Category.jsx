@@ -78,7 +78,7 @@ const Category = () => {
   }
 
   return (
-    <main>
+    <main className="fonts">
       <CategoryIntroduction />
 
       <div className="container">

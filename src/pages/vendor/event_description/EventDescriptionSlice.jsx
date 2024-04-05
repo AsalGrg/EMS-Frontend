@@ -10,6 +10,7 @@ const initialState = {
     eventName: "",
     startDate: "",
     endDate: "",
+    ticketSalesEndDate: "",
     startTime: "",
     category: "",
     location_display_name:
@@ -34,10 +35,34 @@ const eventDescriptionSlice = createSlice({
     reducers: {
         updateEntireEventDesriptionState : (state, action)=> {
             return action.payload;
+        },
+        addPromoCode :(state, action)=>{
+          
+
+          const payloadData = action.payload;
+          const data ={
+            promCodeName: payloadData.name,
+            expiryDate: payloadData.expiryDate,
+            hasNoEnd: payloadData.hasNoEnd,
+            merit: payloadData.promoCodeType==="Cash discount"? "Rs "+payloadData.discount+" off": payloadData.discount+" % off",
+            applicableFrom: payloadData.applicableOn,
+            expiryDate: payloadData.expiryDate,
+            active: true
+          }
+          state.promoCodeDetailsDtos.push(data)
+        },
+        handlePromoCodeActiveStatus: (state, action)=>{
+          const {bool, promoId}= action.payload;
+
+          state.promoCodeDetailsDtos.map(each=>{
+            if(each.promoCodeId===promoId){
+              each.active =bool
+            }
+          })
         }
     }
 })
 
 
-export const {updateEntireEventDesriptionState}= eventDescriptionSlice.actions;
+export const {updateEntireEventDesriptionState,addPromoCode,handlePromoCodeActiveStatus}= eventDescriptionSlice.actions;
 export default eventDescriptionSlice.reducer;

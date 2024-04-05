@@ -73,7 +73,7 @@ const CreateEvent = () => {
       // Define validation schema for each step
       validationSchema={[createEventFirstPageSchema]}
     >
-      <div className="container d-flex justify-content-center">
+      <div className="container d-flex justify-content-center fonts">
         <div className="create-event-main-container">
           <div className="mt-5 d-none d-md-block">
             <Stepper active={formData.active} >

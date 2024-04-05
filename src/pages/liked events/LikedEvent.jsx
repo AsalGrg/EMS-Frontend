@@ -25,7 +25,7 @@ const LikedEvent = () => {
 
 
   return (
-    <main>
+    <main className="fonts">
       <Title>Liked</Title>
 
       <div className="mt-4">

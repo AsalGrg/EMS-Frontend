@@ -24,7 +24,7 @@ const Following = () => {
 
 
   return (
-    <main>
+    <main className='fonts'>
       <Title>Following</Title>
 
       <div className="mt-5">

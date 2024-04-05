@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 const UserPersonalPagesLayout = () => {
   return (
-    <section>
+    <section className="fonts">
       <Navbar />
       <div className="container"
       style={{

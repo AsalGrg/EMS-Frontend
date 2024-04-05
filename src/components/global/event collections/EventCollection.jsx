@@ -1,8 +1,15 @@
 import { Carousel } from "@mantine/carousel";
 import { Avatar, Card, Image, Text } from "@mantine/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const EventCollection = ({ slideSize }) => {
+
+  const [eventCollection, seteventCollection] = useState([])
+
+  useEffect(() => {
+    
+  }, [])
+  
   return (
     <main>
       <Carousel

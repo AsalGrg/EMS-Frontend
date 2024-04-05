@@ -4,7 +4,7 @@ import EventCreationOptions from "../../../components/vendor/home/EventCreationO
 
 const AdminHome = () => {
   return (
-    <>
+    <div className="fonts">
       <div className="border py-4 px-4">
         <h1 className="display-6 fw-bold">Goodmorning, Asal</h1>
         <Text fs={"italic"} size="md">
@@ -47,7 +47,7 @@ const AdminHome = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

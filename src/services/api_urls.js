@@ -26,7 +26,12 @@ const api_urls= {
     getAllLikedEvents: ()=>`${BASE_URL}/getAllLikedEvents`,
     getFollowings: ()=>`${BASE_URL}/following`,
     getAllVendorEvents: ()=>`${BASE_URL}/getAllVendorEvents`,
-    getVendorEventInternalDetails : (eventId)=>`${BASE_URL}/getEventInternalDescription/${eventId}`
+    getVendorEventInternalDetails : (eventId)=>`${BASE_URL}/getEventInternalDescription/${eventId}`,
+    addPromoCode : ()=>`${BASE_URL}/addPromoCode`,
+    applyPromoCode: (eventId, promoCode, total)=> `${BASE_URL}/applyPromoCode/${promoCode}/${eventId}/${total}`,
+    deactivatePromoCode: (promoCodeId)=> `${BASE_URL}/deactivatePromoCode/${promoCodeId}`,
+    activatePromoCode: (promoCodeId)=> `${BASE_URL}/activatePromoCode/${promoCodeId}`,
+    makePayment:()=> `${BASE_URL}/makePayment`
 }
 
 export default api_urls

@@ -9,40 +9,49 @@ import get_user_event_internal_description from "../../../services/user/get_user
 import { useLoaderData } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEntireEventDesriptionState } from "./EventDescriptionSlice";
+import PromoCodeSection from "../../../components/vendor/event_description/PromoCodeSection";
+import formatDate from "../../../components/utilities/formatDate";
+import SideBoard from "../../../components/vendor/event_description/SideBoard";
 
 const EventDescription = () => {
-
   const loaderData = useLoaderData();
 
   const dispatch = useDispatch();
-  const formData = useSelector(state=> state.eventDescription)
-  
+  const formData = useSelector((state) => state.eventDescription);
+
+  const basicEventDetails = formData.eventBasicDetails;
+
   useEffect(() => {
-    dispatch(updateEntireEventDesriptionState(loaderData))
-  }, [])
-  
+    dispatch(updateEntireEventDesriptionState(loaderData));
+  }, []);
+
   return (
-    <section>
-      <h1 className="display-6 fw-bold">Dashboard</h1>
-      <IntroductionSection />
+    <section className="fonts row justify-content-between">
+      <SideBoard/>
+      <div className="col-9 ps-5 py-3">
+        <h1 className="display-6 fw-bold">Dashboard</h1>
+        {/* <IntroductionSection /> */}
 
-      <TodosAndAnalysis/>
+        <TodosAndAnalysis />
 
-      <ShareEventSection/>
+        <ShareEventSection />
 
-      <EventOrdersSection/>
+        <PromoCodeSection />
+
+        <EventOrdersSection />
+      </div>
     </section>
   );
 };
 
 export default EventDescription;
 
-export async function eventDescriptionLoader({params}){
-  const {eventId}= params;
-  
+export async function eventDescriptionLoader({ params }) {
+  const { eventId } = params;
+
   const res = await get_user_event_internal_description(eventId);
 
-  if(res.ok){
+  if (res.ok) {
     const data = await res.json();
     return data;
   }

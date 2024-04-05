@@ -60,7 +60,7 @@ export default function formDataLogicFirstPage(formState) {
 
     eventPhysicalLocationDetails: {
       displayName: formState.selectedPlace.display_name,
-      country: formState.selectedPlace.address.country,
+      country: formState.selectedPlace.country,
       lat: formState.selectedPlace.lat,
       lon: formState.selectedPlace.lon,
     },

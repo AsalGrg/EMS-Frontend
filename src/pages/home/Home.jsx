@@ -16,7 +16,7 @@ const Home = () => {
   const [eventsPerChoice, seteventsPerChoice] = useState([]);
 
   return (
-    <div className="container px-5">
+    <div className="container px-5 fonts">
       <Introduction />
       <SearchFilter />
 
@@ -31,7 +31,7 @@ const Home = () => {
       <EventAsPerLocation />
 
       {/* accessible only after the user is logged in */}
-      <VendorSnippets />
+      <VendorSnippets vendors={[]}/>
 
       {/* hand picked collections of events */}
       <section

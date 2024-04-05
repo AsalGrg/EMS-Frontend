@@ -12,7 +12,7 @@ const EventOrdersSection = () => {
       </Text>
 
       <div className="row mt-4">
-        <div className="col-12 col-lg-10">
+        <div className="col-12">
           <EventOrdersTable />
         </div>
       </div>

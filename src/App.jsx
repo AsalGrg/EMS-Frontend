@@ -29,9 +29,13 @@ import { useDispatch } from "react-redux";
 import AdminLayout from "./layout/AdminLayout";
 import VendorLayout from "./layout/VendorLayout";
 import VendorHome from "./pages/vendor/home/VendorHome";
-import VendorEvents, { vendorEventsLoader } from "./pages/vendor/events/VendorEvents";
+import VendorEvents, {
+  vendorEventsLoader,
+} from "./pages/vendor/events/VendorEvents";
 import VendorLayoutAlt from "./layout/VendorLayoutAlt";
-import EventDescription, { eventDescriptionLoader } from "./pages/vendor/event_description/EventDescription";
+import EventDescription, {
+  eventDescriptionLoader,
+} from "./pages/vendor/event_description/EventDescription";
 import VendorOrder from "./pages/vendor/orders/VendorOrder";
 import UserPersonalPagesLayout from "./layout/UserPersonalPagesLayout";
 import LikedEvent from "./pages/liked events/LikedEvent";
@@ -80,6 +84,13 @@ const App = () => {
             element={<UserProfile />}
             loader={userProfileLoader}
           />
+
+          <Route
+            exact
+            path="events/collection/:collectionId"
+            element={<UserProfile />}
+            loader={userProfileLoader}
+          />
         </Route>
 
         <Route element={<UserPersonalPagesLayout />}>
@@ -99,11 +110,17 @@ const App = () => {
         </Route>
 
         <Route element={<VendorLayoutAlt />} path="vendor">
-          <Route exact path="events" element={<VendorEvents />} 
-          loader={vendorEventsLoader}
+          <Route
+            exact
+            path="events"
+            element={<VendorEvents />}
+            loader={vendorEventsLoader}
           />
-          <Route exact path="myEvent/:eventId" element={<EventDescription />} 
-          loader={eventDescriptionLoader}
+          <Route
+            exact
+            path="myEvent/:eventId"
+            element={<EventDescription />}
+            loader={eventDescriptionLoader}
           />
           <Route exact path="orders" element={<VendorOrder />} />
         </Route>

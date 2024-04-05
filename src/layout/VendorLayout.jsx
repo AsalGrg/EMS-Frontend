@@ -5,7 +5,7 @@ import { Outlet } from 'react-router'
 
 const VendorLayout = () => {
   return (
-    <section className="admin-page-container">
+    <section className="admin-page-container fonts">
         {/* common navbar for vendor and admin */}
       <AdminNavbar />
       <div className="d-flex">

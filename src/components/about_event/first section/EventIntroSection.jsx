@@ -4,25 +4,29 @@ import React from "react";
 import OrganizerSnippet from "./OrganizerSnippet";
 import { useSelector } from "react-redux";
 import { faPray } from "@fortawesome/free-solid-svg-icons";
+import { checkIfDateIsAfterAWeek, checkIfDateIsBeforeAWeek } from "../../utilities/badgeChecker";
 
 const EventIntroSection = () => {
-
-  const formData = useSelector(state=> state.aboutEvent) 
- const checkData = useSelector(state=> state.createEvent) 
+  const formData = useSelector((state) => state.aboutEvent);
+  //  const checkData = useSelector(state=> state.createEvent)
 
   return (
     <section>
       {/* div for badges */}
 
       <div className="mb-3">
-        <Badge variant="light" color="violet" className="me-2 p-3">
-          <IconSpeakerphone size={20} className="me-2" />
-          Ticket Sales End Soon
-        </Badge>
+        {checkIfDateIsAfterAWeek(formData.eventEndDate) && (
+          <Badge variant="light" color="red" className="me-2 p-3">
+            <IconSpeakerphone size={20} className="me-2" /> Event Ends Soon
+          </Badge>
+        )}
 
-        <Badge variant="light" color="red" className="me-2 p-3">
-          <IconSpeakerphone size={20} className="me-2" /> Event Ends Soon
-        </Badge>
+        {checkIfDateIsAfterAWeek(formData.ticketDetails.salesEndDate) && (
+          <Badge variant="light" color="violet" className="me-2 p-3">
+            <IconSpeakerphone size={20} className="me-2" />
+            Ticket Sales End Soon
+          </Badge>
+        )}
       </div>
 
       {/* about events */}

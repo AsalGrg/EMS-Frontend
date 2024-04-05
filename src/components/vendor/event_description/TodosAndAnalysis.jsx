@@ -16,7 +16,7 @@ const TodosAndAnalysis = () => {
 
   return (
     <div className="row mt-4 gap-5 justify-content-between align-items-center">
-      <div className="col-3 shadow px-3 py-3 d-flex flex-column gap-2">
+      <div className="col-3 border border-3 rounded px-3 py-3 d-flex flex-column gap-2">
         <Text size="md" fw={500}>
           Tickets Sold
         </Text>
