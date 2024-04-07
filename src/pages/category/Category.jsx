@@ -86,16 +86,9 @@ const Category = () => {
 
         {events.length >0?(
           <>
-          {popularEvents.length > 0 && (
-            <div>
-              <Title order={2}>Popular Events</Title>
-              <EventSnippetsCourselView events={popularEvents} />
-            </div>
-          )}
-
           {upcomingEvents.length > 0 && (
-            <div>
-              <Title order={2}>Upcoming Events</Title>
+            <div className="mt-5">
+              <Title order={3}>Upcoming Events</Title>
               <EventSnippetsCourselView events={upcomingEvents} />
             </div>
           )}
@@ -103,8 +96,8 @@ const Category = () => {
           <VendorSnippets vendors={vendors} />
 
           {freeEvents.length > 0 && (
-            <div className="mt-4">
-              <Title order={2}>Free Events</Title>
+            <div className="mt-5">
+              <Title order={5}>Free Events</Title>
               <EventSnippetsCourselView events={freeEvents} />
             </div>
           )}

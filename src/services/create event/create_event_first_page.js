@@ -24,7 +24,7 @@ export default async function create_event_first(firstPageFormData){
     );
  
   
-    if(firstPageFormData.eventFirstPageDetails.locationType=="venue"){
+    if(firstPageFormData.eventFirstPageDetails.locationType=="Venue"){
       form.append(
         "eventPhysicalLocationDetails",
         new Blob([JSON.stringify(firstPageFormData.eventPhysicalLocationDetails)], {

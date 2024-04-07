@@ -1,11 +1,12 @@
 import api_urls from "../api_urls";
 
 export default async function create_event_second_page(formData, api_url) {
-
-
   const form = new FormData();
 
-  form.append("eventCoverImage", formData.eventCoverImage);
+  if (formData.eventCoverImage instanceof File) {
+    console.log("here");
+    form.append("eventCoverImage", formData.eventCoverImage);
+  }
 
   form.append(
     "eventSecondPageDetails",
@@ -14,13 +15,18 @@ export default async function create_event_second_page(formData, api_url) {
     })
   );
 
-
   if (formData.eventSecondPageDetails.hasStarring) {
     var starringDetails = {};
 
     for (var i = 0; i < formData.starrings.length; i++) {
       starringDetails["starring" + (i + 1) + "Name"] =
         formData.starrings[i].starringName;
+      if (typeof formData.starrings[i].starringPhoto==='string') {
+        starringDetails["starring" + (i + 1) + "Photo"] =
+          formData.starrings[i].starringPhoto;
+          console.log("Cjeck")
+        continue;
+      }
       //   starringDetails["starring" + (i + 1) + "Role"] =
       //     formData.starrings[i].starringRole;
 
@@ -36,18 +42,16 @@ export default async function create_event_second_page(formData, api_url) {
     );
   }
 
- 
-  const token = "Bearer "+ localStorage.getItem("token")
+  const token = "Bearer " + localStorage.getItem("token");
   const res = await fetch(api_url, {
     method: "POST",
-    
+
     headers: {
-      Authorization : token,
+      Authorization: token,
       "Access-Control-Allow-Origin": "*",
     },
     body: form,
   });
-
 
   return res;
 }

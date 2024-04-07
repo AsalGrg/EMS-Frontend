@@ -103,7 +103,7 @@ const VendorEvents = () => {
  }
 
   return (
-    <section className="fonts">
+    <section className="fonts p-5">
       <h1 className="display-6 fw-bold">Events</h1>
 
       <div className="d-flex justify-content-between mt-4">

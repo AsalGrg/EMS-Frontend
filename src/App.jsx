@@ -13,7 +13,7 @@ import Register from "./pages/signup/Register";
 import SearchBar from "./pages/search/SearchBar";
 import Category from "./pages/category/Category";
 import EmailVerification from "./pages/email_verification/EmailVerification";
-import CreateEvent from "./pages/create event/CreateEvent";
+import CreateEvent, { createEventLoader } from "./pages/create event/CreateEvent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import AboutEvent, { aboutEventLoader } from "./pages/about_event/AboutEvent";
@@ -53,7 +53,9 @@ const App = () => {
           <Route exact path="register" element={<Register />} />
           <Route exact path="verify-email" element={<EmailVerification />} />
           <Route exact path="search" element={<SearchBar />} />
-          <Route exact path="create-event" element={<CreateEvent />} />
+          <Route exact path="/c/:creationType/:eventId" element={<CreateEvent />} 
+          loader={createEventLoader}
+          />
           <Route
             exact
             path="event/:pageAccessType"

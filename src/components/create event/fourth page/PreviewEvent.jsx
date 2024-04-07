@@ -98,12 +98,21 @@ const PreviewEvent = () => {
         <div>
           {!formData.coverImage ? (
             <p>SVG HERE</p>
-          ) : (
-            <img
-              src={URL.createObjectURL(formData.coverImage)}
-              className="defaultImage"
-            />
-          )}
+          ) : 
+            formData.coverImage instanceof File ? (
+              <img
+                src={URL.createObjectURL(formData.coverImage)}
+                alt="Event Image"
+                className="defaultImage"
+              />
+            ) : (
+              <img
+                src={formData.coverImage}
+                alt="Event Image"
+                className="defaultImage"
+              />
+            )
+          }
         </div>
       </div>
       <div className="col-md-6 col-12 pt-2">

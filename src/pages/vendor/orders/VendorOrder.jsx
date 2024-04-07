@@ -1,15 +1,31 @@
 import { Input, Select, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EventOrdersTable from "../../../components/vendor/EventOrdersTable";
+import get_all_vendor_orders from "../../../services/user/get_all_vendor_orders";
 
 const VendorOrder = () => {
+
+  const [orders, setorders] = useState([])
   const iconStyle = {
     height: rem(20),
     width: rem(20),
   };
+
+  useEffect(() => {
+    async function getAllVendorOrders (){
+      const res = await get_all_vendor_orders();
+      if(res.ok){
+        const data = await res.json();
+        setorders(data);
+      }
+    }
+    getAllVendorOrders();
+  }, [])
+  
+
   return (
-    <div>
+    <div className="p-5">
       <h1 className="display-6 fw-bold">Orders</h1>
 
       <div className="row mt-4">
@@ -30,7 +46,7 @@ const VendorOrder = () => {
 
       <div className="mt-4 w-100 row">
         <div className="col-lg-11 col-12">
-            <EventOrdersTable/>
+            <EventOrdersTable orders={orders}/>
         </div>
       </div>
     </div>

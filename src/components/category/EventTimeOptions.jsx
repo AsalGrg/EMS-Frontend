@@ -4,6 +4,8 @@ import "./EventTimeOptions.css";
 import MyCoursel from "../utilities/MyCoursel";
 import { Carousel } from "@mantine/carousel";
 import { useNavigate } from "react-router";
+import { Title } from "@mantine/core";
+import capitalizeWord from "../utilities/capitalizeWord";
 
 const EventTimeOptions = ({ categoryTitle, location }) => {
 
@@ -17,10 +19,10 @@ const EventTimeOptions = ({ categoryTitle, location }) => {
 
 
   return (
-    <section className="eventTimeOptionsDiv mb-5">
-      <h1 className="highlights">{categoryTitle} Event Time</h1>
+    <section className="eventTimeOptionsDiv mt-5 mb-5">
+      <Title className="highlights" order={3}>{capitalizeWord(categoryTitle)} Event Time</Title>
       <Carousel
-      
+        className="mt-3"
         style={{
           backgroundColor: "#f8f7fa",
         }}

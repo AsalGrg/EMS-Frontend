@@ -1,9 +1,12 @@
 import React from "react";
 import NoOrders from "../global/NoOrders";
 import EachOrder from "./EachOrder";
+import { useDispatch, useSelector } from "react-redux";
 
 //accepts array of orders
-const EventOrdersTable = () => {
+const EventOrdersTable = ({orders}) => {
+
+
   return (
     <>
       <table className="eventTable w-100">
@@ -14,11 +17,14 @@ const EventOrdersTable = () => {
           <th>Price</th>
           <th>Date</th>
         </tr>
-
-        <EachOrder/>
+        {orders.map((each) => (
+          <EachOrder order={each} />
+        ))}
       </table>
 
-      <NoOrders message={"No orders for the events"} />
+      {orders.length=== 0 && (
+        <NoOrders message={"No orders for the events"} />
+      )}
     </>
   );
 };

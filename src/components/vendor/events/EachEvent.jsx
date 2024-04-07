@@ -1,6 +1,6 @@
 import { Menu, Progress, Text, rem } from "@mantine/core";
 import { IconDotsVertical, IconSearch } from "@tabler/icons-react";
-import React from "react";
+import React, { useState } from "react";
 import EventActions from "./EventActions";
 import { useNavigate } from "react-router-dom";
 import formatDate from "../../utilities/formatDate";
@@ -8,15 +8,15 @@ import formatTime from "../../utilities/formatTime";
 import capitalizeWord from "../../utilities/capitalizeWord";
 
 const EachEvent = ({ event }) => {
-
   const formattedDate = formatDate(event.startDate);
   const formattedTime = formatTime(event.startTime);
 
   const fractionPercentage = (event.ticketsSold / event.ticketsForSale) * 100;
   const percentCode = Math.round(fractionPercentage);
 
+  const [opened, setopened] = useState(false);
 
-  console.log(percentCode )
+  console.log(percentCode);
   const navigate = useNavigate();
 
   return (
@@ -57,10 +57,10 @@ const EachEvent = ({ event }) => {
 
       <td>
         <div className="d-flex flex-column gap-2">
-          <Text>{event.ticketsSold}/{event.ticketsForSale}</Text>
-          <Progress size="md" value={percentCode} 
-          color="green"
-          />
+          <Text>
+            {event.ticketsSold}/{event.ticketsForSale}
+          </Text>
+          <Progress size="md" value={percentCode} color="green" />
         </div>
       </td>
 
@@ -73,15 +73,27 @@ const EachEvent = ({ event }) => {
       </td>
 
       <td>
-        <Menu shadow="md" width={200} position="left" withArrow>
-          <Menu.Target>
+        <Menu
+          shadow="md"
+          width={200}
+          position="left"
+          withArrow
+          opened={opened}
+          onChange={setopened}
+        >
+          <Menu.Target
+            onClick={(e) => {
+              e.stopPropagation();
+              setopened(prev=> !prev)
+            }}
+          >
             <IconDotsVertical className="" />
           </Menu.Target>
 
           <Menu.Dropdown>
             <Menu.Label>Actions</Menu.Label>
 
-            <EventActions />
+            <EventActions event={event} />
           </Menu.Dropdown>
         </Menu>
       </td>

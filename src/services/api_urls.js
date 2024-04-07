@@ -31,7 +31,10 @@ const api_urls= {
     applyPromoCode: (eventId, promoCode, total)=> `${BASE_URL}/applyPromoCode/${promoCode}/${eventId}/${total}`,
     deactivatePromoCode: (promoCodeId)=> `${BASE_URL}/deactivatePromoCode/${promoCodeId}`,
     activatePromoCode: (promoCodeId)=> `${BASE_URL}/activatePromoCode/${promoCodeId}`,
-    makePayment:()=> `${BASE_URL}/makePayment`
+    makePayment:()=> `${BASE_URL}/makePayment`,
+    getDraftDetails:(eventId)=> `${BASE_URL}/draft/event_id/${eventId}`,
+    getAllVendorEventsOrders: ()=> `${BASE_URL}/getAllVendorEventOrders`,
+    getEditDetails:(eventId)=> `${BASE_URL}/edit/event_id/${eventId}`,
 }
 
 export default api_urls

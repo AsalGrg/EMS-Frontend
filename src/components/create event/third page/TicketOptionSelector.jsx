@@ -39,20 +39,20 @@ const TicketOptionSelector = () => {
     <div className="row gy-3">
       <div
         className={
-          values.ticketType === "paid"
+          values.ticketType === "Paid"
             ? hasErrors
               ? errorsClasses
               : selectedClasses
             : normal
         }
         role="button"
-        onClick={() => handleTicketTypeChange("paid")}
+        onClick={() => handleTicketTypeChange("Paid")}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
       >
         <div className="ticketOptionImage">
-          <img src="src\assets\dollar.png" alt="" className="img-fluid" />
+          <img src="/src/assets/dollar.png" alt="" className="img-fluid" />
         </div>
         <div className="description">
           <h3>Paid</h3>
@@ -66,26 +66,26 @@ const TicketOptionSelector = () => {
         </div>
       </div>
 
-      {hasErrors && touched && values.ticketType === "paid"
+      {hasErrors && touched && values.ticketType === "Paid"
         ? univeralErrorMessage
         : null}
 
       <div
         className={
-          values.ticketType === "free"
+          values.ticketType === "Free"
             ? hasErrors
               ? errorsClasses
               : selectedClasses
             : normal
         }
         role="button"
-        onClick={() => handleTicketTypeChange("free")}
+        onClick={() => handleTicketTypeChange("Free")}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
       >
         <div className="ticketOptionImage">
-          <img src="src\assets\free.png" alt="" className="img-fluid" />
+          <img src="/src/assets/free.png" alt="" className="img-fluid" />
         </div>
         <div className="description">
           <h3>Free</h3>
@@ -98,26 +98,26 @@ const TicketOptionSelector = () => {
           <i class="fa-solid fa-circle-chevron-right"></i>
         </div>
       </div>
-      {hasErrors && touched && values.ticketType === "free"
+      {hasErrors && touched && values.ticketType === "Free"
         ? univeralErrorMessage
         : null}
 
       <div
         className={
-          values.ticketType === "donation"
+          values.ticketType === "Donation"
             ? hasErrors
               ? errorsClasses
               : selectedClasses
             : normal
         }
         role="button"
-        onClick={() => handleTicketTypeChange("donation")}
+        onClick={() => handleTicketTypeChange("Donation")}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
       >
         <div className="ticketOptionImage">
-          <img src="src\assets\donate.png" alt="" className="img-fluid" />
+          <img src="/src/assets/donate.png" alt="" className="img-fluid" />
         </div>
         <div className="description">
           <h3>Donation</h3>
@@ -131,7 +131,7 @@ const TicketOptionSelector = () => {
         </div>
       </div>
 
-      {hasErrors && touched && values.ticketType === "donation"
+      {hasErrors && touched && values.ticketType === "Donation"
         ? univeralErrorMessage
         : null}
     </div>

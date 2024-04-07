@@ -1,11 +1,10 @@
 import api_urls from "../api_urls";
 
-export default async function get_event_by_location(
-    location
+export default async function get_all_vendor_orders(
+    
 ){
 
-    console.log(location)
-    const api_url = api_urls.getEventByPlace(location);
+    const api_url = api_urls.getAllVendorEventsOrders();
     const token = "Bearer "+ localStorage.getItem('token')
 
     const res = await fetch(api_url, {

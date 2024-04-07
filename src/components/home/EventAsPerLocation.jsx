@@ -6,11 +6,14 @@ import EventCard from "../global/EventCard";
 import EventSnippetsGridView from "./EventSnippetsGridView";
 import EventSnippetsCourselView from "../global/EventSnippetsCourselView";
 import NoEventsBanner from "../global/NoEventsBanner";
+import VendorSnippets from "../global/VendorSnippets";
 
 const EventAsPerLocation = () => {
   const [location, setlocation] = useState();
   const [events, setEvents] = useState([]);
   const [isLoading, setisLoading] = useState(true);
+
+  const [vendors, setvendors] = useState([])
 
   useEffect(() => {
     async function getEventAsPerLocation() {
@@ -18,7 +21,8 @@ const EventAsPerLocation = () => {
       const res = await get_event_by_location(location);
       if (res.ok) {
         const data = await res.json();
-        setEvents(data);
+        setEvents(data.events);
+        setvendors(data.vendors)
         console.log(data);
         setisLoading(false);
       }
@@ -37,24 +41,25 @@ const EventAsPerLocation = () => {
 
       {isLoading ? (
         <p>Loading</p>
-      ) : events.length>0?(
-        (
-          <>
-            {/* grid view */}
-            <div className="d-none d-lg-block">
-              <EventSnippetsGridView events={events}/>
-            </div>
-  
-            {/* coursel view */}
-  
-            <div className="d-block d-lg-none">
-              <EventSnippetsCourselView events={events}/>
-            </div>
-          </>
-        )
-      ):(
-        <NoEventsBanner/>
+      ) : events.length > 0 ? (
+        <>
+          {/* grid view */}
+          <div className="d-none d-lg-block">
+            <EventSnippetsGridView events={events} />
+          </div>
+
+          {/* coursel view */}
+
+          <div className="d-block d-lg-none">
+            <EventSnippetsCourselView events={events} />
+          </div>
+        </>
+      ) : (
+        <NoEventsBanner />
       )}
+
+      {/* accessible only after the user is logged in */}
+      {vendors.length!==0 && <VendorSnippets vendors={vendors} />}
     </section>
   );
 };

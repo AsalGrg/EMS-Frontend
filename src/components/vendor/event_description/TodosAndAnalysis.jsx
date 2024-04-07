@@ -2,8 +2,11 @@ import { Text, rem } from "@mantine/core";
 import { IconTicket } from "@tabler/icons-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const TodosAndAnalysis = () => {
+
+  const navigate = useNavigate();
   const icoStyle = {
     height: rem(18),
     width: rem(18),
@@ -61,7 +64,9 @@ const TodosAndAnalysis = () => {
             </div>
           )}
 
-          <Text size="md" c="blue" fw={600} className="mt-3">
+          <Text size="md" c="blue" fw={600} className="mt-3"
+          onClick={()=> navigate('/c/draft/'+basicEventDetails.eventId)}
+          >
             Continue editing
           </Text>
         </div>

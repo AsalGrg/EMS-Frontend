@@ -6,7 +6,7 @@ import EventCard from "./EventCard";
 
 const EventSnippetsCourselView = ({ events }) => {
   return (
-    <div className="catEventSnippet mt-4">
+    <div className="catEventSnippet mt-3">
       <div className="">
         <Carousel
           withIndicators

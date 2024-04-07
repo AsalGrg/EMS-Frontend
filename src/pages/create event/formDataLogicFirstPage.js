@@ -5,10 +5,10 @@ export default function formDataLogicFirstPage(formState) {
   const locationType = formState.venueType;
 
   let locationName;
-  if (locationType === "venue") {
+  if (locationType === "Venue") {
     locationName = formState.location;
-  } else if (locationType === "online") {
-    locationName = formState.location;
+  } else if (locationType === "Online") {
+    locationName = formState.meetingLink;
   } else {
     locationName = "";
   }
@@ -36,6 +36,16 @@ export default function formDataLogicFirstPage(formState) {
     eventEndTime = format(parsedEndTime, "HH:mm:ss");
   }
 
+  let eventPhysicalLocationDetails = null;
+  if (locationType === "Venue") {
+    eventPhysicalLocationDetails = {
+      displayName: formState.selectedPlace.display_name,
+      country: formState.selectedPlace.country,
+      lat: formState.selectedPlace.lat,
+      lon: formState.selectedPlace.lon,
+    };
+  }
+
   return {
     eventFirstPageDetails: {
       eventId: formState.eventId,
@@ -58,11 +68,6 @@ export default function formDataLogicFirstPage(formState) {
       displayStartTime: true,
     },
 
-    eventPhysicalLocationDetails: {
-      displayName: formState.selectedPlace.display_name,
-      country: formState.selectedPlace.country,
-      lat: formState.selectedPlace.lat,
-      lon: formState.selectedPlace.lon,
-    },
+    eventPhysicalLocationDetails: eventPhysicalLocationDetails,
   };
 }

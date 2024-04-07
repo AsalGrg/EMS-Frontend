@@ -29,6 +29,8 @@ const DateAndTime = () => {
         value: value,
       },
     });
+
+    console.log(value);
   }
 
   const handleToggle = (e) => {
