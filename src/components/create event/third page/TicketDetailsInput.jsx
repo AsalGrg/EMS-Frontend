@@ -89,12 +89,12 @@ const TicketDetailsInput = () => {
 
             <NumberInput
               className="col-md-6 col-12"
-              disabled={values.ticketType !== "paid"}
+              disabled={values.ticketType !== "Paid"}
               leftSectionPointerEvents="none"
               label="Ticket price"
               prefix="Rs "
               placeholder="Ticket price"
-              value={values.ticketType !== "paid" ? null : formData.ticketPrice}
+              value={values.ticketType !== "Paid" ? null : formData.ticketPrice}
               onChange={(number) => {
                 handleInputChange("ticketPrice", number);
               }}

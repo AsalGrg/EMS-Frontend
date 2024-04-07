@@ -13,7 +13,7 @@ const Introduction = () => {
     <div class="introduction">
         
         <div className="leftIntro">
-          <h1 className="title">One platform for all <br/> your event  <br/> needs</h1>
+          <h1 className="title">One platform for all your event needs</h1>
           
           <div className="checkList">
             <div className="checkIcon"><img src="https://www.svgrepo.com/show/508287/check.svg" alt="" /></div>

@@ -113,7 +113,7 @@ const SearchResult = () => {
   }, [dispatch, state.filters]);
 
   return (
-    <main className="">
+    <main className="fonts">
       <SearchResultIntroduction />
 
       <div

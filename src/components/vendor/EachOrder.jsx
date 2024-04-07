@@ -1,13 +1,14 @@
 import React from 'react'
+import formatDate from '../utilities/formatDate'
 
-const EachOrder = () => {
+const EachOrder = ({order}) => {
   return (
     <tr className='eachEventRow border-bottom'>
-        <td>order idjjdjd</td>
-        <td>Asal Gurung</td>
-        <td>order idjjdjd</td>
-        <td>order idjjdjd</td>
-        <td>Mar 2, 2023</td>
+        <td>{order.orderId}</td>
+        <td>{order.purchasedBy}</td>
+        <td>{order.quantity}</td>
+        <td>Rs {order.price}</td>
+        <td>{formatDate(order.purchasedDate)}</td>
     </tr>
   )
 }

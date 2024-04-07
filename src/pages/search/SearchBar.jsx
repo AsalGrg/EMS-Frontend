@@ -22,7 +22,7 @@ const SearchBar = () => {
 
   return (
     <div
-      className="row justify-content-evenly"
+      className="row justify-content-evenly fonts"
       onClick={() => {
         handleSearchLocationBlur();
       }}

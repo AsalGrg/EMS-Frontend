@@ -4,45 +4,48 @@ import { Avatar, Button, Card, Image, Text, Title } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import { IconUserCheck } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
-import { followVendorState, unfollowVendorState, updateEntireVendorList } from "./VendorSnippetsSlice";
+import {
+  followVendorState,
+  unfollowVendorState,
+  updateEntireVendorList,
+} from "./VendorSnippetsSlice";
 import follow_vendor from "../../services/user/follow_vendor";
 import unfollow_vendor from "../../services/user/unfollow_vendor";
+import { useNavigate } from "react-router";
 
 const VendorSnippets = ({ vendors }) => {
-  const vendorsList= useSelector(state=> state.vendors);
-  const dispatch = useDispatch()
+  const vendorsList = useSelector((state) => state.vendors);
+  const dispatch = useDispatch();
 
-  console.log("From VendorSnippets")
-  console.log(vendors)
+  const naviagate = useNavigate();
 
-  console.log(vendorsList)
+  console.log("From VendorSnippets");
+  console.log(vendors);
+
+  console.log(vendorsList);
   useEffect(() => {
-    console.log("here")
-    dispatch(
-      updateEntireVendorList(vendors)
-    )
-  }, [])
-  
+    console.log("here");
+    dispatch(updateEntireVendorList(vendors));
+  }, []);
 
-  async function followVendor(vendorId){
-
-    const res= await follow_vendor(vendorId)
-    if(res.ok){
-      dispatch(followVendorState(vendorId))
+  async function followVendor(vendorId) {
+    const res = await follow_vendor(vendorId);
+    if (res.ok) {
+      dispatch(followVendorState(vendorId));
     }
   }
-  async function unFollowVendor(vendorId){
-    
-    const res= await unfollow_vendor(vendorId)
-    if(res.ok){
-      dispatch(unfollowVendorState(vendorId))
+  async function unFollowVendor(vendorId) {
+    const res = await unfollow_vendor(vendorId);
+    if (res.ok) {
+      dispatch(unfollowVendorState(vendorId));
     }
   }
 
   return (
-    <div className="vendorSnippets">
-      <Title className="highlights mb-3" order={2}>Vendors To Follow</Title>
-
+    <div className="mt-5">
+      <Title order={3} className="mb-3">
+        Vendors to follow
+      </Title>
       <Carousel
         withIndicators
         height={{ base: "100%", sm: "50%", md: "33.333333%" }}
@@ -53,7 +56,14 @@ const VendorSnippets = ({ vendors }) => {
       >
         {vendorsList.vendors.map((each) => (
           <Carousel.Slide>
-            <Card shadow="sm" padding="lg" radius="md" withBorder>
+            <Card
+              shadow="sm"
+              padding="lg"
+              radius="md"
+              className="cursor-pointer"
+              withBorder
+              onClick={() => naviagate("/user")}
+            >
               <div className="mb-3">
                 <Card.Section className="d-flex justify-content-center" mt="sm">
                   <Avatar src={each.vendorProfile} alt="it's me" size="lg" />
@@ -68,23 +78,40 @@ const VendorSnippets = ({ vendors }) => {
                 </Text>
               </div>
 
-              {!each.hasFollowed ? (
+              {each.owner ? (
                 <Button
                   variant="filled"
                   size="sm"
                   radius={"lg"}
-                  onClick={() => followVendor(each.vendorId)}
+                  onClick={() => {
+                    return naviagate("/user");
+                  }}
+                >
+                  Profile
+                </Button>
+              ) : !each.hasFollowed ? (
+                <Button
+                  variant="filled"
+                  size="sm"
+                  radius={"lg"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    followVendor(each.vendorId);
+                  }}
                 >
                   Follow
                 </Button>
               ) : (
                 <Button
-                  onClick={() => unFollowVendor(each.vendorId)}
                   variant="light"
                   size="sm"
                   radius={"lg"}
                   color="gray"
                   leftSection={<IconUserCheck size={20} className="fw-bold" />}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    unFollowVendor(each.vendorId);
+                  }}
                 >
                   Following
                 </Button>

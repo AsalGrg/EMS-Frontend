@@ -1,73 +1,103 @@
 import { Menu, Progress, Text, rem } from "@mantine/core";
 import { IconDotsVertical, IconSearch } from "@tabler/icons-react";
-import React from "react";
+import React, { useState } from "react";
 import EventActions from "./EventActions";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import formatDate from "../../utilities/formatDate";
+import formatTime from "../../utilities/formatTime";
+import capitalizeWord from "../../utilities/capitalizeWord";
 
-const EachEvent = () => {
+const EachEvent = ({ event }) => {
+  const formattedDate = formatDate(event.startDate);
+  const formattedTime = formatTime(event.startTime);
 
+  const fractionPercentage = (event.ticketsSold / event.ticketsForSale) * 100;
+  const percentCode = Math.round(fractionPercentage);
+
+  const [opened, setopened] = useState(false);
+
+  console.log(percentCode);
   const navigate = useNavigate();
 
-
   return (
-      <tr className="eachEventRow border-bottom"
-      onClick={()=>{
-        navigate("/vendor/myEvent")
+    <tr
+      className="eachEventRow border-bottom"
+      onClick={() => {
+        navigate(`/vendor/myEvent/${event.eventId}`);
       }}
-      >
-        <td>
-          <div className="d-flex gap-3">
-            <div className="text-center">
-              <Text c={"red"}>JAN</Text>
-              <Text c={"dimmed"} size="lg" fw={500}>
-                25
-              </Text>
-            </div>
-
-            <div className="eachEventRow-img-div">
-              <img
-                src="https://th.bing.com/th/id/OIP.ph8W0u1qki9jXXLIyKOgpwHaE8?rs=1&pid=ImgDetMain"
-                className="w-100 h-100"
-              />
-            </div>
-
-            <div className="d-flex justify-content-center flex-column gap-1">
-              <Text size="md">Event Name</Text>
-
-              <Text size="xs" c={"dimmed"} fw={500}>
-                Mon Jan 22,2024 at 7:00pm
-              </Text>
-            </div>
+    >
+      <td>
+        <div className="d-flex gap-3">
+          <div className="text-center">
+            <Text c={"red"}>{formattedDate.substring(0, 3)}</Text>
+            <Text c={"dimmed"} size="lg" fw={500}>
+              {formattedDate.substring(4, 6)}
+            </Text>
           </div>
-        </td>
 
-        <td>
-          <div className="d-flex flex-column gap-2">
-            <Text>0/0</Text>
-            <Progress size="md" value={0} />
+          <div className="eachEventRow-img-div">
+            <img
+              src={event.eventCoverImgUrl}
+              className="w-100 h-100"
+              style={{
+                objectFit: "cover",
+              }}
+            />
           </div>
-        </td>
 
-        <td>
-          <Text>Rs 0.00</Text>
-        </td>
+          <div className="d-flex justify-content-center flex-column gap-1">
+            <Text size="md">{event.eventName}</Text>
 
-        <td className="d-none d-xl-table-cell mt-3">Draft</td>
+            <Text size="xs" c={"dimmed"} fw={500}>
+              {formatDate(event.startDate)}, {formatTime(event.startTime)}
+            </Text>
+          </div>
+        </div>
+      </td>
 
-        <td>
-          <Menu shadow="md" width={200} position="left" withArrow>
-            <Menu.Target>
-              <IconDotsVertical className="" />
-            </Menu.Target>
+      <td>
+        <div className="d-flex flex-column gap-2">
+          <Text>
+            {event.ticketsSold}/{event.ticketsForSale}
+          </Text>
+          <Progress size="md" value={percentCode} color="green" />
+        </div>
+      </td>
 
-            <Menu.Dropdown>
-              <Menu.Label>Actions</Menu.Label>
+      <td>
+        <Text>Rs 0.00</Text>
+      </td>
 
-              <EventActions />
-            </Menu.Dropdown>
-          </Menu>
-        </td>
-      </tr>
+      <td className="d-none d-xl-table-cell mt-3">
+        {capitalizeWord(event.eventStatus)}
+      </td>
+
+      <td>
+        <Menu
+          shadow="md"
+          width={200}
+          position="left"
+          withArrow
+          opened={opened}
+          onChange={setopened}
+        >
+          <Menu.Target
+            onClick={(e) => {
+              e.stopPropagation();
+              setopened(prev=> !prev)
+            }}
+          >
+            <IconDotsVertical className="" />
+          </Menu.Target>
+
+          <Menu.Dropdown>
+            <Menu.Label>Actions</Menu.Label>
+
+            <EventActions event={event} />
+          </Menu.Dropdown>
+        </Menu>
+      </td>
+    </tr>
   );
 };
 

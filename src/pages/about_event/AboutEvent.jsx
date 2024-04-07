@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import EventCoverImage from "../../components/about_event/EventCoverImage";
 import "../../components/about_event/aboutEvent.css";
@@ -19,11 +19,17 @@ const AboutEvent = () => {
   const dispatch = useDispatch();
 
   const data = useLoaderData();
+
+  console.log(data)
   
-  dispatch(updateEntireStateAboutEvent(data))
+
+  useEffect(() => {
+    dispatch(updateEntireStateAboutEvent(data))
+  }, [])
+  
   
   return (
-    <>
+    <div className="fonts">
       {/* main section starts here */}
       <main className="container px-5">
         <EventCoverImage />
@@ -45,10 +51,11 @@ const AboutEvent = () => {
         </div>
       </main>
 
+
       {formData.hasStarring ? <StarringSection /> : null}
 
       <OrganizerDetailsSection />
-    </>
+    </div>
   );
 };
 

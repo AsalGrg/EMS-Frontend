@@ -26,7 +26,6 @@ const initialState = {
       id: 1,
       starringPhoto: "",
       starringName: "",
-      starringRole: "",
     },
   ],
 
@@ -52,6 +51,10 @@ const createEventSlice = createSlice({
   name: "createEvent",
   initialState,
   reducers: {
+
+    updateEntireCreateEventState: (action, state)=>{
+      return state.payload;
+    },
     updateCreateEventField: (state, action) => {
       const { field, value } = action.payload;
       state[field] = value;
@@ -117,6 +120,7 @@ const createEventSlice = createSlice({
 });
 
 export const {
+  updateEntireCreateEventState,
   updateCreateEventField,
   addStarringInput,
   removeEachStarring,
@@ -129,3 +133,5 @@ export const {
   decreaseActive,
 } = createEventSlice.actions;
 export default createEventSlice.reducer;
+
+

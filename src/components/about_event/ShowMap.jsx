@@ -9,7 +9,7 @@ const ShowMap = () => {
 
   const values = useSelector(state=> state.aboutEvent).physicalLocationDetails
   return (
-    <section className="mt-3">
+    <section className="mt-1">
       <Text
         size="sm"
         fw={500}

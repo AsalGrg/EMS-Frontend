@@ -12,11 +12,14 @@ import { createEventFourthPageSchema } from "../../../schemas";
 import create_event_fourth_page from "../../../services/create event/create_event_fourth_page";
 import { formDataLogicFourthPage } from "../../../pages/create event/formDataLogicFourthPage";
 import api_urls from "../../../services/api_urls";
+import { useNavigate } from "react-router";
 
 export const CreateEventFourth = () => {
   const formState = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
+
+  const naviagte = useNavigate();
   const updateState = (values) => {
     dispatch(
       updateCreateEventField({
@@ -53,6 +56,7 @@ export const CreateEventFourth = () => {
     if (res.ok) {
       var data = await res.text();
       console.log("Data" + data);
+      return naviagte('/vendor/events')
     }
   };
 

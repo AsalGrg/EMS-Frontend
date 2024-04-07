@@ -31,6 +31,7 @@ export const createEventSecondPageSchema = Yup.object({
   coverImage: Yup.mixed()
     .test("fileType", "Invalid file type", (value) => {
       if (!value) return true; // Allow empty value
+      if(typeof value ==='string') return true
       return ["image/jpeg", "image/png"].includes(value.type);
     })
     .required("Cover image is required"),
@@ -49,6 +50,7 @@ export const createEventSecondPageSchema = Yup.object({
             starringPhoto: Yup.mixed()
               .test("fileType", "Invalid file type", (value) => {
                 if (!value) return true; // Allow empty value
+                if(typeof value ==='string') return true
                 return ["image/jpeg", "image/png"].includes(value.type);
               })
               .required("Starring image is required"),

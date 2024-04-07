@@ -20,7 +20,21 @@ const api_urls= {
     getEventByPlace: (location)=> `${BASE_URL}/place/${location}`,
     getEventByCategory: (category, location)=> `${BASE_URL}/event/${category}/${location}`,
     followVendor :(vendorId)=> `${BASE_URL}/followVendor/${vendorId}`,
-    unfollowVendor :(vendorId)=> `${BASE_URL}/unfollowVendor/${vendorId}`
+    unfollowVendor :(vendorId)=> `${BASE_URL}/unfollowVendor/${vendorId}`,
+    likeEvent :(eventId)=> `${BASE_URL}/likeEvent/${eventId}`,
+    unlikeEvent: (eventId)=> `${BASE_URL}/unlikeEvent/${eventId}`,
+    getAllLikedEvents: ()=>`${BASE_URL}/getAllLikedEvents`,
+    getFollowings: ()=>`${BASE_URL}/following`,
+    getAllVendorEvents: ()=>`${BASE_URL}/getAllVendorEvents`,
+    getVendorEventInternalDetails : (eventId)=>`${BASE_URL}/getEventInternalDescription/${eventId}`,
+    addPromoCode : ()=>`${BASE_URL}/addPromoCode`,
+    applyPromoCode: (eventId, promoCode, total)=> `${BASE_URL}/applyPromoCode/${promoCode}/${eventId}/${total}`,
+    deactivatePromoCode: (promoCodeId)=> `${BASE_URL}/deactivatePromoCode/${promoCodeId}`,
+    activatePromoCode: (promoCodeId)=> `${BASE_URL}/activatePromoCode/${promoCodeId}`,
+    makePayment:()=> `${BASE_URL}/makePayment`,
+    getDraftDetails:(eventId)=> `${BASE_URL}/draft/event_id/${eventId}`,
+    getAllVendorEventsOrders: ()=> `${BASE_URL}/getAllVendorEventOrders`,
+    getEditDetails:(eventId)=> `${BASE_URL}/edit/event_id/${eventId}`,
 }
 
 export default api_urls

@@ -1,12 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = null;
+const initialState = {
+  "userSnippetDetails": {
+      "userCoverImage": null,
+      "userDp": "",
+      "username": "",
+      "userIntro": ""
+  },
+  "noOfEvents": 3,
+  "pastEvents": [],
+  "upcomingEvents": []
+};
 
 const userProfileSlice = createSlice({
   initialState,
   name: "userProfile",
   reducers: {
     updateEntireUserProfileState: (state, action) => {
+      console.log("profile updated")
       return action.payload;
     },
   },

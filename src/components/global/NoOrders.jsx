@@ -1,4 +1,4 @@
-import { Text, rem } from "@mantine/core";
+import { Text, Title, rem } from "@mantine/core";
 import { IconReceiptOff } from "@tabler/icons-react";
 import React from "react";
 
@@ -23,7 +23,7 @@ const NoOrders = ({ message }) => {
         <img src="/no-orders.png" />
       </div>
 
-      <Text size="lg" fw={600}>{message}</Text>
+      <Title order={3} c={'dimmed'} className="mt-2">{message}</Title>
     </div>
   );
 };

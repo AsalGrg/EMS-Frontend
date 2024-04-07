@@ -7,10 +7,18 @@ const MatchedLocation = () => {
   const { handleChange, values, errors } = useCreateEventContext();
 
   function updateSelectedPlace(selectedPlace) {
+
+    const selectedPlaceDetail={
+      lat: selectedPlace.lat,
+      lon: selectedPlace.lon,
+      display_name: selectedPlace.display_name,
+      country: selectedPlace.address.country
+    }
+
     handleChange({
       target: {
         name: "selectedPlace",
-        value: selectedPlace,
+        value: selectedPlaceDetail,
       },
     });
 
@@ -36,6 +44,7 @@ const MatchedLocation = () => {
           </ThemeIcon>
         }
       >
+        
         {values.matchedPlaces.map((eachLocation) => (
           <List.Item
             key={eachLocation.place_id}

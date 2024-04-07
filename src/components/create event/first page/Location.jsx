@@ -31,6 +31,8 @@ const Location = () => {
     const searchText = e.target.value;
     getPlaces(searchText)
       .then((places) => {
+
+        console.log("here")
         handleChange({
           target: {
             name: "matchedPlaces",
@@ -64,17 +66,17 @@ const Location = () => {
         <div
           className="border rounded col-md-2 col-10 me-md-3"
           style={
-            values.venueType === "venue" ? selectedOptionStyle : null
+            values.venueType === "Venue" ? selectedOptionStyle : null
           }
-          onClick={() => handleFormikChange("venueType", "venue")}
+          onClick={() => handleFormikChange("venueType", "Venue")}
         >
           <p className="">Venue</p>
         </div>
 
         <div
           className="col-10 col-md-2 rounded border"
-          style={values.venueType === "online" ? selectedOptionStyle : null}
-          onClick={() => handleFormikChange("venueType", "online")}
+          style={values.venueType === "Online" ? selectedOptionStyle : null}
+          onClick={() => handleFormikChange("venueType", "Online")}
         >
           <p>Online</p>
         </div>
@@ -86,7 +88,7 @@ const Location = () => {
         </Text>
       ) : null}
 
-      {values.venueType === "venue" ? (
+      {values.venueType === "Venue" ? (
         <TextInput
           leftSectionPointerEvents="none"
           label="Event Venue"
@@ -103,7 +105,7 @@ const Location = () => {
           placeholder="Location"
           error={touched.selectedPlace && errors.selectedPlace}
         />
-      ) : values.venueType === "online" ? (
+      ) : values.venueType === "Online" ? (
         <TextInput
           leftSectionPointerEvents="none"
           label="URL"
@@ -117,11 +119,11 @@ const Location = () => {
         />
       ) : null}
 
-      {values.venueType === "venue" && values.matchedPlaces != null ? (
-        <MatchedLocation />
+      {values.venueType === "Venue" && values.matchedPlaces != null ? (
+        <MatchedLocation/>
       ) : null}
 
-      {values.venueType === "venue" && values.selectedPlace != null ? (
+      {values.venueType === "Venue" && values.selectedPlace != null ? (
         <ShowMap/>
       ) : null}
     </>

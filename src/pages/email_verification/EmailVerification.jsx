@@ -39,7 +39,7 @@ const EmailVerification = () => {
     }
 
   return (
-    <div className='emailVerificationMainContainer'>
+    <div className='emailVerificationMainContainer fonts' >
 
         <div className="formContentInputs">
 

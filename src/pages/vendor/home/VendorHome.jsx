@@ -5,7 +5,7 @@ import ProfileSnippet from "../../../components/vendor/home/ProfileSnippet";
 
 const VendorHome = () => {
   return (
-    <>
+    <div>
       <div className="border py-4 px-4">
         <h1 className="display-6 fw-bold">Goodmorning, Asal</h1>
         <Text fs={"italic"} size="md">
@@ -16,7 +16,7 @@ const VendorHome = () => {
       <ProfileSnippet/>
 
       <EventCreationOptions/>
-    </>
+    </div>
   );
 };
 

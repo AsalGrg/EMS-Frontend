@@ -22,23 +22,27 @@ const MenuItems = () => {
         leftSection={
           <IconMessageCircle style={{ width: rem(14), height: rem(14) }} />
         }
+        onClick={()=> navigate('/vendor/events')}
       >
         Manage my events
       </Menu.Item>
       <Divider />
       <Menu.Item
         leftSection={<IconTicket style={{ width: rem(14), height: rem(14) }} />}
+        onClick={()=> navigate('/tickets')}
       >
         Tickets
       </Menu.Item>
       <Menu.Item
         leftSection={<IconHeart style={{ width: rem(14), height: rem(14) }} />}
+        onClick={()=> navigate('/liked/events')}
       >
         Liked
       </Menu.Item>
 
       <Menu.Item
         leftSection={<IconUserCheck style={{ width: rem(14), height: rem(14) }} />}
+        onClick={()=> navigate('/following')}
       >
         Following
       </Menu.Item>

@@ -28,13 +28,23 @@ const StarringImageDisplay = ({ eventStarring, handleChangeImage }) => {
   };
   return (
     <section className="d-flex">
-      <img
-        src={URL.createObjectURL(eventStarring.starringPhoto)}
-        className="starringImage border rounded cursor"
-        onClick={() => {
-          setBntHidden((prev) => !prev);
-        }}
-      />
+      {eventStarring.starringPhoto instanceof File ? (
+        <img
+          src={URL.createObjectURL(eventStarring.starringPhoto)}
+          className="starringImage border rounded cursor"
+          onClick={() => {
+            setBntHidden((prev) => !prev);
+          }}
+        />
+      ) : (
+        <img
+          src={eventStarring.starringPhoto}
+          className="starringImage border rounded cursor"
+          onClick={() => {
+            setBntHidden((prev) => !prev);
+          }}
+        />
+      )}
 
       <div className="ms-1" hidden={btnHidden}>
         <Button

@@ -9,7 +9,7 @@ export default function AdminLayout() {
   const [broken, setBroken] = useState(false);
 
   return (
-    <section className="admin-page-container">
+    <section className="admin-page-container fonts">
       <AdminNavbar />
       <div className="d-flex">
         <AdminSidebar

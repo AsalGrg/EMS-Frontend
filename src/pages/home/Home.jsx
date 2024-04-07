@@ -9,29 +9,17 @@ import EventCollection from "../../components/global/event collections/EventColl
 import { Text, Title } from "@mantine/core";
 
 const Home = () => {
-  const [trendingEvents, settrendingEvents] = useState([]);
-
-  const [upcomingEvents, setupcomingEvents] = useState([]);
-
-  const [eventsPerChoice, seteventsPerChoice] = useState([]);
 
   return (
-    <div className="container px-5">
+    <div className="container px-5 fonts">
       <Introduction />
       <SearchFilter />
-
-      {trendingEvents.length ? (
-        <EventSnippets events={trendingEvents} title="Trending Events" />
-      ) : null}
 
       <Categories />
 
       {/* events as per user location choice/ nepal, online */}
 
       <EventAsPerLocation />
-
-      {/* accessible only after the user is logged in */}
-      <VendorSnippets />
 
       {/* hand picked collections of events */}
       <section
@@ -54,8 +42,7 @@ const Home = () => {
         <EventCollection slideSize={{ base: "90%", md: "50%" }} />
       </section>
 
-      {/* events you may like */}
-      <EventSnippets events={eventsPerChoice} title="Based on your choice" />
+  
     </div>
   );
 };
