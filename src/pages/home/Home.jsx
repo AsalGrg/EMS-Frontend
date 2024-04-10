@@ -10,6 +10,8 @@ import { Text, Title } from "@mantine/core";
 
 const Home = () => {
 
+  document.title = 'Home . Prastuti';
+
   return (
     <div className="container px-5 fonts">
       <Introduction />

@@ -1,87 +1,89 @@
-import React, { useState } from 'react'
-import '../../components/login signup/LoginSignUp.css'
-import login_user from '../../services/login register/loginUser'
-import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useForm } from 'react-hook-form';
+import React, { useState } from "react";
+import "../../components/login signup/LoginSignUp.css";
+import login_user from "../../services/login register/loginUser";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useForm } from "react-hook-form";
+import { Button, Divider, Text, TextInput, Title } from "@mantine/core";
 const Login = () => {
+  const form = useForm();
 
-  const form= useForm()
+  const { register, handleSubmit, resetField, reset } = form;
 
-  const {register, handleSubmit, resetField, reset}= form
+  const navigate = useNavigate();
 
-  const navigate= useNavigate();
+  const handleLoginSubmit = async (formData, e) => {
+    reset(formData);
 
-  const handleLoginSubmit= async (formData, e)=>{
+    const res = await login_user(formData);
+    const response = await res.json();
 
-    reset(formData)
-
-    const res= await login_user(formData)
-    const response = await res.json()
-
-    if(!res.ok){
-
-      console.log(response)
-      toast.error(response.message)
+    if (!res.ok) {
+      console.log(response);
+      toast.error(response.message);
+    } else {
+      console.log(response);
+      localStorage.setItem("token", response.jwtToken);
+      toast.success(response.message);
+      setTimeout(() => navigate("/"), 2000);
     }
-
-    else{
-      console.log(response)
-      localStorage.setItem("token",response.jwtToken)
-      toast.success(response.message)
-      setTimeout(()=> navigate('/'), 2000)
-    }
-  }
+  };
   return (
-    <div className="l_s_mainContainer"
-    style={{backgroundImage: `url("https://eventmie-pro.classiebit.com/frontend-assets?path=img%2Fbg-pattern.png")`}}>
-      
-      <div className="formContent">
-        
-        <h1 className="highlights signHighlights">Login</h1>
 
-        <div className="formContentInputs">
+    <div
+      className="row w-100 flex-reverse"
+      style={{
+        height: "100vh",
+      }}
+    >
+      <div className="col-6 h-100 justify-content-center d-flex">
+        <div className="w-50 h-100 d-flex flex-column gap-4 justify-content-center">
+          <Title order={1} fw={800} className="mt-5">
+            Login
+          </Title>
 
-          <input type="text" placeholder='Email or username'className='formInput'
-          id='email'
-          {...register('email')}/>
-
-          <input type="password" placeholder='Password' className='formInput'
-          id='password'
-          {...register('password')}
-          />
-
-          <div className="checkBoxCon">
-            <input type="checkbox"/>
-            <p>Remember me</p>
+          <div className="d-flex flex-column gap-3 mt-3">
+            <TextInput
+              placeholder="Email address"
+              size="lg"
+              id="email"
+              {...register("email")}
+            />
+            <TextInput
+              placeholder="Password"
+              size="lg"
+              id="password"
+              {...register("password")}
+            />
+            <Button className="w-100" size="lg"
+            onClick={handleSubmit(handleLoginSubmit)}
+            >
+              Login
+            </Button>
           </div>
-    
 
-          <button className='universalButton loginSignupBtn' onClick={handleSubmit(handleLoginSubmit)}>Login</button>
-          <ToastContainer />
-
-          <div className="options">
-            <p>Forgot Password?</p>
-
-            <p>Register</p>
-          </div>
-
-
-          <div className="otherSignOptions">
-
-            <p>Or Continue with</p>
-
-            <div className="signMethodsOpt">
-              <button className='universalButton loginSignupBtn otherOptButtons'>Facebook</button>
-
-              <button className='universalButton loginSignupBtn otherOptButtons'>Google</button>
-            </div>
-          </div>
+          <Divider />
+          <Text>
+            Register new account?<span className="btn btn-link"
+            onClick={()=> navigate('/register')}
+            > Sign up</span>
+          </Text>
+          <ToastContainer/>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default Login
+      <div className="col-6 h-100">
+        <img
+          src="https://cdn.evbstatic.com/s3-build/perm_001/1bab52/django/images/login/lateral-image-1.jpg"
+          style={{
+            objectFit: "cover",
+          }}
+          className="h-100 w-100 img-fluid"
+        ></img>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

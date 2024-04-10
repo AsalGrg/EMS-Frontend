@@ -15,19 +15,21 @@ import { updateEntireStateAboutEvent } from "./AboutEventSlice";
 import get_event_data from "../../services/about_event/get_event_data";
 
 const AboutEvent = () => {
+
   const formData = useSelector((state) => state.aboutEvent);
   const dispatch = useDispatch();
 
+  document.title = formData.eventTitle;
   const data = useLoaderData();
 
-  console.log(data)
-  
+  console.log(data);
 
   useEffect(() => {
-    dispatch(updateEntireStateAboutEvent(data))
-  }, [])
-  
-  
+    if (data != null) {
+      dispatch(updateEntireStateAboutEvent(data));
+    }
+  }, []);
+
   return (
     <div className="fonts">
       {/* main section starts here */}
@@ -51,7 +53,6 @@ const AboutEvent = () => {
         </div>
       </main>
 
-
       {formData.hasStarring ? <StarringSection /> : null}
 
       <OrganizerDetailsSection />
@@ -63,18 +64,25 @@ export async function aboutEventLoader({ params }) {
   const pageAccessType = params.pageAccessType;
   const eventId = params.id;
 
-  let data;
+  let data=null;
   if (pageAccessType === "preview") {
     console.log("hehhehe");
     data = JSON.parse(localStorage.getItem("previewEventData"));
     // dispatch(updateEntireStateAboutEvent(jsonData));
-  }
-
-  else if(pageAccessType==="about"){
-    const res = await get_event_data(eventId);
-    if(res.ok){
+  } else if (pageAccessType === "about") {
+    const password =
+      localStorage.getItem("privateEvent") === eventId
+        ? localStorage.getItem("password")
+        : "";
+    const res = await get_event_data(eventId, password);
+    if (res.ok) {
       const fetchedData = await res.json();
-      data= fetchedData;
+      localStorage.removeItem("privateEvent");
+      localStorage.removeItem("password");
+      data = fetchedData;
+    } else if (res.status === 401) {
+      localStorage.setItem("privateEvent", eventId);
+      return (window.location.href = `/accessPassword`);
     }
   }
 

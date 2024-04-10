@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 // Import font awesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Badge } from "@mantine/core";
+import { Badge, Tooltip } from "@mantine/core";
 import {
   IconBarcode,
   IconBook,
@@ -20,7 +20,7 @@ import {
 const SidebarVendor = ({ collapsed, toggled, settoggled, setBroken }) => {
   return (
     <Sidebar
-      collapsed={collapsed}
+      collapsed
       toggled={toggled}
       onBackdropClick={() => settoggled(false)}
       onBreakPoint={setBroken}
@@ -30,14 +30,32 @@ const SidebarVendor = ({ collapsed, toggled, settoggled, setBroken }) => {
       <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <div style={{ flex: 1, marginBottom: "32px" }}>
           <Menu>
-            <MenuItem icon={<IconDashboard />}
-            component={<Link to="/vendor/home"/>}>Dashboard</MenuItem>
-            <MenuItem icon={<IconCalendar />}
-            component={<Link to="/vendor/events"/>}
-            >Events</MenuItem>
-            <MenuItem icon={<IconReceipt />}
-            component={<Link to="/vendor/orders"/>}
-            >Orders</MenuItem>
+            <Tooltip label="Dashboard" position="right">
+              <MenuItem
+                icon={<IconDashboard />}
+                component={<Link to="/vendor/home" />}
+              >
+                Dashboard
+              </MenuItem>
+            </Tooltip>
+
+            <Tooltip label="Events" position="right">
+              <MenuItem
+                icon={<IconCalendar />}
+                component={<Link to="/vendor/events" />}
+              >
+                Events
+              </MenuItem>
+            </Tooltip>
+
+            <Tooltip label="Orders" position="right">
+              <MenuItem
+                icon={<IconReceipt />}
+                component={<Link to="/vendor/orders" />}
+              >
+                Orders
+              </MenuItem>
+            </Tooltip>
           </Menu>
         </div>
       </div>

@@ -31,7 +31,8 @@ const EventAsPerLocation = () => {
   }, [location]);
 
   return (
-    <section className="mt-5">
+    <section className="mt-5"
+    >
       <div className="d-flex align-items-center gap-3">
         <Text size="xl" fw="bold">
           Browsing Events in

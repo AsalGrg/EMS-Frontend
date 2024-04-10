@@ -16,6 +16,7 @@ import { useLoaderData, useParams } from "react-router";
 import { updateEntireCreateEventState } from "./CreateEventSlice";
 import formatTime from "../../components/utilities/formatTime";
 import get_event_edit_details from "../../services/user/get_event_edit_details";
+import capitalizeWord from "../../components/utilities/capitalizeWord";
 
 const CreateEvent = () => {
   const formData = useSelector((state) => state.createEvent);
@@ -24,6 +25,7 @@ const CreateEvent = () => {
   const loaderData = useLoaderData();
   const { eventId, creationType } = useParams();
 
+  document.title= capitalizeWord(creationType)+' Event'
   useEffect(() => {
     if (creationType !== "create") {
       console.log(loaderData);

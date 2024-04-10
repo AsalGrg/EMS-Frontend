@@ -3,10 +3,13 @@ import UserImages from "./UserImages";
 import { Button, Text } from "@mantine/core";
 import UserActionButtons from "../../utilities/userActionButtons";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const IntroSection = () => {
   const userData = useSelector((state) => state.userProfile);
   const [isFollowing, setisFollowing] = useState(false);
+
+  const naviagte = useNavigate();
 
   function handleFollowingBtn() {
     setisFollowing((prev) => !prev);
@@ -24,10 +27,6 @@ const IntroSection = () => {
         <div className="col-10 col-md-6 text-center">
           <Text size="xl" fw={700}>
             {userData.userSnippetDetails.username}
-          </Text>
-
-          <Text size="md" fw={500}>
-            {userData.userSnippetDetails.userIntro}
           </Text>
         </div>
 
@@ -53,10 +52,20 @@ const IntroSection = () => {
               </div>
             </div>
 
-            <UserActionButtons
-              isFollowing={isFollowing}
-              followBtnHandler={handleFollowingBtn}
-            />
+            {!userData.userProfile && (
+              <UserActionButtons
+                isFollowing={isFollowing}
+                followBtnHandler={handleFollowingBtn}
+              />
+            )}
+
+            {userData.userProfile && (
+              <Button variant="filled"
+              onClick={()=> naviagte('/editProfile')}
+              >
+                Edit profile
+              </Button>
+            )}
           </div>
         </div>
       </div>

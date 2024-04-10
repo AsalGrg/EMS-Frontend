@@ -22,7 +22,7 @@ const UserImages = () => {
         }}
       ></img>
       <Avatar
-        src={userData.userSnippetDetails.userDp}
+        src={userData.userSnippetDetails.profileDp}
         alt= {userData.userSnippetDetails.username}
         color="red"
         size={"xl"}

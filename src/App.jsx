@@ -13,7 +13,9 @@ import Register from "./pages/signup/Register";
 import SearchBar from "./pages/search/SearchBar";
 import Category from "./pages/category/Category";
 import EmailVerification from "./pages/email_verification/EmailVerification";
-import CreateEvent, { createEventLoader } from "./pages/create event/CreateEvent";
+import CreateEvent, {
+  createEventLoader,
+} from "./pages/create event/CreateEvent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
 import AboutEvent, { aboutEventLoader } from "./pages/about_event/AboutEvent";
@@ -40,6 +42,13 @@ import VendorOrder from "./pages/vendor/orders/VendorOrder";
 import UserPersonalPagesLayout from "./layout/UserPersonalPagesLayout";
 import LikedEvent from "./pages/liked events/LikedEvent";
 import Following from "./pages/following/Following";
+import EmptyLayout from "./layout/EmptyLayout";
+import AccessPassword from "./pages/access password/AccessPassword";
+import Collection, {
+  collectionLoader,
+} from "./pages/admin/collection/Collection";
+import EditProfile from "./pages/edit profile/EditProfile";
+import EventRequests, { eventRequestsLoader } from "./pages/admin/event requests/EventRequests";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,8 +62,11 @@ const App = () => {
           <Route exact path="register" element={<Register />} />
           <Route exact path="verify-email" element={<EmailVerification />} />
           <Route exact path="search" element={<SearchBar />} />
-          <Route exact path="/c/:creationType/:eventId" element={<CreateEvent />} 
-          loader={createEventLoader}
+          <Route
+            exact
+            path="/c/:creationType/:eventId"
+            element={<CreateEvent />}
+            loader={createEventLoader}
           />
           <Route
             exact
@@ -62,6 +74,10 @@ const App = () => {
             element={<AboutEvent />}
             loader={aboutEventLoader}
           />
+        </Route>
+
+        <Route element={<EmptyLayout />}>
+          <Route exact path="accessPassword" element={<AccessPassword />} />
         </Route>
 
         {/* for the users */}
@@ -82,7 +98,7 @@ const App = () => {
           />
           <Route
             exact
-            path="user"
+            path="user/profile/:user"
             element={<UserProfile />}
             loader={userProfileLoader}
           />
@@ -93,6 +109,8 @@ const App = () => {
             element={<UserProfile />}
             loader={userProfileLoader}
           />
+
+          <Route exact path="editProfile" element={<EditProfile />} />
         </Route>
 
         <Route element={<UserPersonalPagesLayout />}>
@@ -103,6 +121,19 @@ const App = () => {
         {/* Admin Routes */}
         <Route element={<AdminLayout />} path="admin">
           <Route exact path="home" element={<AdminHome />} />
+          <Route
+            exact
+            path="collections"
+            element={<Collection />}
+            loader={collectionLoader}
+          />
+
+          <Route
+            exact
+            path="eventRequests"
+            element={<EventRequests />}
+            loader={eventRequestsLoader}
+          />
         </Route>
 
         {/* vendor routes */}

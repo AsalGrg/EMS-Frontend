@@ -62,7 +62,7 @@ const VendorSnippets = ({ vendors }) => {
               radius="md"
               className="cursor-pointer"
               withBorder
-              onClick={() => naviagate("/user")}
+              onClick={() => naviagate(`/user/profile/${each.vendorId}`)}
             >
               <div className="mb-3">
                 <Card.Section className="d-flex justify-content-center" mt="sm">
@@ -84,7 +84,7 @@ const VendorSnippets = ({ vendors }) => {
                   size="sm"
                   radius={"lg"}
                   onClick={() => {
-                    return naviagate("/user");
+                    return naviagate("/user/profile/me");
                   }}
                 >
                   Profile

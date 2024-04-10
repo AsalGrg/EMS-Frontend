@@ -15,6 +15,7 @@ import getPlaces from "../../components/utilities/places";
 import get_category_events from "../../services/get_category_events";
 import get_event_by_location from "../../services/user/get_event_by_location";
 import capitalizeWord from "../../components/utilities/capitalizeWord";
+import quick_search_event from "../../services/search event/quick_search_event";
 
 const SearchResult = () => {
   const { eventName, location } = useParams();
@@ -49,20 +50,21 @@ const SearchResult = () => {
   }, []);
 
   function updateInitialState() {
-    dispatch(
-      updateSearchEventState({
-        field: "data",
-        value: fetchedData,
-      })
-    );
+    if (fetchedData !== null) {
+      dispatch(
+        updateSearchEventState({
+          field: "data",
+          value: fetchedData,
+        })
+      );
 
-
-    dispatch(
-      updateSearchEventState({
-        field: "filteredData",
-        value: fetchedData,
-      })
-    );
+      dispatch(
+        updateSearchEventState({
+          field: "filteredData",
+          value: fetchedData,
+        })
+      );
+    }
   }
 
   function checkForFilters() {
@@ -106,7 +108,11 @@ const SearchResult = () => {
       categoryName = parts[0];
     }
 
-    if (state.filters.categoryType === null && categoryName && capitalizeWord(categoryName)!=="All") {
+    if (
+      state.filters.categoryType === null &&
+      categoryName &&
+      capitalizeWord(categoryName) !== "All"
+    ) {
       window.location.href = `/search/All--events--all/${location}`;
     }
     dispatch(applyFilters());
@@ -148,7 +154,7 @@ export async function searchResultLoader({ params }) {
   const eventName = params.eventName;
   const location = params.location;
 
-  let fetchedData;
+  let fetchedData=null;
 
   if (eventName.includes("--")) {
     const parts = eventName.split("--");
@@ -158,7 +164,7 @@ export async function searchResultLoader({ params }) {
       const res = await get_event_by_location(location);
       if (res.ok) {
         const data = await res.json();
-        fetchedData = data;
+        fetchedData = data.events;
       }
     } else {
       const res = await get_category_events(categoryName, location);
@@ -169,13 +175,22 @@ export async function searchResultLoader({ params }) {
     }
     console.log("loader checks");
   } else {
-    const res = await search_event(eventName, location);
+    let res;
+
+    if (location === "online") {
+      res = await search_event(eventName, location);
+    } else {
+      res = await quick_search_event(eventName);
+    }
     if (res.ok) {
       const data = await res.json();
+      console.log("Datatata");
+      console.log(data);
       fetchedData = data;
     }
   }
 
+  console.log(fetchedData)
   return fetchedData;
 }
 

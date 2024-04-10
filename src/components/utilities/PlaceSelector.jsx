@@ -32,7 +32,7 @@ const PlaceSelector = ({ setLocation }) => {
       console.log("online");
       changedValue = "Online Events";
       setvaluesToBeShown(changedValue);
-      setLocation(changedValue);
+      setLocation('online');
     } else if (menuFrom === "search") {
       console.log("search");
       setisSearching(true);

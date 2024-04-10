@@ -11,9 +11,13 @@ import { filterCategoryEventsByDate, undoCategoryEventsDateFilter, updateEntireC
 import { isAfter } from "date-fns";
 import { Title } from "@mantine/core";
 import NoEventsBanner from "../../components/global/NoEventsBanner";
+import capitalizeWord from "../../components/utilities/capitalizeWord";
 
 const Category = () => {
+
   const { catName } = useParams();
+
+  document.title = capitalizeWord(catName);
   const dispatch = useDispatch();
   const formData = useSelector(state=> state.category)
   const [location, setLocation] = useState();

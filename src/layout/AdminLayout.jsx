@@ -10,7 +10,14 @@ export default function AdminLayout() {
 
   return (
     <section className="admin-page-container fonts">
-      <AdminNavbar />
+      <AdminNavbar
+        broken={broken}
+        setcollapsed={setcollapsed}
+        collapsed={collapsed}
+        setBroken={setBroken}
+        settoggled={settoggled}
+        toggled={toggled}
+      />
       <div className="d-flex">
         <AdminSidebar
           collapsed={collapsed}

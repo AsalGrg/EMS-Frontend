@@ -48,7 +48,7 @@ const AdminNavbar = ({collapsed, setBroken, settoggled, toggled, setcollapsed, b
                 <IconMenu2 />
               </button>
             )}
-
+{/* 
             {!broken && (
               <button
                 className="iconHighlight rounded"
@@ -58,7 +58,7 @@ const AdminNavbar = ({collapsed, setBroken, settoggled, toggled, setcollapsed, b
               >
                 <IconMenu2 />
               </button>
-            )}
+            )} */}
         </div>
       </div>
 

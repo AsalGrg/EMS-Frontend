@@ -1,21 +1,37 @@
 import { Input, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import React from "react";
+import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const navigate = useNavigate();
+  const [searchKeyword, setsearchKeyword] = useState("");
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      // Call your function here
+      // For example, handleSearch()
+      handleSearch();
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchKeyword.length > 0) {
+      // Your search logic here
+      window.location.href = `/search/${searchKeyword}/all`;
+    }
+  };
 
   return (
     <>
       <Input
-
-      className="d-lg-block d-none"
+        className="d-lg-block d-none"
         style={{
           height: "40px",
           width: "250px",
         }}
-
+        value={searchKeyword}
+        onChange={(e)=> setsearchKeyword(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Search Events"
         leftSection={
           <IconSearch

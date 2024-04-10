@@ -4,11 +4,15 @@ import { Badge, Tabs, rem } from "@mantine/core";
 import AboutTab from "../../components/user_profile/user_details/about_tab/AboutTab";
 import UpcomingEventsTab from "../../components/user_profile/user_details/events_Tab/UpcomingEventsTab";
 import PastEventsTab from "../../components/user_profile/user_details/events_Tab/PastEventsTab";
-import { get_user_details } from "../../services/user details/getUserDetails";
+import {
+  get_user_details,
+  get_user_details_by_userId,
+} from "../../services/user details/getUserDetails";
 import { useLoaderData, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { updateEntireUserProfileState } from "./UserProfileSlice";
-import { store } from "../../app/store";
+
+
 const UserProfile = () => {
   const navigate = useNavigate();
 
@@ -17,9 +21,11 @@ const UserProfile = () => {
 
   const data = useLoaderData();
   useEffect(() => {
-    dispatch(updateEntireUserProfileState(data))
-  }, [])
-  
+    if (data != null) {
+      dispatch(updateEntireUserProfileState(data));
+    }
+  }, []);
+
   return (
     <main className="w-100 fonts">
       <IntroSection />
@@ -52,14 +58,26 @@ const UserProfile = () => {
   );
 };
 
-export async function userProfileLoader() {
-  const res = await get_user_details();
+export async function userProfileLoader({ params }) {
+  const { user } = params;
 
-  if (res.status == 200) {
-    console.log(res.data)
-    return res.data;
+  let data;
+
+  if (user === "me") {
+    const res = await get_user_details();
+
+    if (res.status == 200) {
+      data = res.data;
+    } else {
+      throw new Error("Error fetching data");
+    }
   } else {
-    throw new Error("Error fetching data");
+    const res = await get_user_details_by_userId(user);
+    if (res.ok) {
+      data = await res.json();
+    }
   }
+
+  return data;
 }
 export default UserProfile;

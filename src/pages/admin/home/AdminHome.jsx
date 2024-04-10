@@ -3,7 +3,12 @@ import React from "react";
 import EventCreationOptions from "../../../components/vendor/home/EventCreationOptions";
 
 const AdminHome = () => {
+
+  document.title = 'Home-Admin';
+
+
   return (
+    
     <div className="fonts">
       <div className="border py-4 px-4">
         <h1 className="display-6 fw-bold">Goodmorning, Asal</h1>

@@ -12,6 +12,7 @@ const EmailVerification = () => {
 
     const userEmail= sessionStorage.getItem('userEmail')
 
+    
     const navigate = useNavigate()
 
     const handleFormSubmit =async (e)=>{

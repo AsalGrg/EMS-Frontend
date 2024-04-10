@@ -5,7 +5,8 @@ export default function EmptyLayout() {
 
 
   return (
-    <div className='fonts'>
+    <div className='fonts'
+    >
         <Outlet/>
     </div>
   )

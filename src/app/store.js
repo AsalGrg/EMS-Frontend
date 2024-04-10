@@ -7,6 +7,8 @@ import aboutEventReducer from "../pages/about_event/AboutEventSlice";
 import userProfileReducer from "../pages/user_profile/UserProfileSlice";
 import vendorsReducer from "../components/global/VendorSnippetsSlice";
 import eventDescriptionReducer from "../pages/vendor/event_description/EventDescriptionSlice";
+import collectionReducer from "../pages/admin/collection/CollectionSlice";
+import eventRequestsReducer from "../pages/admin/event requests/EventRequestsSlice";
 export const store = configureStore({
   reducer: {
     createEvent: createEventReducer,
@@ -16,6 +18,8 @@ export const store = configureStore({
     aboutEvent: aboutEventReducer,
     userProfile: userProfileReducer,
     vendors: vendorsReducer,
-    eventDescription: eventDescriptionReducer
+    eventDescription: eventDescriptionReducer,
+    collection: collectionReducer,
+    eventRequests: eventRequestsReducer
   },
 });

@@ -16,6 +16,7 @@ const api_urls= {
     saveEventFourthPageDraft: ()=> `${BASE_URL}/draftFourthPageDetails`,
     createEvent: ()=> `${BASE_URL}/addEvent`,
     searchEvent: (eventTitle, location)=> `${BASE_URL}/search/${eventTitle}/${location}`,
+    quickSearchEvent: (eventTitle)=> `${BASE_URL}/search/quickSearch/${eventTitle}`,
     getAboutEvent: (eventId)=> `${BASE_URL}/event_id/${eventId}`,
     getEventByPlace: (location)=> `${BASE_URL}/place/${location}`,
     getEventByCategory: (category, location)=> `${BASE_URL}/event/${category}/${location}`,
@@ -35,6 +36,13 @@ const api_urls= {
     getDraftDetails:(eventId)=> `${BASE_URL}/draft/event_id/${eventId}`,
     getAllVendorEventsOrders: ()=> `${BASE_URL}/getAllVendorEventOrders`,
     getEditDetails:(eventId)=> `${BASE_URL}/edit/event_id/${eventId}`,
+    addCollection: ()=>`${BASE_URL}/addCollection`,
+    getAllCollections: ()=>`${BASE_URL}/getAllCollections`,
+    getAllEditProfileDetails:  ()=>`${BASE_URL}/getEditProfileDetails`,
+    saveEditProfileDetails:  ()=>`${BASE_URL}/editProfile`,
+    getUserProfileDetails : (userId)=> `${BASE_URL}/user/profile/${userId}`,
+    getAllEventRequests: ()=> `${BASE_URL}/getAllEventRequests`,
+    updateEventRequest: (eventId, action)=> `${BASE_URL}/updateEventRequest/${eventId}/${action}`,
 }
 
 export default api_urls
