@@ -127,11 +127,15 @@ const CreateEventThird = () => {
               handleSubmit={formik.handleSubmit}
               handlePreviousBtn= {()=>handlePrevBtn(formik.values)}
 
-              handleDraft={() => {
-                create_event_third(
+              handleDraft={async () => {
+                const res = await create_event_third(
                   formDataLogicThirdPage(formik.values),
                   api_urls.saveEventThirdPageDraft()
                 );
+
+                if(res.ok){
+                  return navigate('/vendor/events')
+                }
               }}
             />
           </CreateEventContextWrapper>

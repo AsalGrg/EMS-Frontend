@@ -10,9 +10,8 @@ const OtpInputSection = ({otp, setOtp}) => {
             height:'50px',
             width: '50px',
             borderRadius: '5px',
-            border: '2px solid #FFF',
-            backgroundColor: '#FFFFFF33',
-            color: '#FFF',
+            border: '2px solid grey',
+            // color: '#FFF',
             fontSize: '20px'
 
         }}

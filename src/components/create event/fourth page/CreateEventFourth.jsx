@@ -19,7 +19,7 @@ export const CreateEventFourth = () => {
   const dispatch = useDispatch();
 
 
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const updateState = (values) => {
     dispatch(
       updateCreateEventField({
@@ -56,7 +56,7 @@ export const CreateEventFourth = () => {
     if (res.ok) {
       var data = await res.text();
       console.log("Data" + data);
-      return naviagte('/vendor/events')
+      return navigate('/vendor/events')
     }
   };
 
@@ -191,11 +191,16 @@ export const CreateEventFourth = () => {
             handleSubmit={formik.handleSubmit}
             handlePreviousBtn= {()=>handlePrevBtn(formik.values)}
             handleDraft={async () => {
-              await create_event_second_page(
+              const res = await create_event_second_page(
                 formDataLogicFourthPage(formik.values),
                 api_urls.saveEventFourthPageDraft()
               );
+
+              if(res.ok){
+                return navigate('/vendor/events')
+              }
             }}
+            
           />
         </CreateEventContextWrapper>
       )}

@@ -6,14 +6,14 @@ import {
   increaseActive,
 } from "../../pages/create event/CreateEventSlice";
 import { useCreateEventContext } from "../../context/CreateEventContext";
+import { Tooltip } from "@mantine/core";
 
-const FormButtons = ({ handleSubmit, handleDraft, handlePreviousBtn}) => {
+const FormButtons = ({ handleSubmit, handleDraft, handlePreviousBtn }) => {
   const { active } = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
-  
   return (
-    <div className="d-flex justify-content-between mt-4">
+    <div className="d-flex justify-content-between mt-4 mb-5">
       <button
         disabled={active === 0}
         className="signButton"
@@ -24,21 +24,20 @@ const FormButtons = ({ handleSubmit, handleDraft, handlePreviousBtn}) => {
 
       <div className="d-flex gap-2">
         {active > 0 ? (
-          <button
-            className="signButton"
-            type="submit"
-            onClick={handleDraft}
-          >
-            <i class="fa-regular fa-pen-to-square"></i>
-          </button>
+          <Tooltip label='Save draft'>
+            <button className="signButton" type="submit" onClick={handleDraft}>
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+          </Tooltip>
         ) : null}
 
         <button
           className="signButton"
           type="submit"
           onClick={(e) => {
+            console.log(handleSubmit);
             handleSubmit(e);
-            setSubmitType("next");
+            // setSubmitType("next");
           }}
         >
           {active !== 3 ? "Next" : "Publish"}

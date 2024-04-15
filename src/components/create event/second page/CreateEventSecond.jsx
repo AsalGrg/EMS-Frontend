@@ -17,9 +17,12 @@ import CreateEventContextWrapper from "../../../context/CreateEventContext";
 import create_event_second_page from "../../../services/create event/create_event_second_page";
 import formDataLogicSecondPage from "../../../pages/create event/formDataLogicSecondPage";
 import api_urls from "../../../services/api_urls";
+import { useNavigate } from "react-router";
 
 const CreateEventSecond = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const formState = useSelector((state) => state.createEvent);
 
@@ -111,11 +114,15 @@ const CreateEventSecond = () => {
             <FormButtons
               handleSubmit={formik.handleSubmit}
               handlePreviousBtn= {()=>handlePrevBtn(formik.values)}
-              handleDraft={() => {
-                create_event_second_page(
+              handleDraft={async () => {
+                const res= await create_event_second_page(
                   formDataLogicSecondPage(formik.values),
                   api_urls.saveEventSecondPageDraft()
                 );
+
+                if(res.ok){
+                  return navigate('/vendor/events')
+                }
               }}
             />
           </CreateEventContextWrapper>

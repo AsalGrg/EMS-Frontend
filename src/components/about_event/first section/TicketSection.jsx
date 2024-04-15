@@ -5,13 +5,15 @@ import { IconHeart, IconHeartFilled, IconShare2 } from "@tabler/icons-react";
 import { Button, Tooltip } from "@mantine/core";
 import { useDispatch, useSelector } from "react-redux";
 import like_event from "../../../services/user/like_event";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { likeEventState, unlikeEventState } from "../../../pages/about_event/AboutEventSlice";
 import unlike_event from "../../../services/user/unlike_event";
 import make_payment from "../../../services/user/make_payment";
+import { ToastContainer, toast } from "react-toastify";
 
 const TicketSection = () => {
 
+  const navigate = useNavigate();
   const {id}= useParams();
 
   const [opened, { open, close }] = useDisclosure(false);
@@ -43,7 +45,11 @@ const TicketSection = () => {
 
     if(res.ok){
       const data = await res.text();
+      close();
+      toast.success('Ticket Payment successful');
       console.log(data) 
+    }else if(!res.ok){
+      return navigate('/login')
     }
   }
   return (
@@ -90,6 +96,8 @@ const TicketSection = () => {
         >
           Buy Tickets
         </Button>
+
+        <ToastContainer/>
       </div>
     </section>
   );

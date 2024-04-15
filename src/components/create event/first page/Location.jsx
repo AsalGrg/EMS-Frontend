@@ -64,21 +64,21 @@ const Location = () => {
 
       <div className="row g-1 mb-2">
         <div
-          className="border rounded col-md-2 col-10 me-md-3"
+          className="border rounded col-md-2 col-10 me-md-3 text-center cursor-pointer"
           style={
             values.venueType === "Venue" ? selectedOptionStyle : null
           }
           onClick={() => handleFormikChange("venueType", "Venue")}
         >
-          <p className="">Venue</p>
+          <p className=" mt-3">Venue</p>
         </div>
 
         <div
-          className="col-10 col-md-2 rounded border"
+          className="col-10 col-md-2 rounded border text-center cursor-pointer"
           style={values.venueType === "Online" ? selectedOptionStyle : null}
           onClick={() => handleFormikChange("venueType", "Online")}
         >
-          <p>Online</p>
+          <p className="mt-3">Online</p>
         </div>
       </div>
 

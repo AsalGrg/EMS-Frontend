@@ -24,18 +24,18 @@ const TicketTypeFilter = () => {
       <div className="d-grid gap-3 mt-2">
         <Checkbox
           label="Paid"
-          checked={filterData.ticketType === "paid"}
-          onClick={() => updateFilter("ticketType", "paid")}
+          checked={filterData.ticketType === "Paid"}
+          onClick={() => updateFilter("ticketType", "Paid")}
         />
         <Checkbox
           label="Free"
-          checked={filterData.ticketType === "free"}
-          onClick={() => updateFilter("ticketType", "free")}
+          checked={filterData.ticketType === "Free"}
+          onClick={() => updateFilter("ticketType", "Free")}
         />
         <Checkbox
           label="Donation"
-          checked={filterData.ticketType === "donation"}
-          onClick={() => updateFilter("ticketType", "donation")}
+          checked={filterData.ticketType === "Donation"}
+          onClick={() => updateFilter("ticketType", "Donation")}
         />
       </div>
     </div>

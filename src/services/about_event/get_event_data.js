@@ -3,8 +3,9 @@ import api_urls from "../api_urls";
 export default async function get_event_data(eventId, accessPassword) {
   const api_url = api_urls.getAboutEvent(eventId);
 
-  const token = "Bearer " + localStorage.getItem("token");
-
+  const tokenLocal= localStorage.getItem("token");
+  const token = tokenLocal?"Bearer " +tokenLocal: null; 
+  
   const form = new FormData();
   if (accessPassword != undefined && accessPassword.length >0) {
     

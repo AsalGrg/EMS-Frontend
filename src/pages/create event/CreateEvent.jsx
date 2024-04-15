@@ -30,6 +30,8 @@ const CreateEvent = () => {
     if (creationType !== "create") {
       console.log(loaderData);
       dispatch(updateEntireCreateEventState(loaderData));
+    }else{
+      console.log('yehh ley')
     }
   }, []);
 
@@ -123,7 +125,6 @@ export async function createEventLoader({ params }) {
     res = await get_event_draft_details(eventId);
   } else if (creationType === "edit") {
     res = await get_event_edit_details(eventId);
-    console.log("ejjjjjj")
   }
 
   if (res.ok) {

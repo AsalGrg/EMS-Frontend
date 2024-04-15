@@ -16,15 +16,14 @@ const Navbar = () => {
     const fetchData = async () => {
       const res = await get_user_data();
 
-      if (res.status=200) {
+      if ((res.status = 200)) {
         setLoggedData(res.data);
-        console.log(res.data)
+        console.log(res.data);
       }
     };
 
     fetchData();
   }, []);
-
 
   return (
     <nav
@@ -33,14 +32,15 @@ const Navbar = () => {
         height: "80px",
       }}
     >
-      <Navlinks />
+      <Navlinks  loggedData={loggedData}/>
 
-      <div className="col-3 col-lg-2 h-100 d-flex py-3 justify-content-center gap-1 gap-md-3 ms-5 ms-md-0">
+      <div className="col-3 col-lg-2 h-100 d-flex py-3 justify-content-center gap-1 gap-md-3 ms-5 ms-md-0 align-items-center">
         <BurgerButton />
         <img
-          src="https://th.bing.com/th/id/R.4615ad132fd8f23436d7e2baa6680991?rik=W9ZRWW7V4tHOmQ&pid=ImgRaw&r=0"
+          src="/src/assets/logo.png"
           style={{
-            height: "100%",
+            height: "80px",
+            width: "190px",
           }}
           alt=""
         />
@@ -50,7 +50,7 @@ const Navbar = () => {
         <SearchBar />
 
         {loggedData ? (
-          <LoggedInState userData={loggedData}/>
+          <LoggedInState userData={loggedData} />
         ) : (
           <>
             <Text size="md" fw={500} className="d-none d-lg-block">

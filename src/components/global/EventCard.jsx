@@ -4,19 +4,19 @@ import React from "react";
 import formatDate from "../utilities/formatDate";
 import formatTime from "../utilities/formatTime";
 import { useNavigate } from "react-router";
+import { FaRegUser } from "react-icons/fa";
 
 const EventCard = ({ event }) => {
-
   const naviagte = useNavigate();
   return (
-    <Card shadow="sm" radius="md" withBorder
-    className="cursor-pointer"
-
-    onClick={()=> naviagte(`/event/about/${event.eventId}`)}
+    <Card
+      radius="lg"
+      className="cursor-pointer hoverShadow"
+      onClick={() => naviagte(`/event/about/${event.eventId}`)}
     >
-      
-      <Card.Section style={{ height: "180px", overflow: "hidden" }}
-      className="bg-primary"
+      <Card.Section
+        style={{ height: "160px", overflow: "hidden" }}
+        className="bg-primary"
       >
         {" "}
         {/* Set a fixed height for image container */}
@@ -27,24 +27,25 @@ const EventCard = ({ event }) => {
         />
       </Card.Section>
 
-      <Text fw={600} mt="sm" size="lg">
+      <Text fw={500} mt="sm" size="lg">
         {event.eventName}
       </Text>
 
-      <Text size="md" fw={500} c="dimmed" mt="sm">
+      <Text size="sm" fw={500} c="dimmed">
         {formatDate(event.startDate) + " . " + formatTime(event.startTime)}
       </Text>
 
-      <Text size="md" fw={500} c="red" mt="sm">
+      <Text size="sm" fw={500} c="red" className="mt-1">
         {event.ticketType === "Free" ? "Free" : `From Rs ${event.ticketPrice}`}
       </Text>
 
-      <Text size="md" fw={500} mt="sm">
+      <Text size="sm" fw={500} className="mt-1">
         {event.organizerName}
       </Text>
 
-      <Text size="md" mt="sm" fw={500} right={<IconUser />}>
-        From $0.00
+      <Text size="sm" fw={500} className="d-flex mt-1">
+      <FaRegUser className="me-2"/>
+        {event.organizerFollowers} Followers
       </Text>
     </Card>
   );

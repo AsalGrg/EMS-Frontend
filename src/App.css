@@ -5,6 +5,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.eventCard{
+  transition: 0.2s all ease-in;
+}
+.eventCard:hover{
+
+}
+
 
 :root {
   --primary-color: #175bda;
@@ -134,7 +141,7 @@
   border: none;
   border-bottom: 2px solid #EDEDF1;
   color: #3659E3;
-  font-size: x-large;
+  font-size:19px;
   font-weight: bold;
   width: fit-content;
   max-width: 170px;

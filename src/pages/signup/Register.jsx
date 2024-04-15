@@ -75,6 +75,7 @@ const Register = () => {
               {...register("email")}
             />
             <TextInput
+              type="password"
               placeholder="Password"
               size="lg"
               id="password"
@@ -85,15 +86,17 @@ const Register = () => {
               size="lg"
               onClick={handleSubmit(handleFormSubmit)}
             >
-              Login
+              Register
             </Button>
           </div>
 
           <Divider />
           <Text>
-            Already have account?<span className="btn btn-link"
-            onClick={()=> navigate('/login')}
-            > Login</span>
+            Already have account?
+            <span className="btn btn-link" onClick={() => navigate("/login")}>
+              {" "}
+              Login
+            </span>
           </Text>
 
           <ToastContainer />

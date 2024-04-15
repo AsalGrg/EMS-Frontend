@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 // Import font awesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge, Tooltip } from "@mantine/core";
-import { IconCalendar, IconDashboard, IconReceipt } from "@tabler/icons-react";
+import { IconCalendar, IconCirclePlus, IconDashboard, IconHome, IconLayersSubtract, IconReceipt } from "@tabler/icons-react";
 
 const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
   return (
@@ -22,7 +22,7 @@ const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
           <Menu>
             <Tooltip label="Dashboard" position="right">
               <MenuItem
-                icon={<IconDashboard />}
+                icon={<IconHome />}
                 component={<Link to="/admin/home" />}
               >
                 Dashboard
@@ -31,8 +31,8 @@ const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
 
             <Tooltip label="Event requests" position="right">
               <MenuItem
-                icon={<IconCalendar />}
-                component={<Link to="/admin/home" />}
+                icon={<IconCirclePlus/>}
+                component={<Link to="/admin/eventRequests" />}
               >
                 Events
               </MenuItem>
@@ -40,7 +40,7 @@ const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
 
             <Tooltip label="Collections" position="right">
               <MenuItem
-                icon={<IconCalendar />}
+                icon={<IconLayersSubtract />}
                 component={<Link to="/admin/collections" />}
               >
                 Collections
@@ -50,7 +50,7 @@ const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
             <Tooltip label="Orders" position="right">
               <MenuItem
                 icon={<IconReceipt />}
-                component={<Link to="/admin/home" />}
+                // component={<Link to="/admin/home" />}
               >
                 Collections
               </MenuItem>

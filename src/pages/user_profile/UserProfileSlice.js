@@ -7,6 +7,7 @@ const initialState = {
       "username": "",
       "userIntro": ""
   },
+  "userFollowers":0,
   "noOfEvents": 3,
   "pastEvents": [],
   "upcomingEvents": []

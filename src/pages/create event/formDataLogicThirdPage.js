@@ -5,7 +5,7 @@ export default function formDataLogicThirdPage(formState) {
   const ticketName = formState.ticketName;
   const ticketQuantity = formState.ticketQuantity;
   const ticketPrice =
-    formState.ticketType == "paid" ? formState.ticketPrice : 0;
+    formState.ticketType ==="Paid" ? formState.ticketPrice : 0;
   const saleStartDate =
     formState.ticketSaleDates[0] != null
       ? format(formState.ticketSaleDates[0], "yyyy-MM-dd")

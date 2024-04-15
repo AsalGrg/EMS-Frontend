@@ -3,7 +3,7 @@ import React from "react";
 
 const EachCollection = ({ collection }) => {
   return (
-    <Card padding="lg" radius="md" withBorder>
+    <Card padding="lg" radius="md">
       <Card.Section
         className="bg-primary"
         style={{
@@ -15,13 +15,14 @@ const EachCollection = ({ collection }) => {
             src={URL.createObjectURL(collection.coverImg)}
             class=" h-100 w-100"
             style={{
-              objectFit: "contain",
+              objectFit: "cover",
             }}
             alt="Responsive image h-100"
           />
         ) : (
           <img
             src={collection.coverImg}
+            // src="https://www.ocregister.com/wp-content/uploads/2022/08/OCR-L-CULINARYKIDS-CAMP-05-LO.jpg?w=478"
             class=" h-100 w-100"
             style={{
               objectFit: "cover",

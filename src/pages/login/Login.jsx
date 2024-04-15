@@ -52,6 +52,7 @@ const Login = () => {
             />
             <TextInput
               placeholder="Password"
+              type="password"
               size="lg"
               id="password"
               {...register("password")}

@@ -1,5 +1,6 @@
 import React from 'react'
 import './SearchFilter.css'
+import { Button } from '@mantine/core'
 const SearchFilter = () => {
   return (
     <>
@@ -19,7 +20,7 @@ const SearchFilter = () => {
                 <option value="">Select Category</option>
             </select>
 
-            <button className="universalButton">Search Event</button>
+            <Button className="" size='md' color ='#00192F' radius={'md'}>Search Event</Button>
         </div>
 
     </div>

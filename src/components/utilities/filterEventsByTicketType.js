@@ -6,13 +6,13 @@ export default function filterEventsByTicketType(events, ticketType){
         ))
     }
 
-    if(ticketType==="Paid"){
+    else if(ticketType==="Paid"){
         events= events.filter(each=>(
             each.ticketType==="Paid"
         ))
     }
 
-    if(ticketType==="Donation"){
+    else if(ticketType==="Donation"){
         events= events.filter(each=>(
             each.ticketType==="Donation"
         ))

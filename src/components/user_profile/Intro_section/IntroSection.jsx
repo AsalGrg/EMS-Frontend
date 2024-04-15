@@ -20,11 +20,8 @@ const IntroSection = () => {
 
       <div
         className="row justify-content-center"
-        style={{
-          marginTop: "50px",
-        }}
       >
-        <div className="col-10 col-md-6 text-center">
+        <div className="col-10 col-md-6 text-center mt-1">
           <Text size="xl" fw={700}>
             {userData.userSnippetDetails.username}
           </Text>
@@ -33,16 +30,16 @@ const IntroSection = () => {
         <div className="col-md-7 col-8 mt-4 px-5 ">
           <div className="d-flex justify-content-center flex-column flex-lg-row">
             <div className="d-flex justify-content-evenly me-lg-3">
-              <div className=" mb-xl-0 mb-3 border-end border-2 pe-2 me-lg-4">
+              <div className=" mb-xl-0 mb-3 border-end border-2 pe-2 me-lg-4 text-center">
                 <Text size="sm" fw={700}>
-                  1900
+                  {userData.userFollowers}
                 </Text>
                 <Text size="xs" fw={500}>
                   Followers
                 </Text>
               </div>
 
-              <div className=" mb-xl-0 mb-3 border-end border-2 pe-2">
+              <div className=" mb-xl-0 mb-3 border-end border-2 pe-2 text-center">
                 <Text size="sm" fw={700}>
                   {userData.noOfEvents}
                 </Text>

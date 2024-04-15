@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { change_event_request } from "../../../services/user details/admin/change_event_request";
 import { useDispatch } from "react-redux";
 import { acceptRequest, declineRequest } from "../../../pages/admin/event requests/EventRequestsSlice";
+import { IconCircleX } from "@tabler/icons-react";
 
 const EachEventRequest = ({ request }) => {
   const navigate = useNavigate();
@@ -87,14 +88,14 @@ const EachEventRequest = ({ request }) => {
               variant={"outline"}
               size="xs"
               leftSection={
-                <IconTrash
+                <IconCircleX
                   style={{ height: rem(18), width: rem(18) }}
                   color="red"
                 />
               }
               onClick={handleRejectRequest}
             >
-              Delete
+              Reject
             </Button>
           </div>
         ) : request.eventStatus === "completed" ? (
@@ -120,13 +121,13 @@ const EachEventRequest = ({ request }) => {
             size="xs"
             disabled
             leftSection={
-              <IconTrash
+              <IconCircleX
                 style={{ height: rem(18), width: rem(18) }}
                 color="red"
               />
             }
           >
-            Deleted
+            Rejected
           </Button>
         )}
       </td>

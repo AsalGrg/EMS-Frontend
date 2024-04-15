@@ -177,7 +177,7 @@ export async function searchResultLoader({ params }) {
   } else {
     let res;
 
-    if (location === "online") {
+    if (location !== "all") {
       res = await search_event(eventName, location);
     } else {
       res = await quick_search_event(eventName);

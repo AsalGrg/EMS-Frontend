@@ -5,9 +5,10 @@ const EventCoverImage = () => {
 
   return (
     <section className="mt-5">
-      <div className="coverImageDisplayDiv rounded d-flex justify-content-center bg-secondary px-lg-5"
+      <div className="coverImageDisplayDiv rounded d-flex justify-content-center px-lg-5"
       style={{
-        maxHeight: "450px"
+        maxHeight: "450px",
+        backgroundColor: '#D7D5D5'
       }}
       >
         {formData.eventAccessType === "preview" ? (

@@ -55,6 +55,7 @@ const AccessPassword = () => {
           placeholder="Enter password"
           className="w-100"
           value={password}
+          type="password"
           error={error}
           onChange={(e) => setpassword(e.target.value)}
         />

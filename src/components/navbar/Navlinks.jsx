@@ -3,7 +3,7 @@ import { useDisclosure } from "@mantine/hooks";
 import React from "react";
 import { useNavigate } from "react-router";
 
-const Navlinks = () => {
+const Navlinks = ({loggedData}) => {
 
   const navigate = useNavigate();
 
@@ -12,8 +12,13 @@ const Navlinks = () => {
       <div className="col-5 justify-content-start gap-4 align-items-center d-none d-lg-flex">
         <Text size="md" fw={500}
         onClick={() => {
-          return navigate("/c/create/new");
-        }}
+          if(loggedData!==null){
+              return navigate("/c/create/new");
+            }else{
+              return navigate("/login");
+            }
+          }
+        }
         >
           Create Event
         </Text>

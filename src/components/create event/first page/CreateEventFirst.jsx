@@ -13,8 +13,8 @@ import {
 import CreateEventContextWrapper from "../../../context/CreateEventContext";
 import create_event_first from "../../../services/create event/create_event_first_page";
 import formDataLogicFirstPage from "../../../pages/create event/formDataLogicFirstPage";
+import { ToastContainer, toast } from "react-toastify";
 const CreateEventFirst = () => {
-
   const formData = useSelector((state) => state.createEvent);
   const dispatch = useDispatch();
 
@@ -29,89 +29,90 @@ const CreateEventFirst = () => {
     eventDates: formData.eventDates,
     eventStartTime: formData.eventStartTime,
     eventEndTime: formData.eventEndTime,
-  };  
-  
-  async function handleSubmit(values, helpers) {
-    
+  };
 
-   dispatch(
-    updateCreateEventField({
-      field: "eventTitle",
-      value: values.eventTitle,
-    })
-  )
+  async function handleSubmit(values) {
+    dispatch(
+      updateCreateEventField({
+        field: "eventTitle",
+        value: values.eventTitle,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "category",
-      value: values.category,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "category",
+        value: values.category,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "venueType",
-      value: values.venueType,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "venueType",
+        value: values.venueType,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "meetingLink",
-      value: values.meetingLink,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "meetingLink",
+        value: values.meetingLink,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "selectedPlace",
-      value: values.selectedPlace,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "selectedPlace",
+        value: values.selectedPlace,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "eventDates",
-      value: values.eventDates,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "eventDates",
+        value: values.eventDates,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "eventStartTime",
-      value: values.eventStartTime,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "eventStartTime",
+        value: values.eventStartTime,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "eventEndTime",
-      value: values.eventEndTime,
-    })
-  )
+    dispatch(
+      updateCreateEventField({
+        field: "eventEndTime",
+        value: values.eventEndTime,
+      })
+    );
 
-  dispatch(
-    updateCreateEventField({
-      field: "eventTitle",
-      value: values.eventTitle,
-    })
-  )
-
+    dispatch(
+      updateCreateEventField({
+        field: "eventTitle",
+        value: values.eventTitle,
+      })
+    );
 
     const res = await create_event_first(formDataLogicFirstPage(values));
 
     // const res= await create_event();
-    if(res.ok){
+    if (res.ok) {
       const data = await res.text();
-      console.log(data)
+      console.log(data);
       // if response is okay, the event id from backend is sent from backend
-      dispatch(updateCreateEventField({
-        field:"eventId",
-        value: data
-      }))
+      dispatch(
+        updateCreateEventField({
+          field: "eventId",
+          value: data,
+        })
+      );
       dispatch(increaseActive());
+    } else {
+      const error = await res.json();
+      toast.error(error.message);
     }
-    
   }
 
   return (
@@ -122,8 +123,6 @@ const CreateEventFirst = () => {
       onSubmit={handleSubmit}
     >
       {(formik) => (
-
-        
         <CreateEventContextWrapper formik={formik}>
           <div className="mb-3">
             <BasicInfo />
@@ -136,8 +135,9 @@ const CreateEventFirst = () => {
           <div className="mb-3">
             <DateAndTime />
           </div>
-          <FormButtons handleSubmit={formik.handleSubmit}/>
+          <FormButtons handleSubmit={formik.handleSubmit} />
 
+          <ToastContainer />
         </CreateEventContextWrapper>
       )}
     </Formik>
