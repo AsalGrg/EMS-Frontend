@@ -43,10 +43,10 @@ const EventCard = ({ event }) => {
         {event.organizerName}
       </Text>
 
-      <Text size="sm" fw={500} className="d-flex mt-1">
+      {/* <Text size="sm" fw={500} className="d-flex mt-1">
       <FaRegUser className="me-2"/>
         {event.organizerFollowers} Followers
-      </Text>
+      </Text> */}
     </Card>
   );
 };

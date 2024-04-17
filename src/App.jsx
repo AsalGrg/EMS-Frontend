@@ -49,6 +49,8 @@ import Collection, {
 } from "./pages/admin/collection/Collection";
 import EditProfile from "./pages/edit profile/EditProfile";
 import EventRequests, { eventRequestsLoader } from "./pages/admin/event requests/EventRequests";
+import SendEmail from "./pages/forgot password/send email/SendEmail";
+import EnterPassword from "./pages/forgot password/Enter password/EnterPassword";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,7 +62,9 @@ const App = () => {
         <Route>
           <Route exact path="login" element={<Login />} />
           <Route exact path="register" element={<Register />} />
-          <Route exact path="verify-email" element={<EmailVerification />} />
+          <Route exact path=":purpose/verify-email" element={<EmailVerification />} />
+          <Route exact path="forgotPassword" element={<SendEmail />} />
+          <Route exact path="forgotPassword/changePassword" element={<EnterPassword />} />
           <Route exact path="search" element={<SearchBar />} />
           <Route
             exact

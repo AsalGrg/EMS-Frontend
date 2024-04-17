@@ -57,6 +57,12 @@ const Login = () => {
               id="password"
               {...register("password")}
             />
+
+            <div className="w-100 d-flex justify-content-end">
+              <Text fw={600} className="cursor-pointer"
+              onClick={()=> navigate('/forgotPassword')}
+              >Forgot password</Text>
+            </div>
             <Button className="w-100" size="lg"
             onClick={handleSubmit(handleLoginSubmit)}
             >
