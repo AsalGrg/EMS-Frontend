@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from "react";
-import "../style.css";
 import EventSearchbar from "../../../components/vendor/events/EventSearchbar";
 import EventSearchFilter from "../../../components/vendor/events/EventSearchFilter";
 import { Link, useLoaderData } from "react-router-dom";
 import Events from "../../../components/vendor/events/Events";
 import get_vendor_events from "../../../services/user/get_vendor_events";
 import { isAfter, isBefore } from "date-fns";
+import get_all_completed_events from "../../../services/user/get_all_completed_events";
+import EventsAdmin from "../../../components/admin/events/EventsAdmin";
 
-const VendorEvents = () => {
-  const intialEventState = [{
-    eventId: 0,
-    pageStatus: 0,
-    eventStatus: "",
-    eventCoverImgUrl:"",
-    eventName: "",
-    startDate: "",
-    endDate: "",
-    startTime: "",
-    category: "",
-    location_display_name:
-      "",
-    lat: 0.0,
-    lon: 0.0,
-    country: "",
-    ticketType: "",
-    ticketPrice: 0.0,
-    ticketsForSale: 0,
-    ticketsSold: 0,
-    organizerName: "",
-  }];
+const AdminEvents = () => {
+  const intialEventState = [
+    {
+      eventId: 0,
+      pageStatus: 0,
+      eventStatus: "",
+      eventCoverImgUrl: "",
+      eventName: "",
+      startDate: "",
+      endDate: "",
+      startTime: "",
+      category: "",
+      location_display_name: "",
+      lat: 0.0,
+      lon: 0.0,
+      country: "",
+      ticketType: "",
+      ticketPrice: 0.0,
+      ticketsForSale: 0,
+      ticketsSold: 0,
+      organizerName: "",
+    },
+  ];
 
   const [events, setevents] = useState(intialEventState);
   const [searchedKeyword, setsearchedKeyword] = useState("");
@@ -56,13 +58,15 @@ const VendorEvents = () => {
   useEffect(() => {
     function applyFilters() {
       const keywordSearchfilteredEvents = applySearchedKeyword();
-      const filteredEvents = applySearchFilter({ keywordFilteredEvents: keywordSearchfilteredEvents });
+      const filteredEvents = applySearchFilter({
+        keywordFilteredEvents: keywordSearchfilteredEvents,
+      });
       setevents(filteredEvents);
     }
     applyFilters();
- }, [selectedSearchFilter, searchedKeyword]);
+  }, [selectedSearchFilter, searchedKeyword]);
 
- function applySearchedKeyword() {
+  function applySearchedKeyword() {
     const fetchedEvents = loaderData;
 
     if (searchedKeyword !== null && searchedKeyword.length > 0) {
@@ -74,9 +78,9 @@ const VendorEvents = () => {
       return filteredEvents;
     }
     return fetchedEvents;
- }
+  }
 
- function applySearchFilter({ keywordFilteredEvents }) {
+  function applySearchFilter({ keywordFilteredEvents }) {
     let filteredEvents;
     if (selectedSearchFilter === "All events") {
       filteredEvents = keywordFilteredEvents;
@@ -89,18 +93,10 @@ const VendorEvents = () => {
         filteredEvents = keywordFilteredEvents.filter((each) =>
           isBefore(new Date(), new Date(each.startDate))
         );
-      } else if (selectedSearchFilter === "Draft") {
-        filteredEvents = keywordFilteredEvents.filter(
-          (each) => each.eventStatus === "draft"
-        );
-      } else if (selectedSearchFilter === "Completed") {
-        filteredEvents = keywordFilteredEvents.filter(
-          (each) => each.eventStatus === "completed"
-        );
       }
     }
     return filteredEvents;
- }
+  }
 
   return (
     <section className="fonts p-5">
@@ -108,31 +104,33 @@ const VendorEvents = () => {
 
       <div className="d-flex justify-content-between mt-4">
         <div className="d-flex gap-4">
-          <EventSearchbar  searchedKeyword={searchedKeyword} setsearchedKeyword={setsearchedKeyword}/>
-          <EventSearchFilter selectedValue={selectedSearchFilter} setselectedValue={setSelectedSearchFilter}/>
+          <EventSearchbar
+            searchedKeyword={searchedKeyword}
+            setsearchedKeyword={setsearchedKeyword}
+          />
+          <EventSearchFilter
+            selectedValue={selectedSearchFilter}
+            setselectedValue={setSelectedSearchFilter}
+          />
         </div>
 
-        <Link to={"/c/create/new"}>
-          <button className="dashboard-btn-catchy">Create event</button>
-        </Link>
       </div>
 
       <div>
-        <Events events={events} />
+        <EventsAdmin events={events} />
       </div>
     </section>
   );
 };
 
-export default VendorEvents;
+export default AdminEvents;
 
-export async function vendorEventsLoader() {
-  const res = await get_vendor_events();
+export async function adminEventsLoader() {
+  const res = await get_all_completed_events();
   if (res.ok) {
     const data = await res.json();
     console.log(data);
     return data;
   }
-
   return null;
 }

@@ -48,9 +48,15 @@ import Collection, {
   collectionLoader,
 } from "./pages/admin/collection/Collection";
 import EditProfile from "./pages/edit profile/EditProfile";
-import EventRequests, { eventRequestsLoader } from "./pages/admin/event requests/EventRequests";
+import EventRequests, {
+  eventRequestsLoader,
+} from "./pages/admin/event requests/EventRequests";
 import SendEmail from "./pages/forgot password/send email/SendEmail";
 import EnterPassword from "./pages/forgot password/Enter password/EnterPassword";
+import CollectionDescription, {
+  collectionDescriptionLoader,
+} from "./pages/admin/collection_description/CollectionDescription";
+import AdminEvents, { adminEventsLoader } from "./pages/admin/events/AdminEvents";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -62,9 +68,17 @@ const App = () => {
         <Route>
           <Route exact path="login" element={<Login />} />
           <Route exact path="register" element={<Register />} />
-          <Route exact path=":purpose/verify-email" element={<EmailVerification />} />
+          <Route
+            exact
+            path=":purpose/verify-email"
+            element={<EmailVerification />}
+          />
           <Route exact path="forgotPassword" element={<SendEmail />} />
-          <Route exact path="forgotPassword/changePassword" element={<EnterPassword />} />
+          <Route
+            exact
+            path="forgotPassword/changePassword"
+            element={<EnterPassword />}
+          />
           <Route exact path="search" element={<SearchBar />} />
           <Route
             exact
@@ -114,6 +128,13 @@ const App = () => {
             loader={userProfileLoader}
           />
 
+          <Route
+            exact
+            path=":accessedBy/collectionDescription/:collectionId"
+            element={<CollectionDescription />}
+            loader={collectionDescriptionLoader}
+          />
+
           <Route exact path="editProfile" element={<EditProfile />} />
         </Route>
 
@@ -137,6 +158,13 @@ const App = () => {
             path="eventRequests"
             element={<EventRequests />}
             loader={eventRequestsLoader}
+          />
+
+          <Route
+            exact
+            path="events"
+            element={<AdminEvents/>}
+            loader={adminEventsLoader}
           />
         </Route>
 

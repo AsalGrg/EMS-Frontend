@@ -43,6 +43,7 @@ const Navbar = () => {
             width: "190px",
           }}
           alt=""
+          onClick={()=>navigate('/')}
         />
       </div>
 

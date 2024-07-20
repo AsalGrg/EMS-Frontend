@@ -69,7 +69,7 @@ const ShareEventSection = () => {
         </div>
       </div>
 
-      <Text size="md" fw={600} className="mt-3">
+      {/* <Text size="md" fw={600} className="mt-3">
         Share on
       </Text>
       <div className="d-flex gap-3 mt-2">
@@ -88,7 +88,7 @@ const ShareEventSection = () => {
         <div className="rounded text-primary border border-3 rounded-circle p-2">
           <IconBrandLinkedin style={icoStyle} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

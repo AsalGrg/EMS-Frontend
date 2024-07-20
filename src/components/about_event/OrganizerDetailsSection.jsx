@@ -37,7 +37,7 @@ const OrganizerDetailsSection = () => {
       <div className="d-flex justify-content-center mt-3">
         <div className="shadow organizerDetailContainer d-flex justify-content-center align-items-center flex-column py-5 rounded">
           <Avatar
-            src={vendorDetails.vendorProfile}
+            src={vendorDetails!==undefined ?vendorDetails.vendorProfile: null}
             alt="it's me"
             size="xl"
           />
@@ -45,11 +45,11 @@ const OrganizerDetailsSection = () => {
           <p className="mt-4 text-center">
             <span className="text-secondary">Organized By</span>
             <br />
-            <span className="fw-bold">{vendorDetails.vendorName}</span>
+            <span className="fw-bold">{vendorDetails!==undefined ?vendorDetails.vendorName: 'Vendor Name'}</span>
           </p>
 
           <p className="mt-4 text-center">
-            <span className="fw-bold">{vendorDetails.vendorFollowers}</span>
+            <span className="fw-bold">{vendorDetails!==undefined ?vendorDetails.vendorFollowers: '--'}</span>
             <br />
             <span className="text-secondary">Followers</span>
           </p>
@@ -59,28 +59,29 @@ const OrganizerDetailsSection = () => {
               Contact
             </Button>
 
-            {!vendorDetails.hasFollowed ? (
-              <Button
-                variant="filled"
-                size="md"
-                onClick={() => followVendor()}
-              >
-                Follow
-              </Button>
-            ) : (
-              <Button
-                onClick={() => unfollowVendor()}
-                variant="light"
-                size="md"
-                color="gray"
-                leftSection={<IconUserCheck size={20} className="fw-bold" />}
-              >
-                Following
-              </Button>
-            )}
+            {vendorDetails!==undefined&& !vendorDetails.hasFollowed ? (
+                <Button
+                  variant="filled"
+                  size="md"
+                  onClick={() => followVendor()}
+                >
+                  Follow
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => unfollowVendor()}
+                  variant="light"
+                  size="md"
+                  color="gray"
+                  leftSection={<IconUserCheck size={20} className="fw-bold" />}
+                >
+                  Following
+                </Button>
+              )
+            }
           </div>
 
-          <div className="mt-5 d-flex justify-content-evenly w-100 px-5">
+          {/* <div className="mt-5 d-flex justify-content-evenly w-100 px-5">
             <div
               className="rounded p-2 "
               style={{ backgroundColor: "rgb(248, 247, 250)" }}
@@ -115,7 +116,7 @@ const OrganizerDetailsSection = () => {
             >
               <IconWorld size={25} color="rgb(54, 89, 227)" />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

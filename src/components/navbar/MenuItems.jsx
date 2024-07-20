@@ -3,10 +3,6 @@ import {
     IconHeart,
   IconLogout,
   IconMessageCircle,
-  IconPhoto,
-  IconSearch,
-  IconSettings,
-  IconTicket,
   IconUserCheck,
 } from "@tabler/icons-react";
 import React from "react";
@@ -27,12 +23,7 @@ const MenuItems = () => {
         Manage my events
       </Menu.Item>
       <Divider />
-      <Menu.Item
-        leftSection={<IconTicket style={{ width: rem(14), height: rem(14) }} />}
-        onClick={()=> navigate('/tickets')}
-      >
-        Tickets
-      </Menu.Item>
+      
       <Menu.Item
         leftSection={<IconHeart style={{ width: rem(14), height: rem(14) }} />}
         onClick={()=> navigate('/liked/events')}
@@ -51,7 +42,7 @@ const MenuItems = () => {
 
       <Menu.Item
         leftSection={<IconUserCheck style={{ width: rem(14), height: rem(14) }} />}
-        onClick={()=>navigate("user")}
+        onClick={()=>navigate("/user/profile/me")}
       >
         Profile
       </Menu.Item>

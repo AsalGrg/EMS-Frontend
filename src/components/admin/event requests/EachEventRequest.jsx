@@ -1,12 +1,16 @@
 import { Button, Text, rem } from "@mantine/core";
-import { IconCheck, IconTrash } from "@tabler/icons-react";
+import { IconArrowBackUp, IconCheck, IconTrash } from "@tabler/icons-react";
 import React from "react";
 import formatDate from "../../utilities/formatDate";
 import formatTime from "../../utilities/formatTime";
 import { useNavigate } from "react-router";
 import { change_event_request } from "../../../services/user details/admin/change_event_request";
 import { useDispatch } from "react-redux";
-import { acceptRequest, declineRequest } from "../../../pages/admin/event requests/EventRequestsSlice";
+import {
+  acceptRequest,
+  declineRequest,
+  undoRequest,
+} from "../../../pages/admin/event requests/EventRequestsSlice";
 import { IconCircleX } from "@tabler/icons-react";
 
 const EachEventRequest = ({ request }) => {
@@ -30,6 +34,16 @@ const EachEventRequest = ({ request }) => {
       dispatch(declineRequest(request.eventId));
     }
   }
+
+  async function handleUndoRequest(e) {
+    e.stopPropagation();
+
+    const res = await change_event_request(request.eventId, "undo");
+    if (res.ok) {
+      dispatch(undoRequest(request.eventId));
+    }
+  }
+
   return (
     <tr
       className="eachEventRow border-bottom"
@@ -98,37 +112,56 @@ const EachEventRequest = ({ request }) => {
               Reject
             </Button>
           </div>
-        ) : request.eventStatus === "completed" ? (
-          <Button
-            // color="rgba(183, 237, 180, 1)"
-            color="green"
-            disabled
-            variant={"outline"}
-            size="xs"
-            leftSection={
-              <IconCheck
-                style={{ height: rem(18), width: rem(18) }}
-                color="green"
-              />
-            }
-          >
-            Accepted
-          </Button>
         ) : (
-          <Button
-            color="dark"
-            variant={"outline"}
-            size="xs"
-            disabled
-            leftSection={
-              <IconCircleX
-                style={{ height: rem(18), width: rem(18) }}
-                color="red"
-              />
-            }
-          >
-            Rejected
-          </Button>
+          <div className="d-flex justify-content-center gap-2">
+            {request.eventStatus === "completed" ? (
+              <Button
+                // color="rgba(183, 237, 180, 1)"
+                color="green"
+                disabled
+                variant={"outline"}
+                size="xs"
+                leftSection={
+                  <IconCheck
+                    style={{ height: rem(18), width: rem(18) }}
+                    color="green"
+                  />
+                }
+              >
+                Accepted
+              </Button>
+            ) : (
+              <Button
+                color="dark"
+                variant={"outline"}
+                size="xs"
+                disabled
+                leftSection={
+                  <IconCircleX
+                    style={{ height: rem(18), width: rem(18) }}
+                    color="red"
+                  />
+                }
+              >
+                Rejected
+              </Button>
+            )}
+
+            <Button
+              color="dark"
+              variant={"outline"}
+              size="xs"
+              leftSection={
+                <IconArrowBackUp
+                  style={{ height: rem(18), width: rem(18) }}
+                  color="yellow"
+                />
+              }
+              onClick={handleUndoRequest}
+            >
+              Undo
+            </Button>
+          </div>
         )}
       </td>
     </tr>

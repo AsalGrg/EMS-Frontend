@@ -5,7 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 // Import font awesome icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Badge, Tooltip } from "@mantine/core";
-import { IconCalendar, IconCirclePlus, IconDashboard, IconHome, IconLayersSubtract, IconReceipt } from "@tabler/icons-react";
+import {
+  IconCalendar,
+  IconCirclePlus,
+  IconDashboard,
+  IconHome,
+  IconLayersSubtract,
+  IconReceipt,
+} from "@tabler/icons-react";
 
 const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
   return (
@@ -29,9 +36,18 @@ const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
               </MenuItem>
             </Tooltip>
 
+            <Tooltip label="Events" position="right">
+              <MenuItem
+                icon={<IconCalendar />}
+                component={<Link to="/admin/events" />}
+              >
+                Events
+              </MenuItem>
+            </Tooltip>
+
             <Tooltip label="Event requests" position="right">
               <MenuItem
-                icon={<IconCirclePlus/>}
+                icon={<IconCirclePlus />}
                 component={<Link to="/admin/eventRequests" />}
               >
                 Events
@@ -47,14 +63,14 @@ const AdminSidebar = ({ collapsed, toggled, settoggled, setBroken }) => {
               </MenuItem>
             </Tooltip>
 
-            <Tooltip label="Orders" position="right">
+            {/* <Tooltip label="Orders" position="right">
               <MenuItem
                 icon={<IconReceipt />}
                 // component={<Link to="/admin/home" />}
               >
                 Collections
               </MenuItem>
-            </Tooltip>
+            </Tooltip> */}
           </Menu>
         </div>
       </div>

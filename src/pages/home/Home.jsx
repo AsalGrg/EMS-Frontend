@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className="container px-5 fonts">
       <Introduction />
-      <SearchFilter />
+      {/* <SearchFilter /> */}
 
       <Categories />
 

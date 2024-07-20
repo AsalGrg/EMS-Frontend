@@ -37,7 +37,7 @@ const Collection = () => {
       <div className="row justity-content-evenly mt-4 gy-3">
         {collectionState.collections.map((each) => (
           <div className="col-lg-4 col-md-6 col-12">
-            <EachCollection collection={each} />
+            <EachCollection collection={each} accessedBy={'admin'}/>
           </div>
         ))}
       </div>

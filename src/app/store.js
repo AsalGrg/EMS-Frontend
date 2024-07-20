@@ -9,6 +9,7 @@ import vendorsReducer from "../components/global/VendorSnippetsSlice";
 import eventDescriptionReducer from "../pages/vendor/event_description/EventDescriptionSlice";
 import collectionReducer from "../pages/admin/collection/CollectionSlice";
 import eventRequestsReducer from "../pages/admin/event requests/EventRequestsSlice";
+import collectionDescriptionReducer from "../pages/admin/collection_description/CollectionDescriptionSlice";
 export const store = configureStore({
   reducer: {
     createEvent: createEventReducer,
@@ -20,6 +21,7 @@ export const store = configureStore({
     vendors: vendorsReducer,
     eventDescription: eventDescriptionReducer,
     collection: collectionReducer,
-    eventRequests: eventRequestsReducer
+    eventRequests: eventRequestsReducer,
+    collectionDescription: collectionDescriptionReducer
   },
 });

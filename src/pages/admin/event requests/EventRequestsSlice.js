@@ -27,10 +27,18 @@ const eventRequestsSlice = createSlice({
                     each.eventStatus='rejected'
                 }
             })
+        },
+
+        undoRequest: (state, action)=>{
+            state.requests.map(each=>{
+                if(each.eventId=== action.payload){
+                    each.eventStatus='pending'
+                }
+            })
         }
     }
 })
 
-export const{updateRequests, acceptRequest, declineRequest}= eventRequestsSlice.actions;
+export const{updateRequests, acceptRequest, declineRequest, undoRequest}= eventRequestsSlice.actions;
 
 export default eventRequestsSlice.reducer;

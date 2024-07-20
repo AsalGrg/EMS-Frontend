@@ -46,6 +46,11 @@ const api_urls= {
     getUserProfileDetails : (userId)=> `${BASE_URL}/user/profile/${userId}`,
     getAllEventRequests: ()=> `${BASE_URL}/getAllEventRequests`,
     updateEventRequest: (eventId, action)=> `${BASE_URL}/updateEventRequest/${eventId}/${action}`,
+    getCollectionDescription: (collectionId)=> `${BASE_URL}/getCollectionDescription/${collectionId}`,
+    addEventToCollection: (eventId, collectionId)=>`${BASE_URL}/addEventInCollection/${eventId}/${collectionId}`,
+    removeEventFromCollection: (eventId, collectionId)=>`${BASE_URL}/removeEventFromCollection/${eventId}/${collectionId}`,
+    getAllCompletedEvents: ()=> `${BASE_URL}/getAllCompletedEvents`
+
 }
 
 export default api_urls

@@ -44,7 +44,7 @@ const SideBoard = () => {
           </Text>
         </div>
 
-        <div className="d-flex gap-2 align-items-center text-primary">
+        {/* <div className="d-flex gap-2 align-items-center text-primary">
           <IconEye
             style={{
               height: rem(18),
@@ -52,7 +52,7 @@ const SideBoard = () => {
             }}
           />
           <Text size="sm">Preview Event</Text>
-        </div>
+        </div> */}
       </div>
     </div>
   );

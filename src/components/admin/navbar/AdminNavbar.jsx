@@ -30,10 +30,10 @@ const AdminNavbar = ({collapsed, setBroken, settoggled, toggled, setcollapsed, b
     >
       <div className="col-3 col-lg-2 h-100 d-flex py-3 justify-content-center align-items-center gap-1 gap-md-3 ms-5 ms-md-0">
         <img
-          src='/src/assets/logo.png'
+          src='/src/assets/logo2.png'
           style={{
-            height: "80px",
-            width: '190px'
+            height: "50px",
+            width: '150px'
           }}
           alt=""
         />

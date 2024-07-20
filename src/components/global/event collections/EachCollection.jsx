@@ -1,9 +1,18 @@
 import { Avatar, Card, Text } from "@mantine/core";
 import React from "react";
+import { useNavigate } from "react-router";
 
-const EachCollection = ({ collection }) => {
+const EachCollection = ({ collection, accessedBy}) => {
+
+  const navigate = useNavigate();
+  
   return (
-    <Card padding="lg" radius="md">
+    <Card padding="lg" radius="md"
+    className="cursor-pointer"
+    onClick={()=>{
+      accessedBy&& accessedBy==='admin'?navigate(`/admin/collectionDescription/${collection.id}`): navigate(`/user/collectionDescription/${collection.id}`)
+    }}
+    >
       <Card.Section
         className="bg-primary"
         style={{

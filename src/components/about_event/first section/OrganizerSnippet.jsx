@@ -33,16 +33,16 @@ const OrganizerSnippet = () => {
     >
       <div className="d-flex justify-content-center align-items-center">
         <Avatar
-           src={vendorDetails.vendorProfile}
+           src={vendorDetails!==undefined?vendorDetails.vendorProfile: null}
           alt="it's me"
           size="lg"
         />
 
         <p className="mt-3 ms-3">
-          By <span className="fw-bold">{vendorDetails.vendorName}</span>
+          By <span className="fw-bold">{vendorDetails!==undefined?vendorDetails.vendorName:'vendor name'}</span>
         </p>
       </div>
-      {!vendorDetails.hasFollowed ? (
+      {vendorDetails!==undefined&&!vendorDetails.hasFollowed ? (
         <Button variant="filled" size="md" onClick={() => followVendor()}>
           Follow
         </Button>

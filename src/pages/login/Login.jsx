@@ -26,7 +26,11 @@ const Login = () => {
       console.log(response);
       localStorage.setItem("token", response.jwtToken);
       toast.success(response.message);
-      setTimeout(() => navigate("/"), 2000);
+      if(response.admin===true){
+        setTimeout(() => navigate("/admin/home"), 2000);
+      }else{
+        setTimeout(() => navigate("/"), 2000);
+      }
     }
   };
   return (

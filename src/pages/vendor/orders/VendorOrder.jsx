@@ -28,7 +28,7 @@ const VendorOrder = () => {
     <div className="p-5">
       <h1 className="display-6 fw-bold">Orders</h1>
 
-      <div className="row mt-4">
+      {/* <div className="row mt-4">
         <Input
           placeholder="Search order number, email or name"
           leftSection={<IconSearch style={iconStyle} />}
@@ -42,7 +42,7 @@ const VendorOrder = () => {
           className="col-3 ps-1"
           size="md"
         />
-      </div>
+      </div> */}
 
       <div className="mt-4 w-100 row">
         <div className="col-lg-11 col-12">

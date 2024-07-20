@@ -23,11 +23,6 @@ const Navlinks = ({loggedData}) => {
           Create Event
         </Text>
 
-        <Text size="md" fw={500}
-        
-        >
-          Find Vendor
-        </Text>
 
         <Text size="md" fw={500}
         onClick={() => {
